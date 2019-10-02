@@ -30,7 +30,7 @@ function App() {
 
   //removes a todo from the list
   const removeTodo = index => {
-    const updatedTodoList = todoList.splice();
+    const updatedTodoList = [...todoList];
     updatedTodoList.splice(index, 1);
   };
   return (
