@@ -24,8 +24,12 @@ function App() {
   //indicates if todo is complete
   const completeTodo = index => {
     const updatedTodoList = [...todoList];
-    updatedTodoList[index].completed = true;
-    setTodoList(updatedTodoList);
+    if (updatedTodoList[index].completed === true) {
+      updatedTodoList[index].completed = false;
+    } else {
+      updatedTodoList[index].completed = true;
+    }
+        setTodoList(updatedTodoList);
   };
 
   //removes a todo from the list
