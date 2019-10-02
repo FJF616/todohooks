@@ -44,7 +44,9 @@ function App() {
             removeTodo={removeTodo}
             />
         ))}
-        <TodoInput addTodo={addTodo} />
+        <div style={{display:"inline-flex"}}>
+        Enter A Todo: <TodoInput addTodo={addTodo} />
+      </div>
       </div>
     </div>
   );
