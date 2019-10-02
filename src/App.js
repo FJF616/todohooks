@@ -32,6 +32,7 @@ function App() {
   const removeTodo = index => {
     const updatedTodoList = [...todoList];
     updatedTodoList.splice(index, 1);
+    setTodoList(updatedTodoList);
   };
   return (
     <div className="App">
