@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Todo from './Todo';
+import TodoInput from './TodoInput';
 import './App.css';
 
 function App() {
@@ -6,7 +8,11 @@ function App() {
     {
       todo: "example task",
       completed: false
-    }
+    }, 
+    {
+      todo: "another example task",
+      completed: false
+    },
   ]);
 
   //adds a todo to the todo list
@@ -29,7 +35,16 @@ function App() {
   };
   return (
     <div className="App">
-      
+      <div className="list">
+        {todoList.map((todo, index) => (
+          <Todo key={index} index={index}
+            todo={todo}
+            completeTodo={completeTodo}
+            removeTodo={removeTodo}
+            />
+        ))}
+        <TodoInput addTodo={addTodo} />
+      </div>
     </div>
   );
 }
