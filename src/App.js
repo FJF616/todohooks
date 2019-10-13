@@ -38,6 +38,7 @@ function App() {
     updatedTodoList.splice(index, 1);
     setTodoList(updatedTodoList);
   };
+  
   return (
     <div className="App">
       <div className="list">
