@@ -86,12 +86,12 @@ function App() {
         >
       <div className="App">
         <div className="list">
-          {state.todoList.map((todo, index) => (
+          {state.todoList.map((todo) => (
            
             
               <Todo 
                 key={todo.id} 
-                index={index}
+                index={todo.id}
                 todo={todo}
                 // completeTodo={completeTodo}
                 // removeTodo={removeTodo}
