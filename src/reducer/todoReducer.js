@@ -49,8 +49,7 @@ export default function todoReducer(state, action) {
       }
         return {
           ...state,
-          todoList: state.todoList
-       
+          todoList: state.todoList    
       }
     default:
       return state;
