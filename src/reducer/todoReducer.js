@@ -19,7 +19,6 @@ export default function todoReducer(state, action) {
             }
           ]
         };
-    // case HANDLE_INPUT:
 
     case REMOVE_TODO:   
       const index = action.payload 
@@ -28,28 +27,28 @@ export default function todoReducer(state, action) {
           todoList: [...state.todoList.filter(todo => todo.id !== index)]
         }
     case EDIT_TODO:
-      const editedTodoList = [...state.todoList]
-      index = action.payload
-      // const indx = state.todoList.findIndex(editTodo => editTodo.id === state.todoList[]);
-      // const todo = Object.assign({}, state.todoList[indx]);
-      
-      // todo.text = action.payload.text;
-      // editedTodoList.splice(index, 1, todo);
+      const editedText = action.payload.text
+      const todoId = action.payload.id
+      const indx = state.todoList.findIndex(editTodo => editTodo.id === todoId);
+      const todo = state.todoList.filter(editTodo => editTodo.id === todoId)
+      // const editedTodo = Object.assign({}, state.editedTodoList[todoIndex])
+      todo.text = editedText;
+      state.todoList.splice(todoId, 1, todo);
       
         return {
             ...state,
-            todoList: editedTodoList
+            todoList: [...state.todoList]
           }
     case TOGGLE_COMPLETE:
-      const idx = action.payload
-      if (state.todoList[idx].completed === true) {
-        state.todoList[idx].completed = false;
-      } else {
-        state.todoList[idx].completed = true;
-      }
+    const idx = action.payload
+    if (state.todoList[idx].completed === false) {
+      state.todoList[idx].completed = true
+    } else {
+      state.todoList[idx].completed = false
+    }
         return {
           ...state,
-          todoList: state.todoList    
+          todoList: [...state.todoList]    
       }
     default:
       return state;

@@ -2,18 +2,29 @@ import React, { useState, useContext } from 'react';
 import TodoContext from '../context/todoContext';
 import uuid from 'uuid';
 
-export default function useAddInput(initialState=[{}]) {
-  const [input, setInput] = useState(initialState);
-  const [newList, setNewList] = useState([])
+export default function useEditTodo(index) {
   const context = useContext(TodoContext);
+
+  const [input, setInput] = useState("")
+  const [newList, setNewList] = useState([])
   const { todoList, addTodo } = context
   // const todoInputRef = useRef(null);
-  
-  const handleInput = (event) => {
-    setInput({...input,  [event.target.name] : event.target.value,  id: uuid.v4(), text: input, completed: false });
+  const todoText = [...context.todoList[index].text]
+  // const todoIndex = todoList.filter(todo => {
+  //   if (todo.hasOwnProperty(input))
+  //   return todo.id;
+  // });
+  const editText = () => {
+    const editedTodoList = [...todoList];
+    const todo = editedTodoList[index]
+    todo.text = input;
+    return editedTodoList;
   }
- const onSubmit = (event) => {
 
+  const handleInput = (event) => {
+    setInput([event.target.name] : event.target.value);
+  }
+  const onSubmit = (event) => {
    event.preventDefault();
    if (input.text.length === 0) {
     setInput(initialState)
@@ -25,7 +36,6 @@ export default function useAddInput(initialState=[{}]) {
  }
   return {
     handleInput,
-    input,
     onSubmit
   }
 }

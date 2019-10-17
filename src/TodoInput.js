@@ -4,16 +4,16 @@ import TodoContext from './context/todoContext';
 
 export default function TodoInput() {
   //create empty state to store the input
-  const initialState = {}
+  // const initialState = {}
   const [input, setInput] = useState("")
   
   //context values
-  const context = useContext(TodoContext);
-  const { todoList, addTodo } = context
+  // const context = useContext(TodoContext);
+  const { todoList, addTodo, editing,  } = useContext(TodoContext);
 
   //initial state is used locally here for storing input, the local state will
   //be passed through the dispatch method to update the todos in context global state.
-  const [state, dispatch] = useReducer(todoReducer, initialState);
+  // const [state, dispatch] = useReducer(todoReducer, initialState);
  
   //dispatch ADD_TODO action type through context addTodo method, then clear the input
   const onSubmit = (event) => {
