@@ -1,8 +1,8 @@
 import React, { useReducer, useContext } from 'react';
 import { ADD_TODO, REMOVE_TODO, EDIT_TODO, TOGGLE_COMPLETE  } from './reducer/actionTypes';
 import todoReducer from './reducer/todoReducer';
-import Todo from './Todo';
-import TodoInput from './TodoInput';
+import Todo from './components/Todo';
+import TodoInput from './components/TodoInput';
 import TodoContext from './context/todoContext';
 import './App.css';
 
@@ -20,17 +20,17 @@ function App() {
     });
   };
 
-  const editTodo = (index, id, text) => {
-    dispatch({
-      type: EDIT_TODO,
-      payload: id,text
-    });
-  };
+  // const editTodo = (index, id, text) => {
+  //   dispatch({
+  //     type: EDIT_TODO,
+  //     payload: id,text
+  //   });
+  // };
 
-  const removeTodo = (id) => {
+  const removeTodo = (index) => {
     dispatch({
       type: REMOVE_TODO,
-      payload: id
+      payload: index
     });
   };
 
@@ -48,9 +48,7 @@ function App() {
             addTodo,
             editTodo,
             removeTodo,
-            toggleComplete,
-            
-            
+            toggleComplete, 
           }}
         >
       <div className="App">
@@ -63,7 +61,7 @@ function App() {
             />
           ))}
           <div style={{display:"inline-flex"}}>
-          Enter A Todo: <TodoInput  />
+            Enter A Todo: <TodoInput />
         </div>
         </div>
       </div>

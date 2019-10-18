@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import TodoReducer from '../reducer/todoReducer';
 import uuid from 'uuid';
+
 const TodoContext = createContext({
   todoList: [
       {
