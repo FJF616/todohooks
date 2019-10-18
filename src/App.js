@@ -57,7 +57,6 @@ function App() {
         <div className="list">
           {state.todoList.map((todo, index) => (
             <Todo 
-              // todoList={state.todoList}
               key={todo.id} 
               index={index}
               todo={todo}
