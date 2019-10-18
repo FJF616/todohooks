@@ -26,30 +26,40 @@ export default function todoReducer(state, action) {
           ...state,
           todoList: [...state.todoList.filter(todo => todo.id !== index)]
         }
-    case EDIT_TODO:
-      const editedText = action.payload.text
-      const todoId = action.payload.id
-      const indx = state.todoList.findIndex(editTodo => editTodo.id === todoId);
-      const todo = state.todoList.filter(editTodo => editTodo.id === todoId)
-      // const editedTodo = Object.assign({}, state.editedTodoList[todoIndex])
-      todo.text = editedText;
-      state.todoList.splice(todoId, 1, todo);
+    // case EDIT_TODO:
+    //   const todoIndex = action.index
+    //   const editedText = action.text
+    //   const newList = [...state.todoList]
+    //   const todoId = action.id
+    //   const todoText = newList.filter(editTodo => editTodo.id === todoId)
+    //   todoText.text = editedText
+
+      // state.todoList.splice(todoId, 1, editedText);
       
         return {
             ...state,
             todoList: [...state.todoList]
           }
     case TOGGLE_COMPLETE:
-    const idx = action.payload
-    if (state.todoList[idx].completed === false) {
-      state.todoList[idx].completed = true
-    } else {
-      state.todoList[idx].completed = false
-    }
-        return {
-          ...state,
-          todoList: [...state.todoList]    
-      }
+        const todoID = action.payload
+        const todoIdx = action.index
+        const todoTask = state.todoList.filter(todo => todo.id === todoID)
+        const todoCompleted = state.todoList.filter(newTodo => newTodo.id === todoID)
+            .map(property => { 
+              if (property.completed === false) {
+                property.completed = true;
+                state.todoList.splice(todoIdx, 1, property)
+              } else {
+                property.completed = false;
+                state.todoList.splice(todoIdx, 1, property)
+              }
+              return state.todoList
+          })
+      
+            return {
+              ...state,
+              todoList: [...state.todoList]   
+          }
     default:
       return state;
   }

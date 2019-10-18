@@ -20,7 +20,7 @@ function App() {
     });
   };
 
-  const editTodo = (id, text) => {
+  const editTodo = (index, id, text) => {
     dispatch({
       type: EDIT_TODO,
       payload: id,text
@@ -34,26 +34,30 @@ function App() {
     });
   };
 
-  const toggleComplete = (id) => {
+  const toggleComplete = (id, index) => {
     dispatch({
       type: TOGGLE_COMPLETE,
-      payload: id
+      payload: id, index
     });
   };
 
     return (
       <TodoContext.Provider
           value={{
+            todoList: state.todoList,
             addTodo,
             editTodo,
             removeTodo,
-            toggleComplete
+            toggleComplete,
+            
+            
           }}
         >
       <div className="App">
         <div className="list">
           {state.todoList.map((todo, index) => (
             <Todo 
+              // todoList={state.todoList}
               key={todo.id} 
               index={index}
               todo={todo}

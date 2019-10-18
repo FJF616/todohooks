@@ -1,42 +1,41 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import TodoContext from '../context/todoContext';
 import uuid from 'uuid';
 
-export default function useEditTodo(index) {
-  const context = useContext(TodoContext);
-
-  const [input, setInput] = useState("")
-  const [newList, setNewList] = useState([])
-  const { todoList, addTodo } = context
-  // const todoInputRef = useRef(null);
-  const todoText = [...context.todoList[index].text]
-  // const todoIndex = todoList.filter(todo => {
-  //   if (todo.hasOwnProperty(input))
-  //   return todo.id;
-  // });
-  const editText = () => {
-    const editedTodoList = [...todoList];
-    const todo = editedTodoList[index]
-    todo.text = input;
-    return editedTodoList;
+export default function useTodoHooks(todo) {
+  const { todoList } = useContext(TodoContext); 
+  const [editing, setEditing] = useState(false)
+  const [editText, setEditText] = useState(todo.text)
+  
+  export function toggleEdit() {
+    return {
+      setEditing({ editing: !state.editing });
+    }
+  };
+  export function onEdit(text) {
+    return {
+      setEditText(text);
+    }
   }
-
-  const handleInput = (event) => {
-    setInput([event.target.name] : event.target.value);
+  export function saveContext(data, id) {
+    // const newList = [...todoList];
+    const newTodo = todoList.filter(editTodo => {
+      if (editTodo.id === id){
+        editTodo.text = data;
+        return editTodo
+      }
+      todoList = [...todoList, {newTodo}]
+      toggleEdit();
+      return todoList
+    })
   }
-  const onSubmit = (event) => {
-   event.preventDefault();
-   if (input.text.length === 0) {
-    setInput(initialState)
-   } else {
-     return
-     
-   };
+  useEffect(() => {
+    saveContext(editText, todo.id)
+  }, [])
 
- }
   return {
-    handleInput,
-    onSubmit
+    
+    saveContext,
+    toggleEdit
   }
 }
-// const { handleTodoInput, todo} = useAddInput
