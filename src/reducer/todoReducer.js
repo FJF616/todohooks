@@ -22,10 +22,7 @@ export default function todoReducer(state, action) {
         };
 
     case REMOVE_TODO:   
-      // const key = action.key
-      const ID = action.id;
       const idx = action.index
-      console.log(ID, idx)
       const newTodos = state.todoList.filter((todo, index) => index != idx)
       
         return {

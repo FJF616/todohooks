@@ -52,6 +52,9 @@ function App() {
           }}
         >
       <div className="App">
+       <div style={{display:"inline-flex", margin: 60}}>
+            Enter A Todo :  <TodoInput  />
+        </div>
         <div className="list">
           {state.todoList.map((todo, index) => (
             <Todo 
@@ -60,9 +63,7 @@ function App() {
               todo={todo}
             />
           ))}
-          <div style={{display:"inline-flex"}}>
-            Enter A Todo: <TodoInput />
-        </div>
+         
         </div>
       </div>
       </TodoContext.Provider>

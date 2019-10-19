@@ -4,8 +4,8 @@ import uuid from 'uuid';
 const TodoContext = createContext({
   todoList: [
       {
-        id: "",
-        text: "",
+        id: uuid.v4(),
+        text: "example todo",
         completed: false,
         editing: false,
         // editText:""
