@@ -29,20 +29,7 @@ export default function todoReducer(state, action) {
           ...state,
           todoList: [...newTodos]
         }
-    // case EDIT_TODO:
-    //   const todoIndex = action.index
-    //   const editedText = action.text
-    //   const newList = [...state.todoList]
-    //   const todoId = action.id
-    //   const todoText = newList.filter(editTodo => editTodo.id === todoId)
-    //   todoText.text = editedText
-
-      // state.todoList.splice(todoId, 1, editedText);
-      
-        // return {
-        //     ...state,
-        //     todoList: [...state.todoList]
-        //   }
+   
     case TOGGLE_COMPLETE:
         const todoID = action.payload
         const todoIdx = action.index
