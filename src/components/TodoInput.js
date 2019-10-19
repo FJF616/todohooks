@@ -11,7 +11,7 @@ export default function TodoInput() {
   //dispatch ADD_TODO action type through context, then clear the input
   const onSubmit = (event) => {
     event.preventDefault();
-    addTodo(input);
+      addTodo(input)
     setInput('');
   }
   
@@ -26,6 +26,7 @@ export default function TodoInput() {
           name="text"
           placeHolder="Enter a todo"        
         />
+        <button type="submit" onClick={onSubmit} disabled={input.length ? false: true} > Save </button>
       </form>
     </>
   );
