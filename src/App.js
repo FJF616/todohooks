@@ -27,10 +27,10 @@ function App() {
   //   });
   // };
 
-  const removeTodo = (index) => {
+  const removeTodo = (id, index) => {
     dispatch({
       type: REMOVE_TODO,
-      payload: index
+      payload: id, index
     });
   };
 
@@ -46,7 +46,7 @@ function App() {
           value={{
             todoList: state.todoList,
             addTodo,
-            editTodo,
+            // editTodo,
             removeTodo,
             toggleComplete, 
           }}

@@ -15,19 +15,22 @@ export default function todoReducer(state, action) {
               id: uuid.v4(),
               text: action.payload,
               completed: false,
-              editing: false,
+              // editing: false,
               editText: ""
             }
           ]
         };
 
     case REMOVE_TODO:   
-      // const id = action.id;
-      const idx = action.index;
-      state.todoList.splice(idx, 1);
+      // const key = action.key
+      const ID = action.id;
+      const idx = action.index
+      console.log(ID, idx)
+      const newTodos = state.todoList.filter((todo, index) => index != idx)
+      
         return {
           ...state,
-          todoList: [...state.todoList]
+          todoList: [...newTodos]
         }
     // case EDIT_TODO:
     //   const todoIndex = action.index
@@ -44,21 +47,18 @@ export default function todoReducer(state, action) {
         //     todoList: [...state.todoList]
         //   }
     case TOGGLE_COMPLETE:
-        const todoID = action.id
+        const todoID = action.payload
         const todoIdx = action.index
         const todoTask = state.todoList.filter(todo => todo.id === todoID)
         const todoCompleted = state.todoList.filter(newTodo => newTodo.id === todoID)
             .map(property => { 
               if (property.completed === false) {
                 property.completed = true;
-                // state.todoList.splice(todoIdx, 1, property)
               } else {
                 property.completed = false;
-                // state.todoList.splice(todoIdx, 1, property)
               }
-              return state.todoList
-          });   
-            return {
+          });  
+          return {
               ...state,
               todoList: [...state.todoList]   
           }

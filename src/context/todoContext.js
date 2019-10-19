@@ -4,11 +4,11 @@ import uuid from 'uuid';
 const TodoContext = createContext({
   todoList: [
       {
-        id: uuid.v4(),
-        text: "eat",
+        id: "",
+        text: "",
         completed: false,
         editing: false,
-        editText:""
+        // editText:""
       }  
     ]
 });
