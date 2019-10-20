@@ -57,7 +57,7 @@ export default function App() {
           }}
         >
       <div className="App">
-       <div style={{ display: 'inline-flex',  margin: 60}}>
+       <div style={{ display: 'inline-flex',  margin: 30}}>
             Enter A Todo:  <TodoInput  />
         </div>
         <div className="list" >

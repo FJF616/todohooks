@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import TodoContext from '../context/todoContext';
-import uuid from 'uuid';
 
 export default function useTodoHooks(todo) {
   const { todoList } = useContext(TodoContext); 
@@ -26,12 +25,13 @@ export default function useTodoHooks(todo) {
        });         
         onSetEdit();
         return {
-          todoList
+          editTodoText
         }
   }
  
   useEffect(() => {
     saveContext(editText, todo.id)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return {

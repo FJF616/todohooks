@@ -6,7 +6,7 @@ export default function TodoInput() {
   const [input, setInput] = useState("")
   const [cleared, setCleared] = useState(false)
   //context values
-  const { todoList, addTodo, editing, clearTodoList  } = useContext(TodoContext);
+  const { addTodo, clearTodoList  } = useContext(TodoContext);
 
   //dispatch ADD_TODO action type through context, then clear the input
   function onSubmit(event) {

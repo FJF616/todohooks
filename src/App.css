@@ -1,6 +1,7 @@
 .App {
-
+  align-items: center;
   text-align: center;
+  text-overflow: clip;
 }
 
 .todo {
@@ -12,6 +13,8 @@
   border: .5px solid;
   font-size: calc(10px + 2vmin);
   text-align: center;
+  text-overflow: clip;
+
 }
 .todo-input {
   margin-left: 10px;
@@ -28,6 +31,7 @@
 .edit-save, .edit-todo, .edit-cancel, .remove-todo {
   min-width: 83px;
 }
+
 
 input:placeholder-shown {
   background-color: yellow;
