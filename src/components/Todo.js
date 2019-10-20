@@ -39,7 +39,7 @@ export default function Todo({ todo, index }) {
             <span className="todo" style={{ textDecoration: todo.completed ? "line-through" : "" }}>{todo.text}</span>
             <button className="toggle" onClick={() => toggleComplete(todo.id, index)}>{ todo.completed ? 'Mark as Incomplete':'Todo Completed' }</button>
             <button className="edit-todo" onClick={() => setEditing(true)}>Edit Todo</button>
-            <button onClick={() => removeTodo(todo.id, index)}>Delete Todo</button> 
+            <button className="remove-todo" onClick={() => removeTodo(todo.id, index)}>Delete Todo</button> 
           </>
         : <>
             <input className="todo" style={{ textDecoration: todo.completed ? "line-through" : "" }} placeholder={editText} onChange={(e) => setEditText(e.target.value)}  />

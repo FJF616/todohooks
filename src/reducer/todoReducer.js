@@ -1,9 +1,10 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE } from './actionTypes';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST } from './actionTypes';
 import uuid from 'uuid';
 
 
 export default function todoReducer(state, action) {
   switch (action.type) {
+
     case ADD_TODO: 
       if(!action.payload) {
         return state;
@@ -23,13 +24,14 @@ export default function todoReducer(state, action) {
 
     case REMOVE_TODO:   
       const idx = action.index
+     
       const newTodos = state.todoList.filter((todo, index) => index != idx)
       
         return {
           ...state,
           todoList: [...newTodos]
-        }
-   
+        };
+      
     case TOGGLE_COMPLETE:
         const todoID = action.payload
         const todoIdx = action.index
@@ -45,7 +47,16 @@ export default function todoReducer(state, action) {
           return {
               ...state,
               todoList: [...state.todoList]   
+          };
+
+    case CLEAR_TODO_LIST:
+          state.todoList.splice(0, state.todoList.length)
+       
+          return {
+          ...state,
+            todoList: state.todoList
           }
+        
     default:
       return state
   }

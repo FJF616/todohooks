@@ -1,5 +1,5 @@
 import React, { useReducer, useContext } from 'react';
-import { ADD_TODO, REMOVE_TODO, EDIT_TODO, TOGGLE_COMPLETE  } from './reducer/actionTypes';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST  } from './reducer/actionTypes';
 import todoReducer from './reducer/todoReducer';
 import Todo from './components/Todo';
 import TodoInput from './components/TodoInput';
@@ -20,12 +20,7 @@ function App() {
     });
   };
 
-  // const editTodo = (index, id, text) => {
-  //   dispatch({
-  //     type: EDIT_TODO,
-  //     payload: id,text
-  //   });
-  // };
+  
 
   const removeTodo = (id, index) => {
     dispatch({
@@ -33,20 +28,24 @@ function App() {
       payload: id, index
     });
   };
-
+  const clearTodoList = () => {
+    dispatch({
+      type: CLEAR_TODO_LIST,
+    })
+  }
   const toggleComplete = (id, index) => {
     dispatch({
       type: TOGGLE_COMPLETE,
       payload: id, index
     });
   };
-
+  
     return (
       <TodoContext.Provider
           value={{
             todoList: state.todoList,
             addTodo,
-            // editTodo,
+            clearTodoList,
             removeTodo,
             toggleComplete, 
           }}
