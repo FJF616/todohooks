@@ -1,41 +1,23 @@
 .App {
+
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* font-size: calc(10px + 2vmin); */
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
-}
 .todo {
+  /* text-overflow: ellipsis; */
+  
   border-radius: 2%;
-  min-width: 235px;
+  width: 235px;
   margin-left: 30px;
   border: .5px solid;
   font-size: calc(10px + 2vmin);
-  text-align: center
+  text-align: center;
 }
-/* .todo-input {
-  min-width: 225px;
-  /* text-align: center; */
-  /* margin-left: 10px;
-  margin-right: 2px;
+.todo-input {
+  margin-left: 10px;
+  margin-right: 5px;
   padding-left: 10px;
-  border-radius: 1%;
-} */ 
+}  
 
 .toggle {
   min-width: 132px;
@@ -47,6 +29,7 @@
   min-width: 83px;
 }
 
-/* .edit-cancel, .remove-todo {
-  min-width: 75px;
-} */
+input:placeholder-shown {
+  background-color: yellow;
+  font-style: italic;
+}

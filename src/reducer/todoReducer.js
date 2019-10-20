@@ -16,7 +16,7 @@ export default function todoReducer(state, action) {
               id: uuid.v4(),
               text: action.payload,
               completed: false,
-              // editing: false,
+              editing: false,
               editText: ""
             }
           ]

@@ -7,12 +7,13 @@ import TodoContext from './context/todoContext';
 import './App.css';
 
 
-function App() {
+export default function App() {
   //set initial state to context state
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
   
-  //action creators
+  /****action creators****/
+  //add a todo
   const addTodo = (todo) => {
     dispatch({
       type: ADD_TODO,
@@ -20,26 +21,31 @@ function App() {
     });
   };
 
-  
-
+  //remove a todo
   const removeTodo = (id, index) => {
     dispatch({
       type: REMOVE_TODO,
       payload: id, index
     });
   };
+
+  //clear entire todo list
   const clearTodoList = () => {
     dispatch({
       type: CLEAR_TODO_LIST,
     })
   }
+
+  // toggle complete/incomplete
   const toggleComplete = (id, index) => {
     dispatch({
       type: TOGGLE_COMPLETE,
       payload: id, index
     });
   };
-  
+
+  /***********************/
+
     return (
       <TodoContext.Provider
           value={{
@@ -51,22 +57,20 @@ function App() {
           }}
         >
       <div className="App">
-       <div style={{display:"inline-flex", margin: 60}}>
-            Enter A Todo :  <TodoInput  />
+       <div style={{ display: 'inline-flex',  margin: 60}}>
+            Enter A Todo:  <TodoInput  />
         </div>
-        <div className="list">
+        <div className="list" >
           {state.todoList.map((todo, index) => (
             <Todo 
               key={todo.id} 
               index={index}
               todo={todo}
             />
-          ))}
-         
+          ))}   
         </div>
       </div>
       </TodoContext.Provider>
   );
 }
 
-export default App;

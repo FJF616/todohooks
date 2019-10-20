@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer } from 'react';
+import React, { useState, useContext } from 'react';
 import TodoContext from '../context/todoContext';
 
 export default function TodoInput() {
@@ -9,13 +9,14 @@ export default function TodoInput() {
   const { todoList, addTodo, editing, clearTodoList  } = useContext(TodoContext);
 
   //dispatch ADD_TODO action type through context, then clear the input
-  const onSubmit = (event) => {
+  function onSubmit(event) {
     event.preventDefault();
       addTodo(input)
       setInput('');
       // flag used for disabling/enabling the clearTodoList button
       setCleared(false);
-  }
+    }
+
   return (
     <>
       <form onSubmit={onSubmit} >

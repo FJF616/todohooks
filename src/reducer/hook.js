@@ -1,43 +1,44 @@
-//This file is not in use
-
 import React, { useState, useContext, useEffect } from 'react';
 import TodoContext from '../context/todoContext';
 import uuid from 'uuid';
 
 export default function useTodoHooks(todo) {
   const { todoList } = useContext(TodoContext); 
-  const [editing, setEditing] = useState(false)
+  const [editing, setEditing] = useState(todoList.editing)
   const [editText, setEditText] = useState(todo.text)
   
-  export function toggleEdit() {
-    return {
-      setEditing({ editing: !state.editing });
-    }
-  };
-  export function onEdit(text) {
-    return {
+  
+  function onSetEditText(text) {
       setEditText(text);
-    }
   }
-  export function saveContext(data, id) {
-    // const newList = [...todoList];
-    const newTodo = todoList.filter(editTodo => {
-      if (editTodo.id === id){
-        editTodo.text = data;
-        return editTodo
-      }
-      todoList = [...todoList, {newTodo}]
-      toggleEdit();
-      return todoList
-    })
+ function onSetEdit() {
+   editing === false ? setEditing(true) : setEditing(false)
+ }
+
+  function saveContext(data, id, index) {
+    const editTodoText = todoList
+        .filter(newTodo => newTodo.id === id)
+        .map(property => { 
+           property.text = data;
+           return { 
+             property
+           }
+       });         
+        onSetEdit();
+        return {
+          todoList
+        }
   }
+ 
   useEffect(() => {
     saveContext(editText, todo.id)
   }, [])
 
   return {
-    
+    editing,
+    editText,
+    onSetEdit,
+    onSetEditText,
     saveContext,
-    toggleEdit
   }
 }
