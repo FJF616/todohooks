@@ -1,9 +1,10 @@
 import React, { useReducer, useContext } from 'react';
-import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST  } from './reducer/actionTypes';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST, COUNT_COMPLETED_TODOS  } from './reducer/actionTypes';
 import todoReducer from './reducer/todoReducer';
 import Todo from './components/Todo';
 import TodoInput from './components/TodoInput';
 import TodoContext from './context/todoContext';
+import TodoCounter from './components/TodoCounter';
 import './App.css';
 
 
@@ -44,6 +45,12 @@ export default function App() {
     });
   };
 
+  // const countCompletedTodos = (todoList) => {
+  //   dispatch({
+  //     type: COUNT_COMPLETED_TODOS,
+  //     payload: todoList
+  //   })
+  // }
   /***********************/
 
     return (
@@ -54,11 +61,13 @@ export default function App() {
             clearTodoList,
             removeTodo,
             toggleComplete, 
+            // countCompletedTodos
           }}
         >
       <div className="App">
        <div style={{ display: 'inline-flex',  margin: 30}}>
             Enter A Todo:  <TodoInput  />
+            {/* Completed Todos: <TodoCounter todoList={state.todoList} /> */}
         </div>
         <div className="list" >
           {state.todoList.map((todo, index) => (

@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST } from './actionTypes';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST, COUNT_COMPLETED_TODOS } from './actionTypes';
 import uuid from 'uuid';
 
 
@@ -55,8 +55,15 @@ export default function todoReducer(state, action) {
           ...state,
             todoList: state.todoList
           }
+    case COUNT_COMPLETED_TODOS:
+         const completedTodos = state.todoList.filter(todo => todo.completed).length;
+         return {
+           ...state,
+           completedTodos
+         }
+
         
-    default:
-      return state
+  default:
+    return state
   }
 }
