@@ -22,14 +22,14 @@ export default function Todo({ todo, index }) {
     
   return (
     <>
-    <div className="buttons" style={{display: "flex", paddingBottom: '5px', paddingLeft: '5px'}}>
+    <div className="buttons" style={{display: "flex", paddingBottom: '10px', paddingLeft: '5px'}}>
       {editing === false
         ? <>
             <div className='input'> 
               <span className="todo" style={{  textDecoration: todo.completed ? "line-through" : ""  }}>{todo.text}</span>
              </div>
               <Button icon={todo.completed ? 'undo' : 'check'} className="toggle" style={{marginLeft: '5px'}} onClick={() => toggleComplete(todo.id, index)} />
-              <Button color = 'blue' className = "edit-todo" icon='edit' onClick = {() => onSetEdit()}/>
+              <Button color='blue' className = "edit-todo" icon='edit' onClick = {() => onSetEdit()}/>
               <Button negative icon='trash alternate' className="remove-todo" onClick={() => removeTodo(todo.id, index)} />         
            </>
         : <>

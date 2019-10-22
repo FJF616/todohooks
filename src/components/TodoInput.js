@@ -26,14 +26,19 @@ export default function TodoInput() {
           placeHolder="Enter a todo"        
         />
         <Button 
+          positive
           type="submit" 
-          icon="save" 
+          icon={!input.length ? "reply" : "save"} 
+          content={!input.length ? "Enter a Todo" : "Save Todo"}
           onClick={onSubmit} 
           disabled={input.length ? false : true} 
+          
         /> 
         <Button 
+          negative
           className="clear"  
           icon="refresh" 
+          content="Clear Todo List"
           onClick={() => {
             clearTodoList(); setCleared(true)
           }} 
