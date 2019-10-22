@@ -1,19 +1,16 @@
 import React, { useState, useContext } from 'react';
+import { Button } from 'semantic-ui-react'
 import TodoContext from '../context/todoContext';
 
 export default function TodoInput() {
-  //create empty state to store the input
   const [input, setInput] = useState("")
   const [cleared, setCleared] = useState(false)
-  //context values
   const { addTodo, clearTodoList  } = useContext(TodoContext);
 
-  //dispatch ADD_TODO action type through context, then clear the input
   function onSubmit(event) {
     event.preventDefault();
       addTodo(input)
       setInput('');
-      // flag used for disabling/enabling the clearTodoList button
       setCleared(false);
     }
 
@@ -28,8 +25,20 @@ export default function TodoInput() {
           name="text"
           placeHolder="Enter a todo"        
         />
-        <button type="submit" onClick={onSubmit} disabled={input.length ? false : true} > Save </button>
-        <button className="clear"  onClick={() => {clearTodoList(); setCleared(true)}} disabled={input.length || cleared ? true : false} > Clear Todo List </button>
+        <Button 
+          type="submit" 
+          icon="save" 
+          onClick={onSubmit} 
+          disabled={input.length ? false : true} 
+        /> 
+        <Button 
+          className="clear"  
+          icon="refresh" 
+          onClick={() => {
+            clearTodoList(); setCleared(true)
+          }} 
+          disabled={input.length || cleared ? true : false} 
+        />
       </form>
     </>
   );

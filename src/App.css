@@ -2,6 +2,7 @@
   align-items: center;
   text-align: center;
   text-overflow: clip;
+  padding: 10px
 }
 
 .todo {
@@ -20,7 +21,20 @@
   margin-left: 10px;
   margin-right: 5px;
   padding-left: 10px;
-}  
+  min-height: 35px;
+  min-width: 225px;
+  border-color: slategrey;
+  border-radius: 4%
+
+}
+  
+.input{
+  display: flex;
+
+  overflow: hidden;
+  /* margin: 2px; */
+}
+
 
 .toggle {
   min-width: 132px;
@@ -30,10 +44,11 @@
 
 .edit-save, .edit-todo, .edit-cancel, .remove-todo {
   min-width: 83px;
+  margin: 5px; 
 }
 
 
 input:placeholder-shown {
-  background-color: yellow;
+  background-color: aliceblue;
   font-style: italic;
 }

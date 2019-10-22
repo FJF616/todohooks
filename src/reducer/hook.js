@@ -29,6 +29,10 @@ export default function useTodoHooks(todo) {
           editTodoText
         }
     }
+  function countCompletedTodos(todoList) {
+      const completedTodos = todoList.filter(todo => todo.completed).length;
+      return completedTodos
+  }
  
   useEffect(() => {
     saveContext(editText, todo.id);
@@ -41,5 +45,6 @@ export default function useTodoHooks(todo) {
     onSetEdit,
     onSetEditText,
     saveContext,
+    countCompletedTodos
   }
 }

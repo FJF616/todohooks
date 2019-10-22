@@ -5,6 +5,7 @@ import Todo from './components/Todo';
 import TodoInput from './components/TodoInput';
 import TodoContext from './context/todoContext';
 import TodoCounter from './components/TodoCounter';
+import useTodoHooks from './reducer/hook';
 import './App.css';
 
 
@@ -12,7 +13,7 @@ export default function App() {
   //set initial state to context state
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
-  
+  const { countCompletedTodos } = useTodoHooks(state.todoList.filter(todo => { return { todo }}));
   /****action creators****/
   //add a todo
   const addTodo = (todo) => {
@@ -45,12 +46,7 @@ export default function App() {
     });
   };
 
-  // const countCompletedTodos = (todoList) => {
-  //   dispatch({
-  //     type: COUNT_COMPLETED_TODOS,
-  //     payload: todoList
-  //   })
-  // }
+  
   /***********************/
 
     return (
@@ -61,22 +57,17 @@ export default function App() {
             clearTodoList,
             removeTodo,
             toggleComplete, 
-            // countCompletedTodos
           }}
         >
       <div className="App">
-       <div style={{ display: 'inline-flex',  margin: 30}}>
-            Enter A Todo:  <TodoInput  />
-            {/* Completed Todos: <TodoCounter todoList={state.todoList} /> */}
-        </div>
-        <div className="list" >
-          {state.todoList.map((todo, index) => (
-            <Todo 
-              key={todo.id} 
-              index={index}
-              todo={todo}
-            />
-          ))}   
+      <TodoInput />
+       Total Todos: {state.todoList.length}
+        <TodoCounter countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
+          <div className="list" >
+            {state.todoList.map((todo, index) => (
+              <Todo key={todo.id} index={index} todo={todo}/>
+            )
+          )}   
         </div>
       </div>
       </TodoContext.Provider>
