@@ -17,7 +17,7 @@ export default function todoReducer(state, action) {
               text: action.payload,
               completed: false,
               editing: false,
-              editText: ""
+              // editText: ""
             }
           ]
         };
@@ -55,7 +55,7 @@ export default function todoReducer(state, action) {
           ...state,
             todoList: state.todoList
           }
-        
+    
   default:
     return state
   }

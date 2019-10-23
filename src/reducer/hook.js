@@ -33,6 +33,14 @@ export default function useTodoHooks(todo) {
       const completedTodos = todoList.filter(todo => todo.completed).length;
       return completedTodos
   }
+  function completeAll() {
+    return todoList.map(todo => {
+        if (todo.completed === false) {
+          return { ...todo, completed: true };
+        }
+        return todo;
+      });
+  }
  
   useEffect(() => {
     saveContext(editText, todo.id);
@@ -45,6 +53,7 @@ export default function useTodoHooks(todo) {
     onSetEdit,
     onSetEditText,
     saveContext,
-    countCompletedTodos
+    countCompletedTodos,
+    completeAll
   }
 }
