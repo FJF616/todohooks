@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Button } from 'semantic-ui-react'
-// import useTodoHooks from '../reducer/hook'
 import TodoContext from '../context/todoContext';
 
-export default function TodoInput() {
+export default function TodoInput({todo}) {
   const [input, setInput] = useState("")
   const [cleared, setCleared] = useState(false)
-  const { addTodo, clearTodoList, todoList } = useContext(TodoContext);
-  // const { completeAll } = useTodoHooks()
+  const { addTodo, clearTodoList, todoList, completeAll} = useContext(TodoContext);
   function onSubmit(event) {
     event.preventDefault();
       addTodo(input)
@@ -24,7 +22,7 @@ export default function TodoInput() {
           onChange={(event) => setInput(event.target.value)}
           type="text"
           name="text"
-          placeHolder="Enter a todo"        
+          placeholder="Enter a todo"        
         />
         <Button 
           positive
@@ -35,7 +33,7 @@ export default function TodoInput() {
           disabled={input.length ? false : true} 
           
         /> 
-      {/* <Button.Group> */}
+      <Button.Group>
         <Button 
           negative
           className="clear"  
@@ -46,18 +44,17 @@ export default function TodoInput() {
           }} 
           disabled={input.length || cleared ? true : false} 
         />
-        {/* <Button.Or /> */}
-        {/* <Button 
-          negative
-          className="finish"  
-          icon="finish" 
+        <Button.Or />
+        <Button 
+          className="complete"  
+          // icon="complete" 
           content="Complete All"
           onClick={() => {
-        completeAll(todoList)
+          completeAll(todoList)
           }}  
-         disabled={input.length || cleared ? true : false} 
-        />*/}
-        {/* </Button.Group> */}
+        //  disabled={input.length || cleared ? true : false} 
+        />
+       </Button.Group> 
       </form>
     </>
   );

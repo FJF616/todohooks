@@ -1,5 +1,5 @@
 import React, { useReducer, useContext } from 'react';
-import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST, COUNT_COMPLETED_TODOS  } from './reducer/actionTypes';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST, COUNT_COMPLETED_TODOS, COMPLETE_ALL  } from './reducer/actionTypes';
 import todoReducer from './reducer/todoReducer';
 import Todo from './components/Todo';
 import TodoInput from './components/TodoInput';
@@ -13,7 +13,8 @@ export default function App() {
   //set initial state to context state
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
-  const { countCompletedTodos } = useTodoHooks(state.todoList.filter(todo => { return { todo }}));
+  const passTodo = state.todoList.filter(todo => { return { todo }})
+  const { countCompletedTodos } = useTodoHooks(passTodo);
   /****action creators****/
   //add a todo
   const addTodo = (todo) => {
@@ -46,6 +47,13 @@ export default function App() {
     });
   };
 
+  const completeAll = (todoList) => {
+    dispatch({
+      type: COMPLETE_ALL,
+      payload: todoList
+    })
+  }
+
   
   /***********************/
 
@@ -57,11 +65,12 @@ export default function App() {
             clearTodoList,
             removeTodo,
             toggleComplete, 
+            completeAll
           }}
         >
       <div className="App">
       <div style={{marginLeft: '35px', paddingBottom: '40px'}}>
-      <TodoInput/>
+      <TodoInput todo={passTodo} />
        Total Todos: {state.todoList.length}
         <TodoCounter countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
          </div> 

@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import TodoContext from '../context/todoContext';
 
 //custom hook for editing a todo
-export default function useTodoHooks(todo) {
+export function useTodoHooks(todo) {
   const { todoList } = useContext(TodoContext); 
   const [editing, setEditing] = useState(todoList.editing);
   const [editText, setEditText] = useState(todo.text);
@@ -33,19 +33,24 @@ export default function useTodoHooks(todo) {
       const completedTodos = todoList.filter(todo => todo.completed).length;
       return completedTodos
   }
-  function completeAll() {
-    return todoList.map(todo => {
-        if (todo.completed === false) {
-          return { ...todo, completed: true };
-        }
-        return todo;
-      });
-  }
+ 
+    // return todoList.map(todo => {
+    //     if (todo.completed === false) {
+    //       return { ...todo, completed: true };
+    //     }
+    //     return todo;
+      // });
+  // }
  
   useEffect(() => {
     saveContext(editText, todo.id);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+   
+    
+     
+   
 
   return {
     editing,
@@ -54,6 +59,9 @@ export default function useTodoHooks(todo) {
     onSetEditText,
     saveContext,
     countCompletedTodos,
-    completeAll
+    
   }
 }
+
+
+export default useTodoHooks
