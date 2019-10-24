@@ -1,1 +1,1 @@
-Basic todo app using react hooks
+Basic todo app to get familiar with using react hooks.  There are two branches.  The master branch uses the useState hook,  and the useReducer branch primarily uses the useReducer hook.  
