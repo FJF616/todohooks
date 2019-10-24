@@ -26,18 +26,54 @@ export default function Todo({ todo, index }) {
       {editing === false
         ? <>
             <div className='input'> 
-              <span className="todo" style={{  textDecoration: todo.completed ? "line-through" : ""  }}>{todo.text}</span>
+              <span className="todo" style={{  textDecoration: todo.completed ? "line-through" : "", marginRight: '5px'  }}>{todo.text}</span>
              </div>
-              <Button icon={todo.completed ? 'undo' : 'check'} className="toggle" style={{marginLeft: '5px'}} onClick={() => toggleComplete(todo.id, index)} />
-              <Button color='blue' className = "edit-todo" icon='edit' onClick = {() => onSetEdit()}/>
-              <Button negative icon='trash alternate' className="remove-todo" onClick={() => removeTodo(todo.id, index)} />         
+              <Button 
+                icon={todo.completed ? 'undo' : 'check'} 
+                className="toggle" 
+                content={todo.completed ? "Mark as Incomplete" : "Mark as Complete"} 
+                onClick={() => toggleComplete(todo.id, index)} 
+                style={{marginLeft: '10px'}}
+              />
+              <Button.Group style={{width: '345px'}}>
+              <Button 
+                color='blue' 
+                className="edit-todo" 
+                content="Edit Todo" 
+                icon='edit' 
+                onClick={() => onSetEdit()}
+              />
+              <Button 
+                negative 
+                icon='trash alternate' 
+                className="remove-todo" 
+                content="Remove Todo" 
+                onClick={() => removeTodo(todo.id, index)} 
+              />         
+            </Button.Group>
            </>
         : <>
-            <div className='input'  > 
-            <input className="todo" style={{ textDecoration: todo.completed ? "line-through" : "" }} placeholder={editText} onChange={(e) => onSetEditText(e.target.value)}  />
+            <div className='input'> 
+              <input 
+                className="todo" 
+                style={{ textDecoration: todo.completed ? "line-through" : "" }} 
+                placeholder="Click Here to Edit" 
+                onChange={(e) => onSetEditText(e.target.value)}  
+              />
             </div>
-            <Button className="toggle" disabled={true} style={{marginLeft: '5px'}} content='Editing Todo' />
-            <SaveOrCancel id={todo.id} saveContext={saveContext} onSetEdit={onSetEdit} index={index} editText={editText}/>
+              <Button 
+                className="toggle" 
+                disabled={true} 
+                content='Editing Todo...'
+                style={{marginLeft: '10px'}}
+              />
+            <SaveOrCancel 
+              id={todo.id} 
+              saveContext={saveContext} 
+              onSetEdit={onSetEdit} 
+              index={index} 
+              editText={editText}
+            />
           </>
         }
       </div>

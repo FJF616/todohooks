@@ -13,8 +13,8 @@ export default function App() {
   //set initial state to context state
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
-  const passTodo = state.todoList.filter(todo => { return { todo }})
-  const { countCompletedTodos } = useTodoHooks(passTodo);
+  const singleTodo = state.todoList.filter(todo => { return { todo }})
+  const { countCompletedTodos } = useTodoHooks(singleTodo);
   /****action creators****/
   //add a todo
   const addTodo = (todo) => {
@@ -77,10 +77,17 @@ export default function App() {
           }}
         >
       <div className="App">
-      <div style={{marginLeft: '35px', paddingBottom: '40px'}}>
-      <TodoInput todo={passTodo} />
-       Total Todos: {state.todoList.length}
-        <TodoCounter countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
+      <div style={{  marginLeft: '35px', paddingBottom: '40px'}}>
+          
+            <TodoInput todo={singleTodo} />
+      
+          { state.todoList.length
+            ? <>
+              Total Todos: {state.todoList.length}
+              <TodoCounter countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
+            </>
+            :  <p> There Are Currently No Todos </p>
+          }
          </div> 
           <div className="list" >
             {state.todoList.map((todo, index) => (

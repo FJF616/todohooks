@@ -50,8 +50,11 @@ padding: 10px
 
 
 .toggle {
-  min-width: 135px;
+  /* min-width: 135px; */
   padding-left: 35px;
+  width: 255px;
+  /* margin-left: 15px; */
+                  
 
 }
 
@@ -63,8 +66,15 @@ padding: 10px
 
 input:placeholder-shown {
   display: inline-flex;
-  background-color: white;
+  background-color: aliceblue;
   /* width: 10%; */
+
   font-style: italic;
-  border: none;
+  border: .5px solid;
 }
+
+/* .buttons {
+  display: flex;
+  padding-bottom: 10px;
+  padding-left: 5px;
+} */

@@ -4,6 +4,7 @@ import TodoContext from '../context/todoContext';
 
 export default function TodoInput({todo}) {
   const [input, setInput] = useState("")
+  const [allClear, setAllClear] = useState(true)
   const [completeList, setCompleteList] = useState(false)
   const [cleared, setCleared] = useState(false)
   const { addTodo, clearTodoList, todoList, completeAll, clearCompleted} = useContext(TodoContext);
@@ -13,7 +14,15 @@ export default function TodoInput({todo}) {
       setInput('');
       setCleared(false);
     }
-
+  // function clearOrComplete () {
+  //   if (!completeList) {
+  //     clearCompleted(todoList);
+  //     setCleared(true) 
+  //   } else {
+  //     completeAll(todoList);
+  //     setCompleteList(true)
+  //   }
+  // }
   return (
     <>
       <form onSubmit={onSubmit} >
@@ -25,6 +34,8 @@ export default function TodoInput({todo}) {
           name="text"
           placeholder="Enter a todo"        
         />
+        <Button.Group style={{width: '170px', margin: '2px'}} >
+
         <Button 
           positive
           type="submit" 
@@ -49,22 +60,22 @@ export default function TodoInput({todo}) {
           icon="checkmark" 
           content="Complete All"
           onClick={() => {
-          completeAll(todoList); setCompleteList(true)
+            completeAll(todoList); setCompleteList(true)
           }}  
-        //  disabled={input.length || cleared ? true : (completeList ? true : false)} 
+         disabled={input.length ? true : false} 
         />
         < Button
-        className = "complete"
-        icon = "checkmark"
-        content = "Clear Completed"
-        onClick = {
-          () => {
+          color="instagram"
+          className="complete"
+          icon="exchange"
+          content="Clear Completed"
+          onClick={() => {
             clearCompleted(todoList);
-          }
-        }
-        //  disabled={input.length || cleared ? true : (completeList ? true : false)} 
+          }}
+          // disabled={completeList ? false: true}
+          disabled={input.length ? true : false}
         />
-
+        </Button.Group>
       </form>
     </>
   );
