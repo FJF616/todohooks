@@ -56,7 +56,7 @@ export default function todoReducer(state, action) {
             todoList: state.todoList
           }
     case CLEAR_COMPLETED:
-          const incompleteTodos = state.todolist.filter(todo => todo.completed === false);
+          const incompleteTodos = state.todoList.filter(todo => todo.completed === false);
           return {
             ...state,
             todoList: [...incompleteTodos]

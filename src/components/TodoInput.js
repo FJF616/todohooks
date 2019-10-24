@@ -56,7 +56,7 @@ export default function TodoInput({todo}) {
         < Button
         className = "complete"
         icon = "checkmark"
-        content = "Complete All"
+        content = "Clear Completed"
         onClick = {
           () => {
             clearCompleted(todoList);
