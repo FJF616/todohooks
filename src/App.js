@@ -1,5 +1,5 @@
 import React, { useReducer, useContext } from 'react';
-import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST, COUNT_COMPLETED_TODOS, COMPLETE_ALL  } from './reducer/actionTypes';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST,  COMPLETE_ALL, CLEAR_COMPLETED  } from './reducer/actionTypes';
 import todoReducer from './reducer/todoReducer';
 import Todo from './components/Todo';
 import TodoInput from './components/TodoInput';
@@ -54,6 +54,13 @@ export default function App() {
     })
   }
 
+  const clearCompleted = (todoList) => {
+    dispatch({
+      type: CLEAR_COMPLETED,
+      payload: todoList
+    })
+  }
+
   
   /***********************/
 
@@ -65,7 +72,8 @@ export default function App() {
             clearTodoList,
             removeTodo,
             toggleComplete, 
-            completeAll
+            completeAll,
+            clearCompleted
           }}
         >
       <div className="App">

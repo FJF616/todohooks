@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST, COMPLETE_ALL } from './actionTypes';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST, CLEAR_COMPLETED, COMPLETE_ALL } from './actionTypes';
 import uuid from 'uuid';
 
 
@@ -55,6 +55,12 @@ export default function todoReducer(state, action) {
           ...state,
             todoList: state.todoList
           }
+    case CLEAR_COMPLETED:
+          const incompleteTodos = state.todolist.filter(todo => todo.completed === false);
+          return {
+            ...state,
+            todoList: [...incompleteTodos]
+          } 
     case COMPLETE_ALL:
     const markCompleteTodos = state.todoList.map(todo => {
       if (todo.completed === false) {
@@ -62,12 +68,10 @@ export default function todoReducer(state, action) {
       }
       return todo   
      })
-   
     return {
       ...state,
       todoList: [...markCompleteTodos]
-  }
-    
+  } 
   default:
     return state
   }

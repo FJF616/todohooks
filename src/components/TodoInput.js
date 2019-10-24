@@ -4,8 +4,9 @@ import TodoContext from '../context/todoContext';
 
 export default function TodoInput({todo}) {
   const [input, setInput] = useState("")
+  const [completeList, setCompleteList] = useState(false)
   const [cleared, setCleared] = useState(false)
-  const { addTodo, clearTodoList, todoList, completeAll} = useContext(TodoContext);
+  const { addTodo, clearTodoList, todoList, completeAll, clearCompleted} = useContext(TodoContext);
   function onSubmit(event) {
     event.preventDefault();
       addTodo(input)
@@ -33,7 +34,6 @@ export default function TodoInput({todo}) {
           disabled={input.length ? false : true} 
           
         /> 
-      <Button.Group>
         <Button 
           negative
           className="clear"  
@@ -44,17 +44,27 @@ export default function TodoInput({todo}) {
           }} 
           disabled={input.length || cleared ? true : false} 
         />
-        <Button.Or />
         <Button 
           className="complete"  
-          // icon="complete" 
+          icon="checkmark" 
           content="Complete All"
           onClick={() => {
-          completeAll(todoList)
+          completeAll(todoList); setCompleteList(true)
           }}  
-        //  disabled={input.length || cleared ? true : false} 
+        //  disabled={input.length || cleared ? true : (completeList ? true : false)} 
         />
-       </Button.Group> 
+        < Button
+        className = "complete"
+        icon = "checkmark"
+        content = "Complete All"
+        onClick = {
+          () => {
+            clearCompleted(todoList);
+          }
+        }
+        //  disabled={input.length || cleared ? true : (completeList ? true : false)} 
+        />
+
       </form>
     </>
   );
