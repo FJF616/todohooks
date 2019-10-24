@@ -35,13 +35,14 @@ export default function Todo({ todo, index }) {
                 onClick={() => toggleComplete(todo.id, index)} 
                 style={{marginLeft: '10px'}}
               />
-              <Button.Group style={{width: '345px'}}>
+              <Button.Group >
               <Button 
                 color='blue' 
                 className="edit-todo" 
                 content="Edit Todo" 
                 icon='edit' 
                 onClick={() => onSetEdit()}
+                style={{width: '185px'}}
               />
               <Button 
                 negative 
@@ -49,6 +50,7 @@ export default function Todo({ todo, index }) {
                 className="remove-todo" 
                 content="Remove Todo" 
                 onClick={() => removeTodo(todo.id, index)} 
+                style={{width: '185px'}}
               />         
             </Button.Group>
            </>

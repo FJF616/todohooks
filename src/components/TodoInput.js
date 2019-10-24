@@ -34,7 +34,7 @@ export default function TodoInput({todo}) {
           name="text"
           placeholder="Enter a todo"        
         />
-        <Button.Group style={{width: '170px', margin: '2px'}} >
+        <Button.Group style={{minWidth: '150px', margin: '2px'}} >
 
         <Button 
           positive
@@ -43,6 +43,7 @@ export default function TodoInput({todo}) {
           content={!input.length ? "Enter a Todo" : "Save Todo"}
           onClick={onSubmit} 
           disabled={input.length ? false : true} 
+          style={{width: '155px'}}
           
         /> 
         <Button 
@@ -63,6 +64,7 @@ export default function TodoInput({todo}) {
             completeAll(todoList); setCompleteList(true)
           }}  
          disabled={input.length ? true : false} 
+         style={{width: '160px'}}
         />
         < Button
           color="instagram"
