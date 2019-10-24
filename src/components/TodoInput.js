@@ -4,7 +4,7 @@ import TodoContext from '../context/todoContext';
 
 export default function TodoInput({todo}) {
   const [input, setInput] = useState("")
-  const [allClear, setAllClear] = useState(true)
+  const [completeClear, setCompleteClear] = useState(false)
   const [completeList, setCompleteList] = useState(false)
   const [cleared, setCleared] = useState(false)
   const { addTodo, clearTodoList, todoList, completeAll, clearCompleted} = useContext(TodoContext);
@@ -13,6 +13,9 @@ export default function TodoInput({todo}) {
       addTodo(input)
       setInput('');
       setCleared(false);
+      setCompleteClear(false);
+      setCompleteList(false);
+
     }
   // function clearOrComplete () {
   //   if (!completeList) {
@@ -63,7 +66,7 @@ export default function TodoInput({todo}) {
           onClick={() => {
             completeAll(todoList); setCompleteList(true)
           }}  
-         disabled={input.length ? true : false} 
+         disabled={input.length  || cleared || completeList ? true : false} 
          style={{width: '160px'}}
         />
         < Button
@@ -74,8 +77,7 @@ export default function TodoInput({todo}) {
           onClick={() => {
             clearCompleted(todoList);
           }}
-          // disabled={completeList ? false: true}
-          disabled={input.length ? true : false}
+          disabled={input.length  || cleared ? true : false}
         />
         </Button.Group>
       </form>

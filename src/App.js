@@ -5,7 +5,7 @@ import Todo from './components/Todo';
 import TodoInput from './components/TodoInput';
 import TodoContext from './context/todoContext';
 import TodoCounter from './components/TodoCounter';
-import useTodoHooks from './reducer/hook';
+import useEditHooks from './components/hooks/editHook';
 import './App.css';
 
 
@@ -14,7 +14,7 @@ export default function App() {
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const singleTodo = state.todoList.filter(todo => { return { todo }})
-  const { countCompletedTodos } = useTodoHooks(singleTodo);
+  const { countCompletedTodos } = useEditHooks(singleTodo);
   /****action creators****/
   //add a todo
   const addTodo = (todo) => {
@@ -32,7 +32,7 @@ export default function App() {
     });
   };
 
-  //clear entire todo list
+  //remove entire todo list
   const clearTodoList = () => {
     dispatch({
       type: CLEAR_TODO_LIST,
@@ -47,6 +47,7 @@ export default function App() {
     });
   };
 
+  //marks all todos as complete
   const completeAll = (todoList) => {
     dispatch({
       type: COMPLETE_ALL,
@@ -54,6 +55,7 @@ export default function App() {
     })
   }
 
+  //removes all completed todos from todoList
   const clearCompleted = (todoList) => {
     dispatch({
       type: CLEAR_COMPLETED,

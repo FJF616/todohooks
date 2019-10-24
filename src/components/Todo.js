@@ -1,7 +1,7 @@
 import React, { useContext }from 'react';
 import { Button } from 'semantic-ui-react';
 import TodoContext from '../context/todoContext'
-import useTodoHooks from '../reducer/hook';
+import useEditHooks from '../components/hooks/editHook';
 import SaveOrCancel from '../components/buttonGroups/SaveOrCancel';
 
 //Returns each todo with control Buttons
@@ -17,8 +17,8 @@ export default function Todo({ todo, index }) {
     editText, 
     onSetEdit, 
     onSetEditText, 
-    saveContext,
-    } = useTodoHooks(todo);
+    saveEditText,
+    } = useEditHooks(todo);
     
   return (
     <>
@@ -71,7 +71,7 @@ export default function Todo({ todo, index }) {
               />
             <SaveOrCancel 
               id={todo.id} 
-              saveContext={saveContext} 
+              saveContext={saveEditText} 
               onSetEdit={onSetEdit} 
               index={index} 
               editText={editText}
