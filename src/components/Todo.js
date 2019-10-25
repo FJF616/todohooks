@@ -25,6 +25,7 @@ export default function Todo({ todo, index }) {
     const utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
     return utc;
   }  
+
   return (
     <>
     <div className="buttons" style={{display: "flex", paddingBottom: '10px', paddingLeft: '5px'}}>
@@ -33,22 +34,33 @@ export default function Todo({ todo, index }) {
             <div className='input'> 
               <span className="todo" style={{  textDecoration: todo.completed ? "line-through" : "", marginRight: '5px'  }}>{todo.text}</span>
              </div>
-              <Button 
-                icon={todo.completed ? 'undo' : 'check'} 
-                className="toggle" 
-                content={todo.completed ? "Mark as Incomplete" : "Mark as Complete"} 
-                onClick={() => toggleComplete(todo.id, index)} 
-                style={{marginLeft: '10px'}}
-              />
+             { todo.completed
+                ? <Button 
+                  icon='undo' 
+                  className="toggle" 
+                  content="Mark as Incomplete" 
+                  onClick={() => toggleComplete(todo.id, index)} 
+                  basic color='green'
+                 style={{marginLeft: '10px'}}
+                />
+                : <Button 
+                  icon='check' 
+                  className="toggle" 
+                  content="Mark as Complete"
+                  onClick={() => toggleComplete(todo.id, index)} 
+                  color="green"
+                  style={{marginLeft: '10px'}}
+                />
+             }
               <Button.Group >
                 { todo.completed 
                   ? <Button 
-                      color='vk'
+                      basic color="blue"
                       className="edit-todo"
                       content={displayDate()}
                       icon='tasks'
                       style={{width: '185px'}}
-                      disabled={true}
+                      // disabled={true}
                     />
                   : <Button 
                       color='blue' 
@@ -79,6 +91,7 @@ export default function Todo({ todo, index }) {
               />
             </div>
               <Button 
+                basic color="black"
                 className="toggle" 
                 disabled={true} 
                 content='Editing Todo...'

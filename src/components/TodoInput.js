@@ -58,25 +58,11 @@ export default function TodoInput({todo, todoList, countCompletedTodos}) {
           style={{width: '155px'}}
           
         /> 
-        <Button 
-          negative
-          className="clear"  
-          icon="refresh" 
-          content="Clear Todo List"
-          onClick={() => {
-            clearTodoList(); setCleared(true); 
-          }} 
-          disabled={
-            input.length 
-              || cleared 
-              || todoList.length === 0 
-                ? true 
-                : false
-          } 
-        />
+       
         <Button 
           className="complete"  
           icon="checkmark" 
+          color="twitter"
           content="Complete All"
           onClick={() => {
             completeAll(todoList); 
@@ -107,6 +93,25 @@ export default function TodoInput({todo, todoList, countCompletedTodos}) {
                 : false
             } 
         />
+         < Button
+         negative
+         className = "clear"
+         icon = "refresh"
+         content = "Clear Todo List"
+         onClick = {
+           () => {
+             clearTodoList();
+             setCleared(true);
+           }
+         }
+         disabled = {
+           input.length ||
+           cleared ||
+           todoList.length === 0 ?
+           true :
+             false
+         }
+         />
         </Button.Group>
       </form>
     </>
