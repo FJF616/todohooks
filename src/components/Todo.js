@@ -6,7 +6,8 @@ import SaveOrCancel from '../components/buttonGroups/SaveOrCancel';
 
 //Returns each todo with control Buttons
 export default function Todo({ todo, index }) {
-  
+
+
   const { 
     removeTodo, 
     toggleComplete,
@@ -19,7 +20,11 @@ export default function Todo({ todo, index }) {
     onSetEditText, 
     saveEditText,
     } = useEditHooks(todo);
-    
+  //displays current date yyyy/dd/mm
+  function displayDate() {
+    const utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+    return utc;
+  }  
   return (
     <>
     <div className="buttons" style={{display: "flex", paddingBottom: '10px', paddingLeft: '5px'}}>
@@ -36,14 +41,24 @@ export default function Todo({ todo, index }) {
                 style={{marginLeft: '10px'}}
               />
               <Button.Group >
-              <Button 
-                color='blue' 
-                className="edit-todo" 
-                content="Edit Todo" 
-                icon='edit' 
-                onClick={() => onSetEdit()}
-                style={{width: '185px'}}
-              />
+                { todo.completed 
+                  ? <Button 
+                      color='vk'
+                      className="edit-todo"
+                      content={displayDate()}
+                      icon='tasks'
+                      style={{width: '185px'}}
+                      disabled={true}
+                    />
+                  : <Button 
+                      color='blue' 
+                      className="edit-todo" 
+                      content="Edit Todo" 
+                      icon='edit'
+                      onClick={() => onSetEdit()}
+                      style={{width: '185px'}}
+                    />
+                }
               <Button 
                 negative 
                 icon='trash alternate' 
