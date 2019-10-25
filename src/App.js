@@ -81,7 +81,7 @@ export default function App() {
       <div className="App">
       <div style={{  marginLeft: '35px', paddingBottom: '40px'}}>
           
-            <TodoInput todo={singleTodo} />
+            <TodoInput todo={singleTodo} countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
       
           { state.todoList.length
             ? <>

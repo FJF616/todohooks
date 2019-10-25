@@ -1,31 +1,25 @@
 .App {
-/* position: relative; */
-background: rgb(241, 248, 255);
-background: linear-gradient(0deg, rgba(241, 248, 255, 1) 0%, rgba(232, 234, 236, 1) 51%, rgba(233, 244, 252, 1) 100%);
-height: 100vh;
+  background: rgb(241, 248, 255);
+  background: linear-gradient(0deg, rgba(241, 248, 255, 1) 0%, rgba(232, 234, 236, 1) 51%, rgba(233, 244, 252, 1) 100%);
+  height: 100vh;
   align-items: center;
-  /* margin-left: 25px; */
-  /* text-align: center; */
-padding: 10px
+    /* text-align: center; */
+  padding: 10px
 }
 
 .todo {
+  /* overflow: hidden; */
+  /* white-space: initial; */
   min-width: 225px;
   width: 430px;
-  /* position: fixed; */
   border-radius: 2%;
-  /* min-width: 225px; */
   margin-left: 5px;
-  /* border: .5px solid; */
   font-size: calc(8px + 1vmin);
-  /* text-align: center; */
   padding-top: 4px;
-  /* margin-right: 10px; */
-
 }
 .todo-input {
   background-color: white;
-
+  /* white-space: initial; */
   /* margin-left: 10px; */
   /* margin-right: 15px; */
   padding-left: 10px;
@@ -40,7 +34,6 @@ padding: 10px
 }
   
 .input {
-  
   overflow: hidden;
   margin-left: 25px;
   min-width: 225px;
@@ -70,6 +63,7 @@ padding: 10px
 
 
 input:placeholder-shown {
+  
   display: inline-flex;
   background-color: aliceblue;
 min-width: 225px;
@@ -78,8 +72,3 @@ width: 450px;
   border: .5px solid;
 }
 
-/* .buttons {
-  display: flex;
-  padding-bottom: 10px;
-  padding-left: 5px;
-} */

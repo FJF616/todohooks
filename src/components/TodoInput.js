@@ -1,13 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Button } from 'semantic-ui-react'
+// import useEditHooks from '../components/hooks/editHook';
 import TodoContext from '../context/todoContext';
 
-export default function TodoInput({todo}) {
+export default function TodoInput({todo, todoList, countCompletedTodos}) {
+  const { addTodo, clearTodoList, completeAll, clearCompleted } = useContext(TodoContext);
+  const [completedTasks, setCompletedTasks] = useState(countCompletedTodos(todoList));
   const [input, setInput] = useState("")
   const [completeClear, setCompleteClear] = useState(false)
   const [completeList, setCompleteList] = useState(false)
   const [cleared, setCleared] = useState(false)
-  const { addTodo, clearTodoList, todoList, completeAll, clearCompleted} = useContext(TodoContext);
+  // const [singleTaskComplete, setSingleTaskComplete] = useState(0)
   function onSubmit(event) {
     event.preventDefault();
       addTodo(input)
@@ -15,17 +18,16 @@ export default function TodoInput({todo}) {
       setCleared(false);
       setCompleteClear(false);
       setCompleteList(false);
-
     }
-  // function clearOrComplete () {
-  //   if (!completeList) {
-  //     clearCompleted(todoList);
-  //     setCleared(true) 
-  //   } else {
-  //     completeAll(todoList);
-  //     setCompleteList(true)
-  //   }
-  // }
+  
+  function updateCompletedTasks() {
+    const completedTodos = countCompletedTodos(todoList);
+    setCompletedTasks(completedTodos)
+  }
+  useEffect(() => {
+    updateCompletedTasks();
+  }, [countCompletedTodos])
+  
   return (
     <>
       <form onSubmit={onSubmit} >
@@ -45,7 +47,7 @@ export default function TodoInput({todo}) {
           icon={!input.length ? "reply" : "save"} 
           content={!input.length ? "Enter a Todo" : "Save Todo"}
           onClick={onSubmit} 
-          disabled={input.length ? false : true} 
+          disabled={input.length || todoList.length === 0? false : true} 
           style={{width: '155px'}}
           
         /> 
@@ -55,18 +57,18 @@ export default function TodoInput({todo}) {
           icon="refresh" 
           content="Clear Todo List"
           onClick={() => {
-            clearTodoList(); setCleared(true)
+            clearTodoList(); setCleared(true); 
           }} 
-          disabled={input.length || cleared ? true : false} 
+          disabled={input.length || cleared || todoList.length === 0 ? true : false} 
         />
         <Button 
           className="complete"  
           icon="checkmark" 
           content="Complete All"
           onClick={() => {
-            completeAll(todoList); setCompleteList(true)
+            completeAll(todoList); setCompleteList(true); 
           }}  
-         disabled={input.length  || cleared || completeList ? true : false} 
+         disabled={input.length  || cleared  || todoList.length === 0 || completedTasks === todoList.length ? true : false} 
          style={{width: '160px'}}
         />
         < Button
@@ -75,9 +77,9 @@ export default function TodoInput({todo}) {
           icon="exchange"
           content="Clear Completed"
           onClick={() => {
-            clearCompleted(todoList);
+            clearCompleted(todoList); setCompleteClear(true); setCompletedTasks(0)
           }}
-          disabled={input.length  || cleared ? true : false}
+          disabled={input.length  || cleared || completedTasks === 0 ? true : false}
         />
         </Button.Group>
       </form>
