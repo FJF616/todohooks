@@ -88,7 +88,7 @@ export default function App() {
               Total Todos: {state.todoList.length}
               <TodoCounter countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
             </>
-            :  <p> There Are Currently No Todos </p>
+            :  <p> There Are Currently No Todos To Do</p>
           }
          </div> 
           <div className="list" >

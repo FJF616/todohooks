@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react';
 import TodoContext from '../context/todoContext'
 import useEditHooks from '../components/hooks/editHook';
 import SaveOrCancel from '../components/buttonGroups/SaveOrCancel';
-
+import EditRemove from './buttonGroups/EditRemove';
 //Returns each todo with control Buttons
 export default function Todo({ todo, index }) {
 
@@ -28,59 +28,38 @@ export default function Todo({ todo, index }) {
 
   return (
     <>
-    <div className="buttons" style={{display: "flex", paddingBottom: '10px', paddingLeft: '5px'}}>
-      {editing === false
+    <div className="buttons" style={{ display: "flex", paddingBottom: '10px', paddingLeft: '5px' }}>
+      { editing === false
         ? <>
             <div className='input'> 
-              <span className="todo" style={{  textDecoration: todo.completed ? "line-through" : "", marginRight: '5px'  }}>{todo.text}</span>
+              <span className="todo" style={{ textDecoration: todo.completed ? "line-through" : "", marginRight: '5px' }}>{todo.text}</span>
              </div>
              { todo.completed
                 ? <Button 
-                  icon='undo' 
-                  className="toggle" 
-                  content="Mark as Incomplete" 
-                  onClick={() => toggleComplete(todo.id, index)} 
-                  basic color='green'
-                 style={{marginLeft: '10px'}}
-                />
-                : <Button 
-                  icon='check' 
-                  className="toggle" 
-                  content="Mark as Complete"
-                  onClick={() => toggleComplete(todo.id, index)} 
-                  color="green"
+                    icon='undo' 
+                    className="toggle" 
+                    content="Mark as Incomplete" 
+                    onClick={() => toggleComplete(todo.id, index)} 
+                    basic color='green'
                   style={{marginLeft: '10px'}}
-                />
-             }
-              <Button.Group >
-                { todo.completed 
-                  ? <Button 
-                      basic color="blue"
-                      className="edit-todo"
-                      content={displayDate()}
-                      icon='tasks'
-                      style={{width: '185px'}}
-                      // disabled={true}
-                    />
-                  : <Button 
-                      color='blue' 
-                      className="edit-todo" 
-                      content="Edit Todo" 
-                      icon='edit'
-                      onClick={() => onSetEdit()}
-                      style={{width: '185px'}}
-                    />
+                  />
+                : <Button 
+                    icon='check' 
+                    className="toggle" 
+                    content="Mark as Complete"
+                    onClick={() => toggleComplete(todo.id, index)} 
+                    color="green"
+                    style={{marginLeft: '10px'}}
+                  />
                 }
-              <Button 
-                negative 
-                icon='trash alternate' 
-                className="remove-todo" 
-                content="Remove Todo" 
-                onClick={() => removeTodo(todo.id, index)} 
-                style={{width: '185px'}}
-              />         
-            </Button.Group>
-           </>
+                <EditRemove 
+                  displayDate={displayDate}
+                  onSetEdit={onSetEdit}
+                  removeTodo={removeTodo}
+                  todo={todo}
+                  index={index}
+                />
+            </>
         : <>
             <div className='input'> 
               <input 
@@ -104,6 +83,8 @@ export default function Todo({ todo, index }) {
               index={index} 
               editText={editText}
             />
+            
+            
           </>
         }
       </div>
