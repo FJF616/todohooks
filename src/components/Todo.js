@@ -1,9 +1,9 @@
 import React, { useContext }from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Responsive } from 'semantic-ui-react';
 import TodoContext from '../context/todoContext'
 import useEditHooks from '../components/hooks/editHook';
 import SaveOrCancel from '../components/buttonGroups/SaveOrCancel';
-import EditRemove from './buttonGroups/EditRemove';
+import TodoButtons from './buttonGroups/TodoButtons';
 //Returns each todo with control Buttons
 export default function Todo({ todo, index }) {
 
@@ -34,11 +34,12 @@ export default function Todo({ todo, index }) {
             <div className='input'> 
               <span className="todo" style={{ textDecoration: todo.completed ? "line-through" : "", marginRight: '5px' }}>{todo.text}</span>
              </div>
+             <Button.Group  style={{minWidth: '185px'}}>
+               {/* <TodoButtons toggleComplete={toggleComplete} />
              { todo.completed
                 ? <Button 
                     icon='undo' 
-                    className="toggle" 
-                    content="Mark as Incomplete" 
+                    className="toggle"
                     onClick={() => toggleComplete(todo.id, index)} 
                     basic color='green'
                   style={{marginLeft: '10px'}}
@@ -51,14 +52,16 @@ export default function Todo({ todo, index }) {
                     color="green"
                     style={{marginLeft: '10px'}}
                   />
-                }
-                <EditRemove 
+                } */}
+                <TodoButtons
                   displayDate={displayDate}
                   onSetEdit={onSetEdit}
                   removeTodo={removeTodo}
                   todo={todo}
                   index={index}
+                  toggleComplete={toggleComplete}
                 />
+                </Button.Group>
             </>
         : <>
             <div className='input'> 
@@ -69,22 +72,20 @@ export default function Todo({ todo, index }) {
                 onChange={(e) => onSetEditText(e.target.value)}  
               />
             </div>
-              <Button 
+              <Responsive as={Button} 
                 basic color="black"
                 className="toggle" 
                 disabled={true} 
                 content='Editing Todo...'
-                style={{marginLeft: '10px'}}
+                style={{marginLeft: '10px', width: '185px'}}
               />
-            <SaveOrCancel 
-              id={todo.id} 
-              saveContext={saveEditText} 
-              onSetEdit={onSetEdit} 
-              index={index} 
-              editText={editText}
-            />
-            
-            
+              <SaveOrCancel 
+                id={todo.id} 
+                saveEditText={saveEditText} 
+                onSetEdit={onSetEdit} 
+                index={index} 
+                editText={editText}
+              />
           </>
         }
       </div>

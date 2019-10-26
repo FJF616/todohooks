@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Button } from 'semantic-ui-react';
 import TodoContext from '../context/todoContext';
-
+import InputGroup from '../components/buttonGroups/InputGroup'
 export default function TodoInput({ todo, todoList, countCompletedTodos }) {
   const { 
     addTodo, 
@@ -47,56 +46,18 @@ export default function TodoInput({ todo, todoList, countCompletedTodos }) {
           name="text"
           placeholder="Enter a todo"        
         />
-        <Button.Group style={{minWidth: '150px', margin: '2px'}} >
-          <Button 
-            positive
-            type="submit" 
-            icon={!input.length ? "reply" : "save"} 
-            style={{width: '155px'}}
-            content={!input.length ? "Enter a Todo" : "Save Todo"}
-            onClick={onSubmit} 
-            disabled={input.length || todoList.length === 0
-                ? false 
-                : true
-              } 
-          /> 
-        <Button 
-          className="complete"  
-          icon="checkmark" 
-          style={{width: '160px'}}
-          color="instagram"
-          content="Complete All"
-          onClick={() => { completeAll(todoList) }}  
-          disabled={
-           input.length || cleared  || todoList.length === 0 
-            || completedTasks === todoList.length 
-              ? true 
-              : false
-          } 
-        />
-        <Button
-          color="linkedin"
-          className="complete"
-          icon="exchange"
-          content="Clear Completed"
-          onClick={() => { clearCompleted(todoList); setCompletedTasks(0) }}
-          disabled={ input.length  || cleared || completedTasks === 0 
-                ? true 
-                : false
-              } 
-          />
-         <Button
-            color="google plus"
-            className="clear"
-            icon="refresh"
-            content="Clear Todo List"
-            onClick={() => { clearTodoList(); setCleared(true) }}
-            disabled={input.length || cleared || todoList.length === 0 
-                  ? true 
-                  : false
-                }
-            />
-        </Button.Group>
+        <InputGroup 
+          input={input} 
+          onSubmit={onSubmit}
+          completeAll={completeAll}
+          todoList={todoList}
+          cleared={cleared}
+          completedTasks={completedTasks}
+          clearCompleted={clearCompleted}
+          clearTodoList={clearTodoList}
+          setCleared={setCleared}
+          setCompletedTasks={setCompletedTasks} 
+        /> 
       </form>
     </>
   );

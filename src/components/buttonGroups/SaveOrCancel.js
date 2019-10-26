@@ -1,25 +1,27 @@
 import React from 'react';
 import { Responsive, Button } from 'semantic-ui-react';
+const width = 768
 
-
-const SaveOrCancel = ({ id, saveContext, onSetEdit, index, editText }) => (
+//displays the save or cancel button cluster
+const SaveOrCancel = ({ id, saveEditText, onSetEdit, index, editText }) => (
+  
   <>
-    <Button.Group style={{width: '370px'}}>
-      < Responsive as={Button} color='blue' icon='save' maxWidth={768}   onClick = {
-          () => {saveContext(editText, id, index); onSetEdit()}} 
+    <Responsive as={Button.Group} style={{minWidth: '175px', width: '370px'}}>
+      < Responsive as={Button} color='blue' icon='save' maxWidth={width}   
+        onClick = {() => {saveEditText(editText, id, index); onSetEdit()}} 
         />    
-          <Responsive as={Button.Or} maxWidth={768} />
-      <Responsive as={Button} negative icon='cancel' maxWidth={768}  onClick={
-        () => onSetEdit()} 
-      />
-      < Responsive as={Button} color='blue' icon='save' content="Save" minWidth={768}   onClick = {
-          () => {saveContext(editText, id, index); onSetEdit()}} 
+        <Responsive as={Button.Or} maxWidth={width} />
+        <Responsive as={Button} negative icon='cancel' maxWidth={width}  
+          onClick={() => onSetEdit()} 
+        />
+        < Responsive as={Button} color='blue' icon='save' content="Save" minWidth={width}  
+          onClick={() => {saveEditText(editText, id, index); onSetEdit()}} 
         />    
-          <Responsive as={Button.Or} minWidth={768} />
-      <Responsive as={Button} negative icon='cancel' content="Cancel" minWidth={768} onClick={
-        () => onSetEdit()} 
-      />
-    </Button.Group >
+        <Responsive as={Button.Or} minWidth={width} />
+        <Responsive as={Button} negative icon='cancel' content="Cancel" minWidth={width} 
+          onClick={() => onSetEdit()} 
+        />
+    </Responsive >
   </>
 );
 
