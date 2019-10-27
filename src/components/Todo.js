@@ -34,33 +34,15 @@ export default function Todo({ todo, index }) {
             <div className='input'> 
               <span className="todo" style={{ textDecoration: todo.completed ? "line-through" : "", marginRight: '5px' }}>{todo.text}</span>
              </div>
-             <Button.Group  style={{minWidth: '185px'}}>
-               {/* <TodoButtons toggleComplete={toggleComplete} />
-             { todo.completed
-                ? <Button 
-                    icon='undo' 
-                    className="toggle"
-                    onClick={() => toggleComplete(todo.id, index)} 
-                    basic color='green'
-                  style={{marginLeft: '10px'}}
-                  />
-                : <Button 
-                    icon='check' 
-                    className="toggle" 
-                    content="Mark as Complete"
-                    onClick={() => toggleComplete(todo.id, index)} 
-                    color="green"
-                    style={{marginLeft: '10px'}}
-                  />
-                } */}
-                <TodoButtons
-                  displayDate={displayDate}
-                  onSetEdit={onSetEdit}
-                  removeTodo={removeTodo}
-                  todo={todo}
-                  index={index}
-                  toggleComplete={toggleComplete}
-                />
+                <Button.Group  style={{minWidth: '185px'}}>
+                    <TodoButtons
+                      displayDate={displayDate}
+                      onSetEdit={onSetEdit}
+                      removeTodo={removeTodo}
+                      todo={todo}
+                      index={index}
+                      toggleComplete={toggleComplete}
+                    />
                 </Button.Group>
             </>
         : <>

@@ -79,19 +79,8 @@ export default function App() {
           }}
         >
       <div className="App">
-      <div style={{  marginLeft: '35px', paddingBottom: '40px'}}>
-          
-            <TodoInput todo={singleTodo} countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
       
-          
-         </div> 
-          <div className="list" >
-            {state.todoList.map((todo, index) => (
-              <Todo key={todo.id} index={index} todo={todo}/>
-            )
-          )}   
-        </div>
-        <div className="todo-counter">
+           <div className="todo-counter">
         { state.todoList.length
             ? <>
               {/* Total Todos: {state.todoList.length} */}
@@ -100,6 +89,20 @@ export default function App() {
             :  <p> There Are Currently No Todos To Do </p>
           }
        </div>
+          <div style={{  marginLeft: '35px', paddingBottom: '40px'}}>
+            <TodoInput todo={singleTodo} countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
+      
+          
+         
+                </div> 
+
+          <div className="list" >
+            {state.todoList.map((todo, index) => (
+              <Todo key={todo.id} index={index} todo={todo}/>
+            )
+          )}   
+        </div>
+       
       </div>
       </TodoContext.Provider>
   );

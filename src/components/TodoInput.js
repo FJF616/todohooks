@@ -37,7 +37,7 @@ export default function TodoInput({ todo, todoList, countCompletedTodos }) {
   
   return (
     <>
-      <form onSubmit={onSubmit} >
+      <form onSubmit={onSubmit}>
         <input 
           className="todo-input"
           value={input}
