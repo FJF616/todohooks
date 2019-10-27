@@ -77,7 +77,7 @@ export default function Todo({ todo, index }) {
                 className="toggle" 
                 disabled={true} 
                 content='Editing Todo...'
-                style={{marginLeft: '10px', width: '185px'}}
+                style={{marginLeft: '10px', width: '270px'}}
               />
               <SaveOrCancel 
                 id={todo.id} 

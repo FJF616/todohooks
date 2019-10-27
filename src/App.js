@@ -83,13 +83,7 @@ export default function App() {
           
             <TodoInput todo={singleTodo} countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
       
-          { state.todoList.length
-            ? <>
-              Total Todos: {state.todoList.length}
-              <TodoCounter countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
-            </>
-            :  <p> There Are Currently No Todos To Do</p>
-          }
+          
          </div> 
           <div className="list" >
             {state.todoList.map((todo, index) => (
@@ -97,6 +91,15 @@ export default function App() {
             )
           )}   
         </div>
+        <div className="todo-counter">
+        { state.todoList.length
+            ? <>
+              {/* Total Todos: {state.todoList.length} */}
+              <TodoCounter  countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
+            </>
+            :  <p> There Are Currently No Todos To Do </p>
+          }
+       </div>
       </div>
       </TodoContext.Provider>
   );
