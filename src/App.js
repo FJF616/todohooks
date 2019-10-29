@@ -1,4 +1,5 @@
 import React, { useReducer, useContext } from 'react';
+import { Grid } from 'semantic-ui-react';
 import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST,  COMPLETE_ALL, CLEAR_COMPLETED  } from './reducer/actionTypes';
 import todoReducer from './reducer/todoReducer';
 import Todo from './components/Todo';
@@ -79,8 +80,7 @@ export default function App() {
           }}
         >
       <div className="App">
-      
-           <div className="todo-counter">
+        <div className="todo-counter">
         { state.todoList.length
             ? <>
               {/* Total Todos: {state.todoList.length} */}
@@ -89,13 +89,9 @@ export default function App() {
             :  <p> There Are Currently No Todos To Do </p>
           }
        </div>
-          <div style={{  marginLeft: '35px', paddingBottom: '40px'}}>
+          <div style={{   paddingBottom: '40px'}}>
             <TodoInput todo={singleTodo} countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
-      
-          
-         
-                </div> 
-
+          </div> 
           <div className="list" >
             {state.todoList.map((todo, index) => (
               <Todo key={todo.id} index={index} todo={todo}/>

@@ -28,7 +28,7 @@ export default function Todo({ todo, index }) {
 
   return (
     <>
-    <div className="buttons" style={{ display: "flex", paddingBottom: '10px', paddingLeft: '5px' }}>
+    <div className="buttons" style={{ display: 'flex', paddingBottom: '10px', }}>
       { editing === false
         ? <>
             <div className='input'> 
@@ -60,6 +60,7 @@ export default function Todo({ todo, index }) {
                 disabled={true} 
                 content='Editing Todo...'
                 style={{marginLeft: '10px', width: '270px'}}
+                minWidth={1150}
               />
               <SaveOrCancel 
                 id={todo.id} 

@@ -1,28 +1,35 @@
 .App {
-  
-  background: rgb(241, 248, 255);
+  display: flexbox;
+  background: rgb(154, 189, 225);
   background: linear-gradient(0deg, rgba(241, 248, 255, 1) 0%, rgba(232, 234, 236, 1) 51%, rgba(233, 244, 252, 1) 100%);
   height: 100vh;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
   padding: 10px
 }
 
 .todo {
- 
-  width: 430px;
+  /* align-self: stretch; */
+  /* position: absolute; */
+  width: 65vw;
+  max-width: 450px;
   border-radius: 2%;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   font-size: calc(8px + 1vmin);
   padding-top: 4px;
+  text-align: center;
 }
 .todo-input {
+  display: inline-flex;
+  text-align: left;
   position: relative;
+  /* align-self: flex-start; */
   background-color: white;
   padding-left: 10px;
   height: 35px;
+  width:  55vw;
   min-width: 225px;
-  max-width: 350px;
+  max-width: 450px;
   border-radius: 4%;
   margin-right: 5px;
 }
@@ -30,10 +37,12 @@
 .input {
   display: inline-flex;
   overflow: hidden;
-  width: 450px;
+  width: 55vw;
+  max-width: 450px;
   border: 1px solid;
-  background-color: aliceblue;
+  background-color: lightgoldenrodyellow;
   padding-top: 5px;
+  /* margin-left:10% */
 }
 
 .toggle {
@@ -50,9 +59,9 @@
 
 input:placeholder-shown {
   display: inline-flex;
-  background-color: aliceblue;
-  min-width: 225px;
-  width: 15vw;
+  background-color: lightgoldenrodyellow;
+  /* min-width: 225px; */
+  width:55vw;
   max-width: 450px;
   font-style: italic;
   border: .5px solid;
@@ -61,5 +70,5 @@ input:placeholder-shown {
 .todo-counter {
   display: inline-flex;
   position: absolute fixed;
-  margin-left: 5%
+  /* margin-left: 1% */
 }
