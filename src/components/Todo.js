@@ -34,7 +34,7 @@ export default function Todo({ todo, index }) {
             <div className='input'> 
               <span className="todo" style={{ textDecoration: todo.completed ? "line-through" : "", marginRight: '5px' }}>{todo.text}</span>
              </div>
-                <Button.Group  style={{minWidth: '185px'}}>
+                <Button.Group  style={{minWidth: '165px'}}>
                     <TodoButtons
                       displayDate={displayDate}
                       onSetEdit={onSetEdit}
@@ -59,8 +59,8 @@ export default function Todo({ todo, index }) {
                 className="toggle" 
                 disabled={true} 
                 content='Editing Todo...'
-                style={{marginLeft: '10px', width: '270px'}}
-                minWidth={1150}
+                style={{marginLeft: '10px', width: '155px'}}
+                minWidth={1024}
               />
               <SaveOrCancel 
                 id={todo.id} 

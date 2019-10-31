@@ -4,91 +4,72 @@ import ConfirmRemove from './ConfirmRemove';
 
 
 const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedTasks, clearCompleted, clearTodoList, setCleared, setCompletedTasks }) => (
-  <Responsive as={Button.Group} size='small' style={{minWidth: '225px', margin: '2px'}} >
+      <Responsive as={Button.Group}   fluid style={{ minWidth: '150px', maxWidth: '360px', margin: '2px'}} >
           <Responsive 
             as={Button} 
-            minWidth={1155}
+            minWidth={1024}
             // size='big'
             positive
             type="submit" 
             icon={!input.length ? "reply" : "save"} 
-            style={{width: '155px'}}
+            style={{maxWidth: '155px'}}
             content={!input.length ? "Enter a Todo" : "Save Todo"}
             onClick={onSubmit} 
-            disabled={input.length || todoList.length === 0
+            disabled={
+              input.length 
+              || todoList.length === 0
                 ? false 
                 : true
               } 
           /> 
+          <Responsive 
+          as={Button} 
+          maxWidth={768}
+          positive
+          type="submit" 
+          icon={!input.length ? "reply" : "save"} 
+          style={{width: '50px'}}
+          // content={!input.length ? "Enter a Todo" : "Save Todo"}
+          onClick={onSubmit} 
+          disabled={
+            input.length 
+            || todoList.length === 0
+              ? false 
+              : true
+            } 
+        /> 
         <Responsive 
           as={Button} 
           // size='big'
-          minWidth={1155}
+          minWidth={1024}
           className="complete"  
           icon="checkmark" 
-          style={{width: '160px'}}
+          style={{maxWidth: '160px'}}
           color="instagram"
           content="Complete All"
           onClick={() => { completeAll(todoList) }}  
           disabled={
-           input.length || cleared  || todoList.length === 0 
+            input.length 
+            || cleared  
+            || todoList.length === 0 
             || completedTasks === todoList.length 
               ? true 
               : false
-          } 
-        />
-        <Responsive
-          as={Button}
-          
-          minWidth={1155}
-          color="linkedin"
-          className="complete"
-          icon="exchange"
-          content="Clear Completed"
-          onClick={() => { clearCompleted(todoList); setCompletedTasks(0) }}
-          disabled={ input.length  || cleared || completedTasks === 0 
-                ? true 
-                : false
-              } 
+            } 
           />
-         {/* <Responsive
-            as={Button}
-            minWidth={1155}
-            color="google plus"
-            className="clear"
-            icon="refresh"
-            content="Clear Todo List"
-            onClick={() => { clearTodoList(); setCleared(true) }}
-            disabled={input.length || cleared || todoList.length === 0 
-                  ? true 
-                  : false
-                }
-            /> */}
-            <Responsive 
-            as={Button} 
-            maxWidth={1154}
-            positive
-            type="submit" 
-            icon={!input.length ? "reply" : "save"} 
-            style={{width: '40px'}}
-            // content={!input.length ? "Enter a Todo" : "Save Todo"}
-            onClick={onSubmit} 
-            disabled={input.length || todoList.length === 0
-                ? false 
-                : true
-              } 
-          /> 
-        <Responsive 
+         <Responsive 
           as={Button} 
-          maxWidth={1154}
+          maxWidth={768}
           className="complete"  
           icon="checkmark" 
-          style={{ width: '40px'}}
+          style={{ width: '55px'}}
           color="instagram"
           // content="Complete All"
           onClick={() => { completeAll(todoList) }}  
           disabled={
-           input.length || cleared  || todoList.length === 0 
+            input.length 
+            || cleared  
+            || todoList.length === 0 
             || completedTasks === todoList.length 
               ? true 
               : false
@@ -96,33 +77,37 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
         />
         <Responsive
           as={Button}
-          maxWidth={1154}
+          minWidth={1024}
           color="linkedin"
           className="complete"
+          style={{width: '124px'}}
           icon="exchange"
-          style={{width: '40px'}}
-
-          // content="Clear Completed"
+          content="Clear Completed"
           onClick={() => { clearCompleted(todoList); setCompletedTasks(0) }}
-          disabled={ input.length  || cleared || completedTasks === 0 
+          disabled={ 
+            input.length  
+            || cleared 
+            || completedTasks === 0 
                 ? true 
                 : false
               } 
           />
-         {/* <Responsive
-            as={Button}
-            maxWidth={1154}
-            color="google plus"
-            style={{width: '40px'}}
-            className="clear"
-            icon="refresh"
-            // content="Clear Todo List"
-            onClick={() => { clearTodoList(); setCleared(true) }}
-            disabled={input.length || cleared || todoList.length === 0 
-                  ? true 
-                  : false
-                }
-            /> */}
+           <Responsive
+          as={Button}
+          maxWidth={768}
+          color="linkedin"
+          className="complete"
+          icon="exchange"
+          style={{width: '55px'}}
+          onClick={() => { clearCompleted(todoList); setCompletedTasks(0) }}
+          disabled={ 
+            input.length  
+            || cleared 
+            || completedTasks === 0 
+                ? true 
+                : false
+              } 
+          />
             <ConfirmRemove 
               clearTodoList={clearTodoList} 
               setCleared={setCleared} 

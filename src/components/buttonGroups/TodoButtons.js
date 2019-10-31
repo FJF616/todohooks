@@ -5,7 +5,7 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
       
     return (  
       
-        <Responsive as={Button.Group}  style={{ minWidth: '175px', maxWidth: '370px'}}>
+        <Responsive as={Button.Group} style={{ minWidth: '155px', maxWidth: '320px'}}>
                
                 { todo.completed 
                   ? <>
@@ -14,8 +14,8 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                     className="toggle"
                     onClick={() => toggleComplete(todo.id, index)} 
                     basic color='green'
-                    maxWidth={1150}
-                  style={{marginLeft: '10px', minWidth: '35px', maxWidth: '85px'}}
+                    maxWidth={768}
+                  style={{marginLeft: '5px', minWidth: '35px', maxWidth: '85px'}}
                   />
                   <Responsive as={Button}
                     icon='undo' 
@@ -23,9 +23,9 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                     content="Mark Incomplete"
                     onClick={() => toggleComplete(todo.id, index)} 
                     basic color='green'
-                    minWidth={1155}
+                    minWidth={1024}
                     // maxWidth={1155}
-                  style={{marginLeft: '10px', width: '180px'}}
+                  style={{marginLeft: '10px', width: '175px'}}
                   
                   />
                     <Responsive as={Button}
@@ -33,8 +33,8 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                       className="edit-todo"
                       content={displayDate()}
                       icon='tasks'
-                      style={{minWidth: '65px', width: '270px'}}
-                      minWidth={1155}
+                      style={{minWidth: '65px', width: '215px'}}
+                      minWidth={1024}
                       // disabled={true}
                     />
                       <Responsive as={Button}
@@ -43,8 +43,8 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                           className="remove-todo" 
                           content="Remove Todo" 
                           onClick={() => removeTodo(todo.id, index)} 
-                          style={{width: '185px'}}
-                          minWidth={1155}
+                          style={{width: '150px'}}
+                          minWidth={1024}
                         />
                          <Responsive as={Button}
                             basic color="red"                
@@ -52,8 +52,8 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                             className="remove-todo" 
                             // content="Remove Todo" 
                             onClick={() => removeTodo(todo.id, index)} 
-                            style={{minWidth: '35px', maxWidth: '185px'}}
-                            maxWidth={1024}
+                            style={{minWidth: '35px', maxWidth: '165px'}}
+                            maxWidth={768}
                             // {...Responsive.onlyMobile}
                           />                 
                       </>
@@ -61,11 +61,11 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                   <Responsive as={Button} 
                     icon='check' 
                     className="toggle" 
-                    content="Mark as Complete"
+                    content="Complete"
                     onClick={() => toggleComplete(todo.id, index)} 
                     color="green"
-                    style={{marginLeft: '10px'}}
-                    minWidth={1155}
+                    style={{marginLeft: '10px', width: '175px'}}
+                    minWidth={1024}
                   />
                   <Responsive as={Button} 
                     icon='check' 
@@ -74,7 +74,7 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                     onClick={() => toggleComplete(todo.id, index)} 
                     color="green"
                     style={{marginLeft: '10px', minWidth: '35px', maxWidth:'270px'}}
-                    maxWidth={1150}
+                    maxWidth={768}
                   />
               
                     <Responsive as={Button}
@@ -83,8 +83,8 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                       content="Edit Todo" 
                       icon='edit'
                       onClick={() => onSetEdit()}
-                      style={{width: '270px'}}
-                      minWidth={1155}
+                      style={{width: '215px'}}
+                      minWidth={1024}
                     />
                     <Responsive as={Button}
                       color='blue' 
@@ -93,7 +93,7 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                       icon='edit'
                       onClick={() => onSetEdit()}
                       style={{minWidth: '35px', maxWidth: '270px'}}
-                      maxWidth={1150}
+                      maxWidth={768}
                     />
                     </>
                 }
@@ -106,8 +106,8 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                 className="remove-todo" 
                 content="Remove Todo" 
                 onClick={() => removeTodo(todo.id, index)} 
-                style={{width: '185px'}}
-                minWidth={1155}
+                style={{width: '150px'}}
+                minWidth={1024}
               /> 
               <Responsive as={Button}
                 negative 
@@ -116,7 +116,7 @@ const TodoButtons = ({ displayDate, onSetEdit, removeTodo, todo, toggleComplete,
                 // content="Remove Todo" 
                 onClick={() => removeTodo(todo.id, index)} 
                 style={{minWidth: '35px', maxWidth: '185px'}}
-                maxWidth={1150}
+                maxWidth={768}
                 // {...Responsive.onlyMobile}
               />     
               </>

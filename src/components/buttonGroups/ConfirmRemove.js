@@ -12,11 +12,11 @@ export default function ConfirmRemove({ clearTodoList, setCleared, cleared, inpu
     <>
     <Responsive
             as={Button}
-            minWidth={1155}
+            minWidth={1024}
             color="google plus"
             className="clear"
             icon="refresh"
-            content="Clear Todo List"
+            content="Remove All"
             onClick={() => open()}
             disabled={input.length || cleared || todoList.length === 0 
                   ? true 
@@ -26,9 +26,9 @@ export default function ConfirmRemove({ clearTodoList, setCleared, cleared, inpu
       />
       <Responsive
             as={Button}
-            maxWidth={1154}
+            maxWidth={768}
             color="google plus"
-            style={{width: '40px'}}
+            style={{width: '50px'}}
             className="clear"
             icon="refresh"
             // content="Clear Todo List"
