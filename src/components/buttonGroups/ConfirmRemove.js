@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Confirm, Responsive } from 'semantic-ui-react';
+import { Button, Confirm, Popup, Responsive } from 'semantic-ui-react';
 
 export default function ConfirmRemove({ clearTodoList, setCleared, cleared, input, todoList  }) {
 
@@ -24,6 +24,8 @@ export default function ConfirmRemove({ clearTodoList, setCleared, cleared, inpu
                 }
             
       />
+      <Popup content="Removeall"
+        trigger={
       <Responsive
             as={Button}
             maxWidth={768}
@@ -38,6 +40,7 @@ export default function ConfirmRemove({ clearTodoList, setCleared, cleared, inpu
                   : false
                 }
             
+          />}
       />
         <Confirm
           open={checkOpen}

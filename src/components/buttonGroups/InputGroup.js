@@ -1,14 +1,15 @@
 import React from 'react';
-import { Button, Responsive } from 'semantic-ui-react';
+import { Button, Popup, Responsive } from 'semantic-ui-react';
 import ConfirmRemove from './ConfirmRemove';
 
-
+//This component will display the button group used when adding a todo.  
 const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedTasks, clearCompleted, clearTodoList, setCleared, setCompletedTasks }) => (
       <Responsive as={Button.Group}   fluid style={{ minWidth: '150px', maxWidth: '360px', margin: '2px'}} >
+        {/* this button saves each todo*/}
           <Responsive 
             as={Button} 
+            //for desktop resolutions
             minWidth={1024}
-            // size='big'
             positive
             type="submit" 
             icon={!input.length ? "reply" : "save"} 
@@ -22,25 +23,28 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
                 : true
               } 
           /> 
-          <Responsive 
-          as={Button} 
-          maxWidth={768}
-          positive
-          type="submit" 
-          icon={!input.length ? "reply" : "save"} 
-          style={{width: '50px'}}
-          // content={!input.length ? "Enter a Todo" : "Save Todo"}
-          onClick={onSubmit} 
-          disabled={
-            input.length 
-            || todoList.length === 0
-              ? false 
-              : true
-            } 
-        /> 
+         <Popup content="Add a todo"
+          trigger={
+            <Responsive 
+            as={Button} 
+            //for mobile device resolutions
+            maxWidth={768}
+            positive
+            type="submit" 
+            icon={!input.length ? "reply" : "save"} 
+            style={{width: '50px'}}
+            onClick={onSubmit} 
+            disabled={
+              input.length 
+              || todoList.length === 0
+                ? false 
+                : true
+              } 
+            /> }
+        />
+        {/* this button marks every todo as complete */}
         <Responsive 
           as={Button} 
-          // size='big'
           minWidth={1024}
           className="complete"  
           icon="checkmark" 
@@ -57,6 +61,8 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
               : false
             } 
           />
+          <Popup content="Complete all" 
+          trigger={
          <Responsive 
           as={Button} 
           maxWidth={768}
@@ -74,6 +80,7 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
               ? true 
               : false
           } 
+        />}
         />
         <Responsive
           as={Button}
@@ -92,7 +99,9 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
                 : false
               } 
           />
-           <Responsive
+          <Popup content="Clear Completed"
+          trigger={
+        <Responsive
           as={Button}
           maxWidth={768}
           color="linkedin"
@@ -107,14 +116,15 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
                 ? true 
                 : false
               } 
+           />}
+           />
+          <ConfirmRemove 
+            clearTodoList={clearTodoList} 
+            setCleared={setCleared} 
+            input={input} 
+            cleared={cleared} 
+            todoList={todoList} 
           />
-            <ConfirmRemove 
-              clearTodoList={clearTodoList} 
-              setCleared={setCleared} 
-              input={input} 
-              cleared={cleared} 
-              todoList={todoList} 
-            />
         </Responsive>
 )
 export default InputGroup;
