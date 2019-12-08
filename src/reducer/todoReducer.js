@@ -1,4 +1,11 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST, CLEAR_COMPLETED, COMPLETE_ALL } from './actionTypes';
+import { 
+  ADD_TODO, 
+  REMOVE_TODO, 
+  TOGGLE_COMPLETE, 
+  CLEAR_TODO_LIST, 
+  CLEAR_COMPLETED, 
+  COMPLETE_ALL 
+} from './actionTypes';
 import uuid from 'uuid';
 
 
@@ -33,46 +40,48 @@ export default function todoReducer(state, action) {
         };
       
     case TOGGLE_COMPLETE:
-        const todoID = action.payload
-        const todoCompleted = state.todoList.filter(newTodo => newTodo.id === todoID)
-            .map(property => { 
-              if (property.completed === false) {
-                property.completed = true;
-              } else {
-                property.completed = false;
-              }
-              return property
-          });  
-          return {
-              ...state,
-              todoCompleted
-          };
+      const todoID = action.payload
+      const todoCompleted = state.todoList.filter(newTodo => newTodo.id === todoID)
+          .map(property => { 
+            if (property.completed === false) {
+              property.completed = true;
+            } else {
+              property.completed = false;
+            }
+            return property
+        });  
+        return {
+            ...state,
+            todoCompleted
+        };
 
     case CLEAR_TODO_LIST:
           state.todoList.splice(0, state.todoList.length)
-       
           return {
           ...state,
             todoList: state.todoList
           }
+
     case CLEAR_COMPLETED:
-          const incompleteTodos = state.todoList.filter(todo => todo.completed === false);
-          return {
-            ...state,
-            todoList: [...incompleteTodos]
-          } 
+      const incompleteTodos = state.todoList.filter(todo => todo.completed === false);
+      return {
+        ...state,
+        todoList: [...incompleteTodos]
+      } 
+
     case COMPLETE_ALL:
-    const markCompleteTodos = state.todoList.map(todo => {
-      if (todo.completed === false) {
-        todo.completed = true;
-      }
-      return todo   
-     })
-    return {
-      ...state,
-      todoList: [...markCompleteTodos]
-  } 
-  default:
-    return state
-  }
+      const markCompleteTodos = state.todoList.map(todo => {
+        if (todo.completed === false) {
+          todo.completed = true;
+        }
+        return todo   
+      })
+      return {
+        ...state,
+        todoList: [...markCompleteTodos]
+    } 
+
+    default:
+      return state
+    }
 }
