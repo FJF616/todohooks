@@ -89,7 +89,7 @@ export default function App() {
             :  <p> There Are Currently No Todos To Do </p>
           }
        </div>
-          <div style={{   paddingBottom: '40px'}}>
+          <div style={{paddingBottom: '40px'}}>
             <TodoInput todo={singleTodo} countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
           </div> 
           <div className="list" >

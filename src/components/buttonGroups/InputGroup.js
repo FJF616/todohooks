@@ -24,6 +24,8 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
               } 
           /> 
          <Popup content="Add a todo"
+          position="bottom"
+          on="hover"
           trigger={
             <Responsive 
             as={Button} 
@@ -62,6 +64,8 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
             } 
           />
           <Popup content="Complete all" 
+          on='hover'
+
           trigger={
          <Responsive 
           as={Button} 
@@ -81,6 +85,7 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
               : false
           } 
         />}
+
         />
         <Responsive
           as={Button}

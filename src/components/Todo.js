@@ -32,7 +32,7 @@ export default function Todo({ todo, index }) {
       { editing === false
         ? <>
             <div className='input'> 
-              <span className="todo" style={{ textDecoration: todo.completed ? "line-through" : "", marginRight: '5px' }}>{todo.text}</span>
+              <span className="todo" style={{ textDecoration: todo.completed ? "line-through" : "", marginRight: '5px',  }}>{todo.text}</span>
              </div>
                 <Button.Group  style={{minWidth: '165px'}}>
                     <TodoButtons
@@ -59,7 +59,7 @@ export default function Todo({ todo, index }) {
                 className="toggle" 
                 disabled={true} 
                 content='Editing Todo...'
-                style={{marginLeft: '10px', width: '155px'}}
+                style={{marginLeft: '10px', marginRight: '11px', width: '155px',}}
                 minWidth={1024}
               />
               <SaveOrCancel 
