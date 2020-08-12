@@ -4,7 +4,7 @@ import ConfirmRemove from './ConfirmRemove';
 
 //This component will display the button group used when adding a todo.  
 const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedTasks, clearCompleted, clearTodoList, setCleared, setCompletedTasks }) => (
-      <Responsive as={Button.Group}   fluid style={{ minWidth: '150px', maxWidth: '360px', margin: '2px'}} >
+      <Responsive as={Button.Group}   fluid style={{ minWidth: '155px', maxWidth: '360px', margin: '2px'}} >
         {/* this button saves each todo*/}
           <Responsive 
             as={Button} 
@@ -13,7 +13,7 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
             positive
             type="submit" 
             icon={!input.length ? "reply" : "save"} 
-            style={{maxWidth: '155px'}}
+            style={{maxWidth: '155px', width: '145px'}}
             content={!input.length ? "Enter a Todo" : "Save Todo"}
             onClick={onSubmit} 
             disabled={
