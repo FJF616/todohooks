@@ -19,7 +19,7 @@ export default TodoContext;
 // export const initialStateValue = useContext(TodoContext);
 
 // export const TodoContextProvider = ({dispatch, initialState, children}) => (
-//     <TodoContext.Provider value={ useReducer(todoReducer, initialState)}>
+//     <TodoContext.Provider value={ useReducer(todoReducer, initialStateValue)}>
 //       {children}
 //     </TodoContext.Provider>
 //   );
