@@ -1,7 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import TodoContext from '../context/todoContext';
 import InputGroup from '../components/buttonGroups/InputGroup'
-export default function TodoInput({ todo, todoList, countCompletedTodos }) {
+import { useAuth0 } from '@auth0/auth0-react';
+import useEditHooks from '../components/hooks/editHook';
+
+export default function TodoInput({ todoList,  sendUserMetadata }) {
+  const { isAuthenticated } = useAuth0();
+  const { countCompletedTodos } = useEditHooks();
   const { 
     addTodo, 
     clearTodoList, 
@@ -44,7 +49,8 @@ export default function TodoInput({ todo, todoList, countCompletedTodos }) {
           onChange={(event) => setInput(event.target.value)}
           type="text"
           name="text"
-          placeholder="Enter a todo"        
+          disabled={isAuthenticated ? false : true}
+          placeholder={isAuthenticated ? "Enter a todo" : "Please Login"}        
         />
         <InputGroup 
           input={input} 

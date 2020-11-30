@@ -1,11 +1,14 @@
 // import React, { createContext, useReducer, useContext } from 'react';
 // import todoReducer from '../reducer/todoReducer';
 
-import { createContext } from 'react';
+import {  createContext } from 'react';
+// import { useAuth0 } from "@auth0/auth0-react";
 import uuid from 'uuid';
 
+//check for any saved todos and load them, if not just load the example todo
+const savedTodos = JSON.parse(localStorage.getItem("todoList"))
 export const TodoContext = createContext({
-  todoList: [
+    todoList: savedTodos.length ? savedTodos : [
       {
         id: uuid.v4(),
         text: "example todo",

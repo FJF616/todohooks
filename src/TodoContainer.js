@@ -1,22 +1,41 @@
-import React, { useReducer, useContext } from 'react';
+import React, { useEffect, useState, useReducer, useContext } from 'react';
 import { Grid } from 'semantic-ui-react';
-import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST,  COMPLETE_ALL, CLEAR_COMPLETED  } from './reducer/actionTypes';
+import { useAuth0 } from '@auth0/auth0-react';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST,  COMPLETE_ALL, CLEAR_COMPLETED, LOAD_SAVED_TODOLIST  } from './reducer/actionTypes';
 import todoReducer from './reducer/todoReducer';
 import Todo from './components/Todo';
 import TodoInput from './components/TodoInput';
 import TodoContext from './context/todoContext';
 import TodoCounter from './components/TodoCounter';
-import useEditHooks from './components/hooks/editHook';
-
-
+import useGetMetadata from './components/hooks/useGetMetadata';
+import MetadataContext from './context/metadataContext';
 export default function TodoContainer() {
   //set initial state to context state
+  const { user } = useAuth0();
+  const metadataKey = "https://everybodyleave.com/claims/user_metadata"
+  // const [userTodoList, setUserTodoList] = useState(user[metadataKey].todoList)
+  // const { userMetadata }   = useContext(MetadataContext);
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
-  const singleTodo = state.todoList.filter(todo => { return { todo }})
-  const { countCompletedTodos } = useEditHooks(singleTodo);
+  // const singleTodo = state.todoList.filter(todo => { return { todo }})
+  // useEffect(() => {
+  //   if (!Array.isArray(userMetadata) || !userMetadata.length) {
+  //     initialState = context
+  //   } else {
+  //     initialState = userMetadata
+  //   }
+  // }, [])
+  
+  
+  
   /****action creators****/
   //add a todo
+  const loadSavedTodoList = (savedList) => {
+    dispatch({
+      type: LOAD_SAVED_TODOLIST,
+      payload: savedList
+    });
+  };
   const addTodo = (todo) => {
     dispatch({
       type: ADD_TODO,
@@ -62,8 +81,17 @@ export default function TodoContainer() {
       payload: todoList
     })
   }
-
-  
+  const handleSavedList = async () => {
+    const savedTodoList = await JSON.parse(localStorage.getItem("todoList"));
+    if (savedTodoList) {
+      await loadSavedTodoList(savedTodoList)
+    }
+  }
+  // useEffect(() => {
+  //   if(Array.isArray(userMetadata) || userMetadata.length) {
+  //     localStorage.setItem('savedTodoList', userMetadata)
+  //   }
+  // },[userMetadata])
   /***********************/
 
     return (
@@ -75,7 +103,9 @@ export default function TodoContainer() {
             removeTodo,
             toggleComplete, 
             completeAll,
-            clearCompleted
+            clearCompleted,
+            loadSavedTodoList,
+            // userMetadata,
           }}
         >
       <div className="App">
@@ -83,13 +113,13 @@ export default function TodoContainer() {
         { state.todoList.length
             ? <>
               {/* Total Todos: {state.todoList.length} */}
-              <TodoCounter  countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
+              <TodoCounter  todoList={state.todoList} />
             </>
             :  <p> There Are Currently No Todos To Do </p>
           }
        </div>
           <div style={{paddingBottom: '40px'}}>
-            <TodoInput todo={singleTodo} countCompletedTodos={countCompletedTodos} todoList={state.todoList} />
+             <TodoInput  todoList={state.todoList}/>
           </div> 
           <div className="list" >
             {state.todoList.map((todo, index) => (
@@ -97,7 +127,7 @@ export default function TodoContainer() {
             )
           )}   
         </div>
-       
+        <button onClick={() => handleSavedList()}> load saved todos </button>
       </div>
       </TodoContext.Provider>
   );

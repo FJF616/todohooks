@@ -1,4 +1,4 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, CLEAR_TODO_LIST, CLEAR_COMPLETED, COMPLETE_ALL } from './actionTypes';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_COMPLETE, GET_TODO_LIST, CLEAR_TODO_LIST, CLEAR_COMPLETED, COMPLETE_ALL, LOAD_SAVED_TODOLIST } from './actionTypes';
 import uuid from 'uuid';
 
 
@@ -71,6 +71,12 @@ export default function todoReducer(state, action) {
       ...state,
       todoList: [...markCompleteTodos]
   } 
+  case LOAD_SAVED_TODOLIST: 
+    const savedList = action.payload;
+    return {
+      ...state,
+      todoList: [savedList]
+    }
   default:
     return state
   }

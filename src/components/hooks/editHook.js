@@ -2,10 +2,11 @@ import { useState, useContext, useEffect } from 'react';
 import TodoContext from '../../context/todoContext';
 
 //custom hook for editing a todo
-export function useEditHooks(todo) {
+export function useEditHooks() {
   const { todoList } = useContext(TodoContext);
+  const singleTodo = todoList.filter(todo => { return { todo }})
   const [editing, setEditing] = useState(todoList.editing);
-  const [editText, setEditText] = useState(todo.text);
+  const [editText, setEditText] = useState(singleTodo.text);
 
   // stores input text that will replace original text
   function onSetEditText(text) {
@@ -45,7 +46,7 @@ export function useEditHooks(todo) {
   }
   
   useEffect(() => {
-    saveEditText(editText, todo.id);
+    saveEditText(editText, singleTodo.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

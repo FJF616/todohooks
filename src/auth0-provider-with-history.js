@@ -9,7 +9,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
   const audience = process.env.REACT_APP_AUDIENCE;
 
   const onRedirectCallback = (appState) => {
-    history.push(appState?.returnTo || window.location.pathname);
+    history.push(window.location.pathname);
   };
 
   return (
@@ -20,6 +20,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
       onRedirectCallback={onRedirectCallback}
       audience={audience}
       useRefreshTokens={true}
+      scope="read:current_user update:current_user_metadata"
     >
       {children}
     </Auth0Provider>

@@ -1,60 +1,60 @@
 import React from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Container, Menu } from "semantic-ui-react";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./logout-button";
 import LoginButton from "./login-button";
-
-const MainNav = () => (
-  <Nav className="mr-auto">
-    <Nav.Link
+// import SaveMetadataButton from "./SaveMetadataButton"
+const MainMenu = () => (
+  <Menu className="mr-auto">
+    <Menu.Item
       as={RouterNavLink}
       to="/"
       exact
       activeClassName="router-link-exact-active"
     >
       Home
-    </Nav.Link>
-    <Nav.Link
+    </Menu.Item>
+    <Menu.Item
       as={RouterNavLink}
       to="/profile"
       exact
       activeClassName="router-link-exact-active"
     >
       Profile
-    </Nav.Link>
-    <Nav.Link
+    </Menu.Item>
+    {/* <Menu.Item
       as={RouterNavLink}
-      to="/external-api"
+      to="/savemetadata"
       exact
       activeClassName="router-link-exact-active"
     >
-      External API
-    </Nav.Link>
-  </Nav>
+      saveMetadata
+    </Menu.Item> */}
+  </Menu>
 );
 
-const AuthNav = () => {
+const AuthMenu = () => {
   const { isAuthenticated } = useAuth0();
 
   return (
-    <Nav className="justify-content-end">
+    <Menu className="justify-content-end">
       {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-    </Nav>
+    </Menu>
   );
 };
 
-const NavBar = () => {
+const MenuBar = () => {
   return (
-    <Navbar bg="light" expand="md">
+    <Menu bg="light" expand="md">
       <Container>
-        <Navbar.Brand as={RouterNavLink} className="logo" to="/" />
-        <MainNav />
-        <AuthNav />
+        {/* <Menubar.Brand as={RouterNavLink} className="logo" to="/" /> */}
+        <MainMenu />
+        <AuthMenu />
       </Container>
-    </Navbar>
+    </Menu>
   );
 };
 
-export default NavBar;
+export default MenuBar;

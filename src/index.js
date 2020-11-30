@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 import Auth0ProviderWithHistory from "./auth0-provider-with-history";
+import MetadataProvider from "./context/metadataContext";
 import './index.css';
-import App from './TodoContainer';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<Router>
+ReactDOM.render(
+<Router>
     <Auth0ProviderWithHistory>
-      <App />
+      <MetadataProvider>
+        <App />
+      </MetadataProvider>
     </Auth0ProviderWithHistory>
   </Router>,
    document.getElementById('root')

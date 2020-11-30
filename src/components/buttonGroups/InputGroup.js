@@ -13,7 +13,7 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
             positive
             type="submit" 
             icon={!input.length ? "reply" : "save"} 
-            style={{maxWidth: '155px'}}
+            style={{ maxWidth: '165px', minWidth: '150px' }}
             content={!input.length ? "Enter a Todo" : "Save Todo"}
             onClick={onSubmit} 
             disabled={
@@ -131,5 +131,6 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
             todoList={todoList} 
           />
         </Responsive>
+
 )
 export default InputGroup;
