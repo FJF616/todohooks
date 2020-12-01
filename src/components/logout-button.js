@@ -4,13 +4,13 @@ import { Button } from "semantic-ui-react";
 
 const LogoutButton = () => {
   const { logout } = useAuth0();
+  const logoutUser = () => {
+    localStorage.removeItem("todoList");
+    logout({ returnTo: window.location.origin });
+  }
   return (
     <Button
-      onClick={() =>
-        logout({
-          returnTo: window.location.origin,
-        })
-      }
+      onClick={() => logoutUser()}
       variant="danger"
       className="btn-margin"
     >

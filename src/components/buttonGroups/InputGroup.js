@@ -13,7 +13,7 @@ const InputGroup = ({input, onSubmit, completeAll, todoList, cleared, completedT
             positive
             type="submit" 
             icon={!input.length ? "reply" : "save"} 
-            style={{ maxWidth: '165px', minWidth: '150px' }}
+            style={{ maxWidth: '165px', minWidth: '145px' }}
             content={!input.length ? "Enter a Todo" : "Save Todo"}
             onClick={onSubmit} 
             disabled={

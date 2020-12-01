@@ -7,7 +7,7 @@ import axios from 'axios'
 export const  useSaveTodoList = (currentTodoList) => {
   // const context = useContext(TodoContext)
   // const userMetadata = context.todoList
-  const [savedMetadata, setSavedMetadata] = useState("")
+  const [savedMetadata, setSavedMetadata] = useState(JSON.parse(localStorage.getItem("todoList")))
   const { user, getAccessTokenSilently } = useAuth0();
  
   // const saveMetadata = async (metadata) => {
@@ -34,8 +34,8 @@ export const  useSaveTodoList = (currentTodoList) => {
       }
     })
 }
-  try {
-    
+  if(!Array.isArray(savedMetadata) || !savedMetadata.length) {
+  try { 
     const updateMetadata = await axios(config)
     const response = await updateMetadata.data;
     updateLocalStorage();
@@ -46,6 +46,7 @@ export const  useSaveTodoList = (currentTodoList) => {
     console.log("error updating metadata", err)
     throw new Error(err);
     }
+   } 
   }
   useEffect(() => {
     saveUserTodoList()

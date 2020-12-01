@@ -10,7 +10,6 @@ export const MetadataContext = createContext();
     useEffect(() => {
       const getUserMetadata = async () => {
         const savedTodos = JSON.parse(localStorage.getItem("todoList"));
-        console.log("localStorage", savedTodos);
         if (!Array.isArray(savedTodos) || !savedTodos.length) {
           try {
             const token = await getAccessTokenSilently({
