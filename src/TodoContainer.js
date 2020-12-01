@@ -7,7 +7,8 @@ import Todo from './components/Todo';
 import TodoInput from './components/TodoInput';
 import TodoContext from './context/todoContext';
 import TodoCounter from './components/TodoCounter';
-import useGetMetadata from './components/hooks/useGetMetadata';
+// import useSaveMetadata from './components/hooks/useSaveMetadata';
+import useSaveTodoList from './components/hooks/useSaveTodoList';
 import MetadataContext from './context/metadataContext';
 export default function TodoContainer() {
   //set initial state to context state
@@ -17,6 +18,7 @@ export default function TodoContainer() {
   // const { userMetadata }   = useContext(MetadataContext);
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
+  const { saveUserTodoList } = useSaveTodoList(state.todoList)
   // const singleTodo = state.todoList.filter(todo => { return { todo }})
   // useEffect(() => {
   //   if (!Array.isArray(userMetadata) || !userMetadata.length) {
@@ -81,11 +83,8 @@ export default function TodoContainer() {
       payload: todoList
     })
   }
-  const handleSavedList = async () => {
-    const savedTodoList = await JSON.parse(localStorage.getItem("todoList"));
-    if (savedTodoList) {
-      await loadSavedTodoList(savedTodoList)
-    }
+  const handleSaveList = async () => {
+    await saveUserTodoList();
   }
   // useEffect(() => {
   //   if(Array.isArray(userMetadata) || userMetadata.length) {
@@ -127,7 +126,7 @@ export default function TodoContainer() {
             )
           )}   
         </div>
-        <button onClick={() => handleSavedList()}> load saved todos </button>
+        <button onClick={() => handleSaveList()}> save todos </button>
       </div>
       </TodoContext.Provider>
   );
