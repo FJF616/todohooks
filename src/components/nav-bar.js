@@ -46,13 +46,15 @@ const AuthMenu = () => {
 };
 
 const MenuBar = () => {
+  const { user } = useAuth0()
   return (
-    <Menu bg="light" expand="md">
+    <Menu bg="light" expand="md" >
       <Container>
         {/* <Menubar.Brand as={RouterNavLink} className="logo" to="/" /> */}
         <MainMenu />
         <AuthMenu />
       </Container>
+      <h3 style={{ margin: "floatRight", 'paddingRight': '10px' }}>{user.nickname}</h3>{" "}
     </Menu>
   );
 };

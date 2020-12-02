@@ -111,9 +111,8 @@ export default function TodoContainer() {
         <div className="todo-counter">
         { state.todoList.length
             ? <>
-              {/* Total Todos: {state.todoList.length} */}
-              <TodoCounter  todoList={state.todoList} />
-            </>
+                <TodoCounter  todoList={state.todoList} />
+              </>
             :  <p> There Are Currently No Todos To Do </p>
           }
        </div>

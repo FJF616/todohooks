@@ -7,13 +7,9 @@ import axios from 'axios'
 export const  useSaveTodoList = (currentTodoList) => {
   // const context = useContext(TodoContext)
   // const userMetadata = context.todoList
-  const [savedMetadata, setSavedMetadata] = useState(JSON.parse(localStorage.getItem("todoList")))
+  const [savedMetadata, setSavedMetadata] = useState("")
   const { user, getAccessTokenSilently } = useAuth0();
  
-  // const saveMetadata = async (metadata) => {
-  //   console.log("todolist: ", context)
- 
-  // // const metadata = context.todoList 
   const updateLocalStorage = () => {
     localStorage.removeItem("todoList");
     localStorage.setItem("todoList", JSON.stringify(currentTodoList))
@@ -35,18 +31,18 @@ export const  useSaveTodoList = (currentTodoList) => {
     })
 }
   if(!Array.isArray(savedMetadata) || !savedMetadata.length) {
-  try { 
-    const updateMetadata = await axios(config)
-    const response = await updateMetadata.data;
-    updateLocalStorage();
-    setSavedMetadata(response);
-    console.log("successfully updated metadata", response)
-    return await response
-  } catch(err) {
-    console.log("error updating metadata", err)
-    throw new Error(err);
-    }
-   } 
+    try { 
+      const updateMetadata = await axios(config)
+      const response = await updateMetadata.data;
+      updateLocalStorage();
+      setSavedMetadata(response);
+      console.log("successfully updated metadata", response)
+      return await response
+    } catch(err) {
+        console.log("error updating metadata", err)
+        throw new Error(err);
+        }
+      } 
   }
   useEffect(() => {
     saveUserTodoList()
@@ -56,15 +52,5 @@ export const  useSaveTodoList = (currentTodoList) => {
     saveUserTodoList,
     savedMetadata
   }
-    // <Button
-    //   onClick={() => saveMetadata(userMetadata)}
-    //   variant="primary"
-    //   className="btn-margin"
-    // >
-    //   saveMetadata
-    // </Button>
-
 }
-
-
 export default useSaveTodoList;

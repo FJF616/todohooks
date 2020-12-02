@@ -5,7 +5,7 @@ import { Button } from "semantic-ui-react";
 const LogoutButton = () => {
   const { logout } = useAuth0();
   const logoutUser = () => {
-    localStorage.removeItem("todoList");
+    localStorage.setItem("todoList", JSON.stringify([]));
     logout({ returnTo: window.location.origin });
   }
   return (
