@@ -33,24 +33,40 @@ export default function TodoContainer() {
   const handleSaveList = async () => {
     await saveUserTodoList();
   }
-  const checkUser = async() => {
+//   const checkUser = async() => {
+//   let savedTodoList;
+//   const metadataKey = "https://everybodyleave.com/claims/user_metadata";
+//   const isSaved = await user[metadataKey].isSaved
+//   if (isAuthenticated && isSaved) {
+//     savedTodoList = await user[metadataKey].todoList;
+//     // savedTodoList = JSON.parse(localStorage.getItem("todoList"));
+//     dispatch({ type: 'LOAD_SAVED_TODOLIST', payload: savedTodoList })
+//   }
+// }
+  useEffectOnce(() => {
   let savedTodoList;
   const metadataKey = "https://everybodyleave.com/claims/user_metadata";
-  const isSaved = await user[metadataKey].isSaved
+  const isSaved = user[metadataKey].isSaved
+  const checkLocalStorage = JSON.parse(localStorage.getItem("todoList"));
+  console.log("useEffect: ", isSaved)
   if (isAuthenticated && isSaved) {
-    savedTodoList = user[metadataKey].todoList;
-    // savedTodoList = JSON.parse(localStorage.getItem("todoList"));
+    console.log("Loaded from user metadata")
+    savedTodoList =   user[metadataKey].todoList ;
+    setUserTodoList({ todoList: savedTodoList})
     dispatch({ type: 'LOAD_SAVED_TODOLIST', payload: savedTodoList })
-  }
-}
-  useEffectOnce(() => {
-    checkUser();
+    } else {
+      if (Array.isArray(checkLocalStorage)) {
+        console.log("Loaded from localStorage")
+        dispatch({ type: "LOAD_SAVED_TODOLIST", payload: checkLocalStorage });
+      }
+    }
   })
 
     return (
       <TodosDispatch.Provider value={dispatch}>
         <TodoContext.Provider
-          value={state 
+          value={
+            state
             // loadSavedTodoList,
             // userMetadata,
           }
@@ -59,14 +75,14 @@ export default function TodoContainer() {
             <div className="todo-counter">
               {state.todoList.length ? (
                 <>
-                  <TodoCounter/>
+                  <TodoCounter />
                 </>
               ) : (
                 <p> There Are Currently No Todos To Do </p>
               )}
             </div>
             <div style={{ paddingBottom: "40px" }}>
-              <TodoInput/>
+              <TodoInput />
             </div>
             <div className="list">
               {state.todoList.map((todo, index) => (
@@ -74,6 +90,7 @@ export default function TodoContainer() {
               ))}
             </div>
             <button onClick={() => handleSaveList()}> save todos </button>
+            {/* <button onClick={() => ()}> save todos </button> */}
           </div>
         </TodoContext.Provider>
       </TodosDispatch.Provider>

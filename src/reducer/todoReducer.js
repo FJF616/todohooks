@@ -67,10 +67,9 @@ export default function todoReducer(state, action) {
       todoList: [...markCompleteTodos]
   } 
   case LOAD_SAVED_TODOLIST: 
-    const savedList = action.payload;
     return {
       ...state,
-      todoList: [savedList]
+      todoList: [...action.payload] 
     }
   default:
     return state

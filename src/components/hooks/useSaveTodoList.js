@@ -26,7 +26,8 @@ export const  useSaveTodoList = (currentTodoList) => {
     },
     data: JSON.stringify({
       "user_metadata": {
-        "todoList": currentTodoList
+        "todoList": currentTodoList,
+        "isSaved": true
       }
     })
 }
@@ -43,9 +44,9 @@ export const  useSaveTodoList = (currentTodoList) => {
         }
       
   }
-  useEffect(() => {
-    saveUserTodoList()
-  }, [])
+  // useEffect(() => {
+  //   saveUserTodoList()
+  // }, [])
   
   return { 
     saveUserTodoList,
