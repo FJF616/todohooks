@@ -20,10 +20,8 @@ export default function TodoContainer() {
   // const { userMetadata }   = useContext(MetadataContext);
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
-  const { saveUserTodoList } = useSaveTodoList(state.todoList);
   const todoList = state;
-  
-  
+  const { saveUserTodoList } = useSaveTodoList(todoList);
   
   const loadSavedTodoList = (savedList) => {
     dispatch({
