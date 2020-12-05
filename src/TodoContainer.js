@@ -10,17 +10,17 @@ import TodoCounter from './components/TodoCounter';
 // import useSaveMetadata from './components/hooks/useSaveMetadata';
 import useSaveTodoList from './components/hooks/useSaveTodoList';
 import MetadataContext from './context/metadataContext';
-
+import useEffectOnce from './components/hooks/useEffectOnce';
 export const TodosDispatch = createContext(null)
 export default function TodoContainer() {
   //set initial state to context state
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const metadataKey = "https://everybodyleave.com/claims/user_metadata"
-  // const [userTodoList, setUserTodoList] = useState(user[metadataKey].todoList)
+  const [userTodoList, setUserTodoList] = useState(user[metadataKey].todoList)
   // const { userMetadata }   = useContext(MetadataContext);
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
-  const todoList = state;
+  const { todoList } = state;
   const { saveUserTodoList } = useSaveTodoList(todoList);
   
   const loadSavedTodoList = (savedList) => {
@@ -33,7 +33,19 @@ export default function TodoContainer() {
   const handleSaveList = async () => {
     await saveUserTodoList();
   }
-  
+  const checkUser = async() => {
+  let savedTodoList;
+  const metadataKey = "https://everybodyleave.com/claims/user_metadata";
+  const isSaved = await user[metadataKey].isSaved
+  if (isAuthenticated && isSaved) {
+    savedTodoList = user[metadataKey].todoList;
+    // savedTodoList = JSON.parse(localStorage.getItem("todoList"));
+    dispatch({ type: 'LOAD_SAVED_TODOLIST', payload: savedTodoList })
+  }
+}
+  useEffectOnce(() => {
+    checkUser();
+  })
 
     return (
       <TodosDispatch.Provider value={dispatch}>

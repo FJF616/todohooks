@@ -8,7 +8,7 @@ import uuid from 'uuid';
 //check for any saved todos and load them, if not just load the example todo
 const savedTodos = JSON.parse(localStorage.getItem("todoList"))
 export const TodoContext = createContext({
-    todoList:  !Array.isArray(savedTodos)  ?  [
+    todoList:   [
       {
         id: uuid.v4(),
         text: "example todo",
@@ -17,8 +17,7 @@ export const TodoContext = createContext({
         // editText:""
       }  
     ]
-    :
-    savedTodos
+   
 });
 export default TodoContext;
 // export const initialStateValue = useContext(TodoContext);

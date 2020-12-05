@@ -30,7 +30,6 @@ export const  useSaveTodoList = (currentTodoList) => {
       }
     })
 }
-  if(!Array.isArray(savedMetadata) || !savedMetadata.length) {
     try { 
       const updateMetadata = await axios(config)
       const response = await updateMetadata.data;
@@ -42,7 +41,7 @@ export const  useSaveTodoList = (currentTodoList) => {
         console.log("error updating metadata", err)
         throw new Error(err);
         }
-      } 
+      
   }
   useEffect(() => {
     saveUserTodoList()
