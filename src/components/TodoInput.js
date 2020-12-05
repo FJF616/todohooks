@@ -1,19 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
-import TodoContext from '../context/todoContext';
 import InputGroup from '../components/buttonGroups/InputGroup'
 import { useAuth0 } from '@auth0/auth0-react';
 import useEditHooks from '../components/hooks/editHook';
+import { TodosDispatch } from '../TodoContainer';
+import TodoContext from "../context/todoContext";
 
-export default function TodoInput({ todoList,  sendUserMetadata }) {
+export default function TodoInput({ sendUserMetadata }) {
   const { isAuthenticated } = useAuth0();
   const { countCompletedTodos } = useEditHooks();
-  const { 
-    addTodo, 
-    clearTodoList, 
-    completeAll, 
-    clearCompleted 
-  } = useContext(TodoContext);
-  
+  const state = useContext(TodoContext);
+  const { todoList } = state;
+  const dispatch = useContext(TodosDispatch);
+ 
   //keeps track of completed tasks in order to disable/enable the clear completed todos button.
   const [completedTasks, setCompletedTasks] = useState(countCompletedTodos(todoList));
   
@@ -25,7 +23,7 @@ export default function TodoInput({ todoList,  sendUserMetadata }) {
   
   function onSubmit(event) {
     event.preventDefault();
-      addTodo(input);
+      dispatch({ type: 'ADD_TODO', payload: input })
       setInput('');
       setCleared(false);
     }
@@ -55,12 +53,9 @@ export default function TodoInput({ todoList,  sendUserMetadata }) {
         <InputGroup 
           input={input} 
           onSubmit={onSubmit}
-          completeAll={completeAll}
           todoList={todoList}
           cleared={cleared}
           completedTasks={completedTasks}
-          clearCompleted={clearCompleted}
-          clearTodoList={clearTodoList}
           setCleared={setCleared}
           setCompletedTasks={setCompletedTasks} 
         /> 

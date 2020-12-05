@@ -23,8 +23,7 @@ export default function todoReducer(state, action) {
         };
     //removes a todo
     case REMOVE_TODO:   
-      const idx = action.index
-      const todos = state.todoList.filter((todo, index) => index !== idx)
+      const todos = state.todoList.filter((todo, index) => index !== action.index)
       return {
         ...state,
         todoList: [...todos]
@@ -34,11 +33,7 @@ export default function todoReducer(state, action) {
         const todoID = action.payload
         const todoCompleted = state.todoList.filter(newTodo => newTodo.id === todoID)
             .map(property => { 
-              if (property.completed === false) {
-                property.completed = true;
-              } else {
-                property.completed = false;
-              }
+              property.completed = !property.completed
               return property
           });  
           return {

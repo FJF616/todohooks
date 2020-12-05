@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Confirm, Popup, Responsive } from 'semantic-ui-react';
-
-export default function ConfirmRemove({ clearTodoList, setCleared, cleared, input, todoList  }) {
-
+import { TodosDispatch } from '../../TodoContainer';
+export default function ConfirmRemove({ setCleared, cleared, input, todoList  }) {
+  const dispatch = useContext(TodosDispatch)
   const [checkOpen, setCheckOpen] = useState(false);
 
   const open = () => setCheckOpen(true);
@@ -47,7 +47,7 @@ export default function ConfirmRemove({ clearTodoList, setCleared, cleared, inpu
           onCancel={() => close()}
           onConfirm = {
             () => {
-              clearTodoList();
+              dispatch({ type: 'CLEAR_TODO_LIST'});
               setCleared(true);
               close();
             }

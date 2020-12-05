@@ -1,17 +1,10 @@
-import React, { useContext }from 'react';
+import React from 'react';
 import { Button, Responsive } from 'semantic-ui-react';
-import TodoContext from '../context/todoContext'
 import useEditHooks from '../components/hooks/editHook';
 import SaveOrCancel from '../components/buttonGroups/SaveOrCancel';
 import TodoButtons from './buttonGroups/TodoButtons';
 //Returns each todo with control Buttons
 export default function Todo({ todo, index }) {
-
-
-  const { 
-    removeTodo, 
-    toggleComplete,
-    } = useContext(TodoContext); 
 
   const {  
     editing, 
@@ -19,7 +12,7 @@ export default function Todo({ todo, index }) {
     onSetEdit, 
     onSetEditText, 
     saveEditText,
-    } = useEditHooks(todo);
+    } = useEditHooks();
   //displays current date yyyy/dd/mm
   function displayDate() {
     const utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
@@ -38,10 +31,8 @@ export default function Todo({ todo, index }) {
                     <TodoButtons
                       displayDate={displayDate}
                       onSetEdit={onSetEdit}
-                      removeTodo={removeTodo}
                       todo={todo}
                       index={index}
-                      toggleComplete={toggleComplete}
                     />
                 </Button.Group>
             </>
