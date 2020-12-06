@@ -24,14 +24,6 @@ const MainMenu = () => (
     >
       Profile
     </Menu.Item>
-    {/* <Menu.Item
-      as={RouterNavLink}
-      to="/savemetadata"
-      exact
-      activeClassName="router-link-exact-active"
-    >
-      saveMetadata
-    </Menu.Item> */}
   </Menu>
 );
 

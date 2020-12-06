@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Responsive } from 'semantic-ui-react';
-import useEditHooks from '../components/hooks/editHook';
-import SaveOrCancel from '../components/buttonGroups/SaveOrCancel';
+import { useEditHooks } from './hooks';
+import SaveOrCancel from './buttonGroups/SaveOrCancel';
 import TodoButtons from './buttonGroups/TodoButtons';
 //Returns each todo with control Buttons
 export default function Todo({ todo, index }) {

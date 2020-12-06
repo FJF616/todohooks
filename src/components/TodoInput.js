@@ -53,7 +53,6 @@ export default function TodoInput({ sendUserMetadata }) {
         <InputGroup 
           input={input} 
           onSubmit={onSubmit}
-          todoList={todoList}
           cleared={cleared}
           completedTasks={completedTasks}
           setCleared={setCleared}

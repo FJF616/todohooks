@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios'; 
 
-export const MetadataContext = createContext();
+  export const MetadataContext = createContext();
   const MetadataProvider = ({ children }) => {
     const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
     const [ todoList, setTodoList ] = useState(null);
@@ -41,7 +41,7 @@ export const MetadataContext = createContext();
     }, [user]);
    
     return ( 
-      <MetadataContext.Provider value={{todoList}}>
+      <MetadataContext.Provider value={{todoList, useAuth0}}>
         {children}
       </MetadataContext.Provider>
     )

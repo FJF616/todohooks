@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button } from "semantic-ui-react";
 // import { Highlight } from "../components";
-import { useAuth0 } from "@auth0/auth0-react";
-// import TodoContext from '../context/todoContext';
+// import { useAuth0 } from "@auth0/auth0-react";
+import { MetadataContext } from '../../context';
 import axios from 'axios'
 export const  useSaveTodoList = (currentTodoList) => {
-  // const context = useContext(TodoContext)
+  const { useAuth0 } = useContext(MetadataContext)
   // const userMetadata = context.todoList
   const [savedMetadata, setSavedMetadata] = useState("")
   const { user, getAccessTokenSilently } = useAuth0();

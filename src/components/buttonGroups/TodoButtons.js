@@ -1,6 +1,7 @@
 import React, { useContext }  from 'react';
 import { Button, Responsive } from 'semantic-ui-react';
 import { TodosDispatch } from '../../TodoContainer';
+
 const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => { 
     const dispatch = useContext(TodosDispatch);
     return (

@@ -1,8 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Button, Confirm, Popup, Responsive } from 'semantic-ui-react';
+import { TodoContext } from '../../context';
 import { TodosDispatch } from '../../TodoContainer';
-export default function ConfirmRemove({ setCleared, cleared, input, todoList  }) {
-  const dispatch = useContext(TodosDispatch)
+
+export default function ConfirmRemove({ setCleared, cleared, input  }) {
+  const state = useContext(TodoContext);
+  const { todoList } = state;
+  const dispatch = useContext(TodosDispatch);
   const [checkOpen, setCheckOpen] = useState(false);
 
   const open = () => setCheckOpen(true);
@@ -21,8 +25,7 @@ export default function ConfirmRemove({ setCleared, cleared, input, todoList  })
             disabled={input.length || cleared || todoList.length === 0 
                   ? true 
                   : false
-                }
-            
+                }        
       />
       <Popup content="Removeall"
         trigger={
@@ -38,8 +41,7 @@ export default function ConfirmRemove({ setCleared, cleared, input, todoList  })
             disabled={input.length || cleared || todoList.length === 0 
                   ? true 
                   : false
-                }
-            
+                }           
           />}
       />
         <Confirm

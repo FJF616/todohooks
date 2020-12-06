@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
 import { Button, Popup, Responsive } from 'semantic-ui-react';
 import { TodosDispatch } from '../../TodoContainer';
+import { TodoContext, MetadataContext } from '../../context';
 import ConfirmRemove from './ConfirmRemove';
 
 //This component will display the button group used when adding a todo.  
-const InputGroup = ({input, onSubmit, todoList, cleared, completedTasks, setCleared, setCompletedTasks }) => {
-    
-  const dispatch = useContext(TodosDispatch)
+const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCompletedTasks }) => {
+  const { useAuth0 } = useContext(MetadataContext);
+  const { isAuthenticated } = useAuth0;
+  const state = useContext(TodoContext);
+  const { todoList } = state;
+  const dispatch = useContext(TodosDispatch);
   return (
     <Responsive
       as={Button.Group}
@@ -24,7 +28,9 @@ const InputGroup = ({input, onSubmit, todoList, cleared, completedTasks, setClea
         style={{ maxWidth: "165px", minWidth: "145px" }}
         content={!input.length ? "Enter a Todo" : "Save Todo"}
         onClick={onSubmit}
-        disabled={input.length || todoList.length === 0 ? false : true}
+        disabled={
+          isAuthenticated ? false : 
+          input.length || todoList.length === 0 ? false : true}
       />
       <Popup
         content="Add a todo"
@@ -40,7 +46,9 @@ const InputGroup = ({input, onSubmit, todoList, cleared, completedTasks, setClea
             icon={!input.length ? "reply" : "save"}
             style={{ width: "50px" }}
             onClick={onSubmit}
-            disabled={input.length || todoList.length === 0 ? false : true}
+            disabled={
+              isAuthenticated ? false :
+              input.length || todoList.length === 0 ? false : true}
           />
         }
       />
