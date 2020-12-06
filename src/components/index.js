@@ -8,6 +8,7 @@ import SignupButton from './signup-button';
 import  Todo  from './Todo';
 import TodoCounter from './TodoCounter';
 import TodoInput from './TodoInput';
+import ProgressBar from './ProgressBar';
 
 export {
   Loading,
@@ -16,6 +17,7 @@ export {
   MenuBar,
   PrivateRoute,
   Profile,
+  ProgressBar,
   SignupButton,
   Todo,
   TodoCounter,

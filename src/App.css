@@ -4,9 +4,18 @@
   background: linear-gradient(0deg, rgba(241, 248, 255, 1) 0%, rgba(232, 234, 236, 1) 51%, rgba(233, 244, 252, 1) 100%);
   height: 100vh;
   align-items: center;
-  padding: 10px
+  padding: 5px;
+
   /* text-align: center; */
   
+}
+.clearfix {
+    overflow: auto;
+
+}
+.bottom {
+  display: inline;
+  align-items: center;
 }
 
 .todo {
@@ -16,24 +25,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
   height: 50px;
-  width: 55vw;
+  width: 50vw;
   max-width: 400px;
   border-radius: 2%;
   /* margin-left: 5px; */
   font-size: calc(8px + 1vmin);
-  padding-top: .5rem;
+  padding-top: .9rem;
   padding-left: 1rem;
   /* text-align: center; */
 }
 .todo-input {
-  display: inline-flex;
+  /* display: inline-flex; */
   text-align: left;
   position: relative;
   /* align-self: flex-start; */
   background-color: white;
   padding-left: 10px;
   height: 50px;
-  width:  35rem;
+  width: 50vw;
   /* min-width: 435px; */
   max-width: 435px;
   /* border-radius: 1%; */
@@ -42,7 +51,7 @@
   
 .input {
   display: inline-flex;
-  width: 55vw;
+  width: 50vw;
   height: 55px;
   max-width: 435px;
   border: 1px solid;
@@ -55,6 +64,13 @@
   padding-left: 35px;
   max-width: 262px;
                   
+
+}
+.top {
+  display: flex;
+  flex-wrap:wrap;
+  flex-flow: column;
+  /* align-content: space-between; */
 
 }
 
@@ -93,4 +109,12 @@ input:placeholder-shown {
   opacity: 0;
   transition: opacity 500ms ease-in;
 }
-
+.progressbar {
+  /* margin-left: 3rem; */
+  
+  width:100%;
+  /* margin: auto ; */
+  /* float: right; */
+  
+  
+}

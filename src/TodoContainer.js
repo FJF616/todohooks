@@ -1,7 +1,8 @@
 import React, { createContext, useState, useReducer, useContext } from 'react';
 import todoReducer from './reducer/todoReducer';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { Todo, TodoCounter, TodoInput }  from './components';
+import {  Button } from 'semantic-ui-react';
+import { ProgressBar, Todo, TodoCounter, TodoInput }  from './components';
 import { TodoContext, MetadataContext } from './context';
 // import useSaveMetadata from './components/hooks/useSaveMetadata';
 import { useSaveTodoList, useEffectOnce } from './components/hooks';
@@ -35,6 +36,7 @@ export default function TodoContainer() {
       console.log("Loaded from user metadata");
       setUserTodoList({ todoList: savedTodoList });
       dispatch({ type: "LOAD_SAVED_TODOLIST", payload: savedTodoList });
+    
     } else {
       if (Array.isArray(localStorageList)) {
         setUserTodoList({ todoList: localStorageList });
@@ -49,13 +51,18 @@ export default function TodoContainer() {
       <TodosDispatch.Provider value={dispatch}>
         <TodoContext.Provider value={state}>
           <div className="App">
-            <div className="todo-counter">
-              <TodoCounter />
+            <div className="top">
+              <div className="progressbar">
+                <ProgressBar />
+              </div>
+              <div className="todo-counter">
+                <TodoCounter />
+              </div>
             </div>
             <div style={{ paddingBottom: "40px" }}>
               <TodoInput />
             </div>
-            <div className="list">
+            <div>
               <TransitionGroup className="todo-list">
                 {state.todoList.map((todo, index) => (
                   <CSSTransition key={todo.id} timeout={500} classNames="item">
@@ -64,19 +71,20 @@ export default function TodoContainer() {
                 ))}
               </TransitionGroup>
             </div>
-            <button
-              disabled={
-                isAuthenticated && state.todoList.length
-                  ? false
-                  : state.todoList.length
-                  ? false
-                  : true
-              }
-              onClick={() => handleSaveList()}
-            >
-              {" "}
-              save todos{" "}
-            </button>
+            <div className="bottom">
+              <Button
+                disabled={
+                  isAuthenticated
+                    ? false
+                    : isAuthenticated && state.todoList.length
+                    ? false
+                    : true
+                }
+                onClick={() => handleSaveList()}
+              >
+                SAVE TODOS
+              </Button>
+            </div>
           </div>
         </TodoContext.Provider>
       </TodosDispatch.Provider>
