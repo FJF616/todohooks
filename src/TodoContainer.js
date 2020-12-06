@@ -1,6 +1,6 @@
 import React, { createContext, useState, useReducer, useContext } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
 import todoReducer from './reducer/todoReducer';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { Todo, TodoCounter, TodoInput }  from './components';
 import { TodoContext, MetadataContext } from './context';
 // import useSaveMetadata from './components/hooks/useSaveMetadata';
@@ -56,11 +56,27 @@ export default function TodoContainer() {
               <TodoInput />
             </div>
             <div className="list">
-              {state.todoList.map((todo, index) => (
-                <Todo key={todo.id} index={index} todo={todo} />
-              ))}
+              <TransitionGroup className="todo-list">
+                {state.todoList.map((todo, index) => (
+                  <CSSTransition key={todo.id} timeout={500} classNames="item">
+                    <Todo key={todo.id} index={index} todo={todo} />
+                  </CSSTransition>
+                ))}
+              </TransitionGroup>
             </div>
-            <button disabled={isAuthenticated && state.todoList.length ? false : state.todoList.length ? false :  true} onClick={() => handleSaveList()}> save todos </button>
+            <button
+              disabled={
+                isAuthenticated && state.todoList.length
+                  ? false
+                  : state.todoList.length
+                  ? false
+                  : true
+              }
+              onClick={() => handleSaveList()}
+            >
+              {" "}
+              save todos{" "}
+            </button>
           </div>
         </TodoContext.Provider>
       </TodosDispatch.Provider>
