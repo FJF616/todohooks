@@ -4,7 +4,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import {  Button } from 'semantic-ui-react';
 import { Todo, TodoInput }  from './components';
 import { TodoContext, MetadataContext } from './context';
-// import useSaveMetadata from './components/hooks/useSaveMetadata';
 import { useSaveTodoList, useEffectOnce } from './components/hooks';
 import VisibilitySwitch from './components/visibilitySwitch';
 export const TodosDispatch = createContext(null);
@@ -14,7 +13,6 @@ export default function TodoContainer() {
   const { useAuth0 } = useContext(MetadataContext);
   const { user, isAuthenticated } = useAuth0();
   const [userTodoList, setUserTodoList] = useState("")
-  // const { userMetadata }   = useContext(MetadataContext);
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const { todoList } = state;
@@ -27,6 +25,7 @@ export default function TodoContainer() {
   useEffectOnce(() => {
     const localStorageList = JSON.parse(localStorage.getItem("todoList"));
     const metadataKey = "https://everybodyleave.com/claims/user_metadata";
+    
     if (user) {
       const isSaved = user[metadataKey].isSaved;
 
@@ -53,12 +52,6 @@ export default function TodoContainer() {
           <div className="App">
             <div className="top">
               <VisibilitySwitch/>
-              {/* <div className="progressbar">
-                <ProgressBar />
-              </div>
-              <div className="todo-counter">
-                <TodoCounter />
-              </div> */}
             </div>
             <div style={{ paddingBottom: "40px" }}>
               <TodoInput />
