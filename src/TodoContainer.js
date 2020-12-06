@@ -2,11 +2,11 @@ import React, { createContext, useState, useReducer, useContext } from 'react';
 import todoReducer from './reducer/todoReducer';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import {  Button } from 'semantic-ui-react';
-import { ProgressBar, Todo, TodoCounter, TodoInput }  from './components';
+import { Todo, TodoInput }  from './components';
 import { TodoContext, MetadataContext } from './context';
 // import useSaveMetadata from './components/hooks/useSaveMetadata';
 import { useSaveTodoList, useEffectOnce } from './components/hooks';
-
+import VisibilitySwitch from './components/visibilitySwitch';
 export const TodosDispatch = createContext(null);
 
 export default function TodoContainer() {
@@ -45,19 +45,20 @@ export default function TodoContainer() {
       }
     }
   }
-  });
+  },[todoList]);
 
     return (
       <TodosDispatch.Provider value={dispatch}>
         <TodoContext.Provider value={state}>
           <div className="App">
             <div className="top">
-              <div className="progressbar">
+              <VisibilitySwitch/>
+              {/* <div className="progressbar">
                 <ProgressBar />
               </div>
               <div className="todo-counter">
                 <TodoCounter />
-              </div>
+              </div> */}
             </div>
             <div style={{ paddingBottom: "40px" }}>
               <TodoInput />

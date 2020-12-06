@@ -10,7 +10,7 @@ const LogoutButton = () => {
   const { saveUserTodoList } = useSaveTodoList(todoList)
   const logoutUser = () => {
     saveUserTodoList();
-    localStorage.setItem("todoList", JSON.stringify([]));
+    localStorage.removeItem("todoList");
     logout({ returnTo: window.location.origin });
   }
   return (

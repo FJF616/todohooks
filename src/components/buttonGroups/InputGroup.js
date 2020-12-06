@@ -34,7 +34,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
       />
       <Popup
         content="Add a todo"
-        position="bottom"
+        position="bottom center"
         on="hover"
         trigger={
           <Responsive

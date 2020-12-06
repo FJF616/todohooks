@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from "react";
-import { Button } from "semantic-ui-react";
+import { useState,  useContext } from "react";
+// import { Button } from "semantic-ui-react";
 // import { Highlight } from "../components";
 // import { useAuth0 } from "@auth0/auth0-react";
 import { MetadataContext } from '../../context';
@@ -12,7 +12,7 @@ export const  useSaveTodoList = (currentTodoList) => {
   const { user, getAccessTokenSilently } = useAuth0();
  
   const updateLocalStorage = () => {
-    localStorage.removeItem("todoList");
+    // localStorage.removeItem("todoList");
     localStorage.setItem("todoList", JSON.stringify(currentTodoList))
   }
   const saveUserTodoList = async () => {

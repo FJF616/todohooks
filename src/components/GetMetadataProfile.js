@@ -4,7 +4,7 @@ import { MetadataContext } from '../context';
 
 const GetMetadataProfile = () => {
   const { useAuth0 } = useContext(MetadataContext);
-  const { user, getIdTokenClaims, getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const { user, getIdTokenClaims, isAuthenticated } = useAuth0();
   const [ userMetadata, setUserMetadata ] = useState(null)
 
   useEffect(() => {
@@ -12,14 +12,14 @@ const GetMetadataProfile = () => {
       try {
         const claims = await getIdTokenClaims();
         const metadataKey = "https://everybodyleave.com/claims/user_metadata"
-        const idToken = claims.__raw;
+        // const idToken = claims.__raw;
         setUserMetadata(claims[metadataKey].todoList)
       } catch (err){
         console.log("user is not authenticated", err);
       }
     };
     getUserMetadata();
-  }, []);
+  }, [user]);
   return (
       isAuthenticated && (
         <div>

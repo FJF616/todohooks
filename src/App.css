@@ -1,8 +1,10 @@
 .App {
   /* display: flex; */
+  /* flex-wrap: wrap; */
   background: rgb(154, 189, 225);
   background: linear-gradient(0deg, rgba(241, 248, 255, 1) 0%, rgba(232, 234, 236, 1) 51%, rgba(233, 244, 252, 1) 100%);
   height: 100vh;
+  width: auto;
   align-items: center;
   padding: 5px;
 
@@ -91,7 +93,8 @@ input:placeholder-shown {
 }
 .todo-counter {
   display: inline-flex;
-  position: absolute fixed;
+  /* position: absolute fixed; */
+  /* margin-right: 10px; */
   /* align-self: center; */
   /* margin-left: 1% */
 }
@@ -111,8 +114,8 @@ input:placeholder-shown {
 }
 .progressbar {
   /* margin-left: 3rem; */
-  
-  width:100%;
+  padding-top: 25px;
+  /* width:30%; */
   /* margin: auto ; */
   /* float: right; */
   

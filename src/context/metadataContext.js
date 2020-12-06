@@ -7,15 +7,15 @@ export const MetadataContext = createContext();
   const MetadataProvider = ({ children }) => {
     const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
     const [ todoList, setTodoList ] = useState(null);
-    const metadataKey = "https://everybodyleave.com/claims/user_metadata";
-    
+    // const metadataKey = "https://everybodyleave.com/claims/user_metadata";
+    // const isSaved = user[metadataKey].isSaved
     useEffect(() => {
       const getUserMetadata = async () => {
         const savedTodos = JSON.parse(localStorage.getItem("todoList"));
         
-        if (user && isAuthenticated) {
+        if (isAuthenticated) {
           
-          if (!Array.isArray(savedTodos) || !savedTodos.length) {
+          // if (!Array.isArray(savedTodos) || !savedTodos.length) {
             
             try {
               const token = await getAccessTokenSilently({
@@ -43,10 +43,10 @@ export const MetadataContext = createContext();
           } else {
               await setTodoList({ savedTodos });
             }
-          }
+          // }
       };
       getUserMetadata();
-    }, [user]);
+    }, []);
    
     return ( 
       <MetadataContext.Provider value={{todoList, useAuth0}}>

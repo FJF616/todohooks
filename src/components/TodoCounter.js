@@ -14,6 +14,6 @@ export default function TodoCounter() {
     { key: 'Completed', value: completedTodos, label: 'Completed Todos' }
   ]
   return (
-    <Statistic.Group items={items}/>
+    <Statistic.Group items={items} size='tiny'/>
   )
 }
