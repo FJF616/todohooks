@@ -112,6 +112,10 @@ input:placeholder-shown {
   opacity: 0;
   transition: opacity 500ms ease-in;
 }
+.profilepic {
+  margin: auto;
+  padding-right: 20px;
+}
 .progressbar {
   /* margin-left: 3rem; */
   padding-top: 25px;

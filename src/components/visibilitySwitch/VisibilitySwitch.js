@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Checkbox } from 'semantic-ui-react';
 import { TodoCounter, ProgressBar } from '../../components';
 
-
+//shows/hides progress bar. when progress bar is hidden, the todo counter is visible and vice versa
 export default function VisibilitySwitch() {
 
   const [showProgress, setShowProgress] = useState(true);
@@ -13,7 +13,7 @@ export default function VisibilitySwitch() {
     <>
       <Checkbox
         checked={showProgress}
-        label="progressbar"
+        label={showProgress ? "progressbar" : "show progressbar"}
         onClick={() => handleProgress()}
         radio
         style={{paddingBottom: '15px'}}

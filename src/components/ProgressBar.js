@@ -10,5 +10,5 @@ export default function ProgressBar() {
   const completedTodos = countCompletedTodos(todoList);
   const totalTodos = todoList.length;
   
-  return <Progress value={completedTodos} total={totalTodos} progress='percent' size='large' color='teal' />;
+  return <Progress value={completedTodos} total={totalTodos} progress='percent' size='large' color='teal' indicating />;
 }

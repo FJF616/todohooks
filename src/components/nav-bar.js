@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";
-import { Container, Menu } from "semantic-ui-react";
-
+import { Container, Menu, Image } from "semantic-ui-react";
+import { MetadataContext } from "../context"
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./logout-button";
 import LoginButton from "./login-button";
 // import SaveMetadataButton from "./SaveMetadataButton"
-const MainMenu = () => (
+
+const MainMenu = () => {
+  const { useAuth0 } = useContext(MetadataContext);
+  const { user } = useAuth0();
+  return (
   <Menu className="mr-auto">
     <Menu.Item
       as={RouterNavLink}
@@ -14,7 +18,7 @@ const MainMenu = () => (
       exact
       activeClassName="router-link-exact-active"
     >
-      Home
+      Todos
     </Menu.Item>
     <Menu.Item
       as={RouterNavLink}
@@ -22,14 +26,15 @@ const MainMenu = () => (
       exact
       activeClassName="router-link-exact-active"
     >
-      Profile
+      <h4>{user.nickname}</h4>
     </Menu.Item>
   </Menu>
-);
+  )
+};
 
 const AuthMenu = () => {
+  const { useAuth0 } = useContext(MetadataContext);
   const { isAuthenticated } = useAuth0();
-
   return (
     <Menu className="justify-content-end">
       {isAuthenticated ? <LogoutButton /> : <LoginButton />}
@@ -38,15 +43,18 @@ const AuthMenu = () => {
 };
 
 const MenuBar = () => {
+  const { useAuth0 } = useContext(MetadataContext);
   const { user } = useAuth0()
   return (
-    <Menu bg="light" expand="md" >
+    <Menu bg="light" expand="md">
       <Container>
         {/* <Menubar.Brand as={RouterNavLink} className="logo" to="/" /> */}
         <MainMenu />
         <AuthMenu />
       </Container>
-      <h3 style={{ margin: "floatRight", 'paddingRight': '10px' }}>{user.nickname}</h3>{" "}
+      <div className="profilepic">
+        <Image size="mini" src={user.picture} />
+      </div>
     </Menu>
   );
 };
