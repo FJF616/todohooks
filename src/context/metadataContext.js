@@ -11,7 +11,7 @@ export const MetadataContext = createContext();
     // const metadataKey = "https://everybodyleave.com/claims/user_metadata";
     // const isSaved = user[metadataKey].isSaved
      const getUserMetadata = async () => {
-       const savedTodos = JSON.parse(localStorage.getItem("todoList"));
+      //  const savedTodos = JSON.parse(localStorage.getItem("todoList"));
 
        if (isAuthenticated) {
          // if (!Array.isArray(savedTodos) || !savedTodos.length) {
@@ -34,18 +34,19 @@ export const MetadataContext = createContext();
            const metadata = await response.data;
            const { todoList } = metadata["user_metadata"];
            console.log("userTodoList: ", todoList);
-           localStorage.setItem("todoList", JSON.stringify(todoList));
-           await setUserTodoList(todoList);
+           if (!Array.isArray(todoList)) {
+           localStorage.setItem("todoList", JSON.stringify(""));
+           } else {
+            localStorage.setItem("todoList", JSON.stringify(todoList))
+           }
+            await setUserTodoList(todoList);
          } catch (err) {
            console.log("Error fetching user metadata", err);
          }
-         // } else {
-         //     await setLoginTodoList({ savedTodos });
-         //   }
        }
      };
     useEffect(() => {
-     
+      
       getUserMetadata();
     }, [user]);
    

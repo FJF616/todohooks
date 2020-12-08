@@ -16,10 +16,10 @@ export default function TodoContainer() {
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const { todoList } = state;
-  const { saveUserTodoList } = useSaveTodoList(todoList);
+  const { saveUserTodoList, updateLocalStorage } = useSaveTodoList(todoList);
   
   const handleSaveList = async () => {
-    localStorage.setItem("todoList", JSON.stringify(todoList))
+    // localStorage.setItem("todoList", JSON.stringify(todoList))
     await saveUserTodoList();
   };
 
