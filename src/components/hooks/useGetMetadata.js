@@ -2,20 +2,25 @@ import { useEffect, useState, useContext } from 'react';
 import { MetadataContext } from '../../context';
 import axios from 'axios';
 
-const useGetMetadata = () => {
-  const { useAuth0 } = useContext(MetadataContext);
-  const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
-  const [ userMetadata, setUserMetadata ] = useState(null)
-  const metadataKey = "https://everybodyleave.com/claims/user_metadata"
+const useGetMetadata = (user, token) => {
+  // const { useAuth0 } = useContext(MetadataContext);
+  // const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const [ userMetadata, setUserMetadata ] = useState(null);
+  const metadataKey = "https://everybodyleave.com/claims/user_metadata";
+  const checkContext = () => {
+    
+      return user[metadataKey].isSaved;
+     
+  };
   useEffect(() => {
     const getUserMetadata = async () => {
-      if (user && isAuthenticated) {
+      if (checkContext) {
         try {
           const auth0Id = await user.sub
-          const token = await getAccessTokenSilently({
-            audience: `https://everybodyleave.auth0.com/api/v2/`,
-            scope: "read:current_user update:current_user_metadata",
-          })
+          // const token = await getAccessTokenSilently({
+          //   audience: `https://everybodyleave.auth0.com/api/v2/`,
+          //   scope: "read:current_user update:current_user_metadata",
+          // })
           const config = {
             method: 'get',
             url: `https://everybodyleave.auth0.com/api/v2/users/${user.sub}?fields=user_metadata&include_fields=true`,
@@ -27,7 +32,7 @@ const useGetMetadata = () => {
           const metadata = await response.data
           const { todoList } = await metadata["user_metadata"]
           console.log("todoList: ", todoList)
-          await setUserMetadata({todoList})
+          await setUserMetadata({userMetadata: todoList})
         }catch (err) {
           console.log("Please Login to retrieve saved todos", err)
         }

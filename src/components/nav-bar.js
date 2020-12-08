@@ -26,7 +26,7 @@ const MainMenu = () => {
       exact
       activeClassName="router-link-exact-active"
     >
-      <h4>{user.nickname}</h4>
+      <h4>{user ? user.nickname : 'profile'}</h4>
     </Menu.Item>
   </Menu>
   )

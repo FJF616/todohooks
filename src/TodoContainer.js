@@ -10,15 +10,16 @@ export const TodosDispatch = createContext(null);
 
 export default function TodoContainer() {
   //set initial state to context state
-  const { useAuth0 } = useContext(MetadataContext);
+  const { useAuth0, userTodoList, getUserMetadata } = useContext(MetadataContext);
   const { user, isAuthenticated } = useAuth0();
-  const [userTodoList, setUserTodoList] = useState("")
+  const [userList, setUserList] = useState(userTodoList)
   const initialState = useContext(TodoContext);
   const [state, dispatch] = useReducer(todoReducer, initialState);
   const { todoList } = state;
   const { saveUserTodoList } = useSaveTodoList(todoList);
   
   const handleSaveList = async () => {
+    localStorage.setItem("todoList", JSON.stringify(todoList))
     await saveUserTodoList();
   };
 
@@ -32,19 +33,19 @@ export default function TodoContainer() {
     if (isAuthenticated && isSaved) {
       const savedTodoList = user[metadataKey].todoList;
       console.log("useEffectOnce isSaved: ", isSaved);
-      console.log("Loaded from user metadata");
-      setUserTodoList({ todoList: savedTodoList });
-      dispatch({ type: "LOAD_SAVED_TODOLIST", payload: savedTodoList });
+      console.log("Loaded from user Auth0 Context");
+      setUserList({ todoList: savedTodoList });
+      dispatch({ type: "LOAD_SAVED_TODO_LIST", payload: savedTodoList });
     
     } else {
       if (Array.isArray(localStorageList)) {
-        setUserTodoList({ todoList: localStorageList });
+        setUserList({ todoList: localStorageList });
         console.log("Loaded from localStorage");
-        dispatch({ type: "LOAD_SAVED_TODOLIST", payload: localStorageList });
+        dispatch({ type: "LOAD_SAVED_TODO_LIST", payload: localStorageList });
       }
     }
   }
-  },[todoList]);
+  });
 
     return (
       <TodosDispatch.Provider value={dispatch}>

@@ -51,7 +51,8 @@ export const  useSaveTodoList = (currentTodoList) => {
   
   return { 
     saveUserTodoList,
-    savedMetadata
+    savedMetadata,
+    updateLocalStorage
   }
 }
 export default useSaveTodoList;
