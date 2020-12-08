@@ -5,10 +5,8 @@ import { TodoContext, MetadataContext } from "../context";
 import { useSaveTodoList } from "./hooks"
 const LogoutButton = () => {
   const { logout } = useAuth0();
-  const state = useContext(TodoContext)
-  const { todoList } = state
   const { userTodoList } = useContext(MetadataContext);
-  const { saveUserTodoList } = useSaveTodoList(todoList)
+  const { saveUserTodoList } = useSaveTodoList(userTodoList)
   const logoutUser = () => {
     saveUserTodoList();
     localStorage.removeItem("todoList");

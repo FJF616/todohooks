@@ -55,7 +55,7 @@ export default function TodoContainer() {
               <VisibilitySwitch/>
             </div>
             <div style={{ paddingBottom: "40px" }}>
-              <TodoInput />
+              { isAuthenticated && <TodoInput /> }
             </div>
             <div>
               <TransitionGroup className="todo-list">

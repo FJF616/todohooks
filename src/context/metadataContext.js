@@ -14,7 +14,6 @@ export const MetadataContext = createContext();
       //  const savedTodos = JSON.parse(localStorage.getItem("todoList"));
 
        if (isAuthenticated) {
-         // if (!Array.isArray(savedTodos) || !savedTodos.length) {
 
          try {
            const token = await getAccessTokenSilently({
