@@ -5,6 +5,7 @@ import {  Button } from 'semantic-ui-react';
 import { Todo, TodoInput }  from './components';
 import { TodoContext, MetadataContext } from './context';
 import { useSaveTodoList, useEffectOnce } from './components/hooks';
+import  ConfirmRemove from './components/buttonGroups/ConfirmRemove';
 import VisibilitySwitch from './components/visibilitySwitch';
 export const TodosDispatch = createContext(null);
 
@@ -71,7 +72,7 @@ export default function TodoContainer() {
                 disabled={
                   isAuthenticated
                     ? false
-                    : isAuthenticated && state.todoList.length
+                    : isAuthenticated && todoList.length
                     ? false
                     : true
                 }
@@ -79,6 +80,7 @@ export default function TodoContainer() {
               >
                 SAVE TODOS
               </Button>
+              {/* <ConfirmRemove/> */}
             </div>
           </div>
         </TodoContext.Provider>

@@ -9,7 +9,7 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
     return (
       <Responsive
         as={Button.Group}
-        style={{ minWidth: "155px", maxWidth: "320px" }}
+        style={{ minWidth: "155px", maxWidth: "290px" }}
       >
         {todo.completed ? (
           <>
@@ -77,7 +77,7 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
                 dispatch({ type: "REMOVE_TODO", payload: todo.id, index });
                 checkHasSaved()
               }}
-              style={{ minWidth: "35px", maxWidth: "185px" }}
+              style={{ minWidth: "35px", maxWidth: "205px" }}
               maxWidth={768}
               // {...Responsive.onlyMobile}
             />
@@ -150,7 +150,7 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
                   dispatch({ type: "REMOVE_TODO", payload: todo.id, index });
                   checkHasSaved();
                 }}
-                style={{ maxWidth: "180px" }}
+                style={{ width: '145px', maxWidth: '195px' }}
                 minWidth={1024}
               />
               <Responsive
@@ -163,7 +163,7 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
                   dispatch({ type: "REMOVE_TODO", payload: todo.id, index });
                   checkHasSaved();
                 }}
-                style={{ minWidth: "35px", maxWidth: "185px" }}
+                style={{ minWidth: "35px", maxWidth: "195px" }}
                 maxWidth={768}
                 // {...Responsive.onlyMobile}
               />
