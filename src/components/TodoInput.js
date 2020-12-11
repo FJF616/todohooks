@@ -41,23 +41,25 @@ export default function TodoInput({ sendUserMetadata }) {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <input 
-          className="todo-input"
-          value={input}
-          onChange={(event) => setInput(event.target.value)}
-          type="text"
-          name="text"
-          disabled={isAuthenticated ? false : true}
-          placeholder={isAuthenticated ? "Enter a todo" : "Please Login"}        
-        />
-        <InputGroup 
-          input={input} 
-          onSubmit={onSubmit}
-          cleared={cleared}
-          completedTasks={completedTasks}
-          setCleared={setCleared}
-          setCompletedTasks={setCompletedTasks} 
-        /> 
+        <div className="todo-top">
+          <input
+            className="todo-input"
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+            type="text"
+            name="text"
+            disabled={isAuthenticated ? false : true}
+            placeholder={isAuthenticated ? "Enter a todo" : "Please Login"}
+          />
+          <InputGroup
+            input={input}
+            onSubmit={onSubmit}
+            cleared={cleared}
+            completedTasks={completedTasks}
+            setCleared={setCleared}
+            setCompletedTasks={setCompletedTasks}
+          />
+        </div>
       </form>
     </>
   );

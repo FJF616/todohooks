@@ -5,7 +5,7 @@ import { Responsive, Button } from 'semantic-ui-react';
 const SaveOrCancel = ({ id, saveEditText, onSetEdit, index, editText }) => (
   
   <>
-    <Responsive as={Button.Group} maxWidth={768} style={{ minWidth: '165px', marginLeft:'5px'}}>
+    <Responsive as={Button.Group} maxWidth={768} style={{ minWidth: '145px', marginLeft:'5px'}}>
       < Responsive as={Button} color='blue' icon='save' maxWidth={768}   
         onClick = {() => {saveEditText(editText, id, index); onSetEdit()}} 
         />    
@@ -14,7 +14,7 @@ const SaveOrCancel = ({ id, saveEditText, onSetEdit, index, editText }) => (
           onClick={() => onSetEdit()} 
         />
     </Responsive>
-      <Responsive as={Button.Group} style={{width: '370px'}} minWidth={1024}>
+      <Responsive as={Button.Group} style={{width: '335px'}} minWidth={1024}>
         < Responsive as={Button} color='blue' icon='save' content="Save" minWidth={1024}  
           onClick={() => {saveEditText(editText, id, index); onSetEdit()}} 
         />    

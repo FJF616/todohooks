@@ -6,7 +6,7 @@ import ConfirmRemove from './ConfirmRemove';
 
 //This component will display the button group used when adding a todo.  
 const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCompletedTasks }) => {
-  const { useAuth0 } = useContext(MetadataContext);
+  const { useAuth0, setHasSaved } = useContext(MetadataContext);
   const { isAuthenticated } = useAuth0;
   const state = useContext(TodoContext);
   const { todoList } = state;
@@ -15,7 +15,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
     <Responsive
       as={Button.Group}
       fluid
-      style={{ minWidth: "150px", maxWidth: "360px", margin: "2px" }}
+      style={{ minWidth: "150px", maxWidth: "355px", margin: "2px" }}
     >
       {/* this button saves each todo*/}
       <Responsive
@@ -25,7 +25,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
         positive
         type="submit"
         icon={!input.length ? "reply" : "save"}
-        style={{ maxWidth: "165px", minWidth: "145px" }}
+        style={{  width: "155px", minWidth: '130px'}}
         content={!input.length ? "Enter a Todo" : "Save Todo"}
         onClick={onSubmit}
         disabled={
@@ -58,11 +58,12 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
         minWidth={1024}
         className="complete"
         icon="checkmark"
-        style={{ maxWidth: "160px" }}
+        style={{ minWidth: "135px", maxWidth: "160px" }}
         color="instagram"
         content="Complete All"
         onClick={() => {
           dispatch({ type: "COMPLETE_ALL", payload: todoList });
+          setHasSaved(false)
         }}
         disabled={
           input.length ||
@@ -87,6 +88,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
             // content="Complete All"
             onClick={() => {
               dispatch({ type: "COMPLETE_ALL", payload: todoList });
+              setHasSaved(false)
             }}
             disabled={
               input.length ||
@@ -110,6 +112,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
         onClick={() => {
           dispatch({ type: "CLEAR_COMPLETED", payload: todoList });
           setCompletedTasks(0);
+          setHasSaved(false)
         }}
         disabled={
           input.length || cleared || completedTasks === 0 ? true : false
@@ -128,6 +131,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
             onClick={() => {
               dispatch({ type: "CLEAR_COMPLETED", payload: todoList });
               setCompletedTasks(0);
+              setHasSaved(false);
             }}
             disabled={
               input.length || cleared || completedTasks === 0 ? true : false

@@ -10,7 +10,7 @@ export const TodosDispatch = createContext(null);
 
 export default function TodoContainer() {
   //set initial state to context state
-  const { useAuth0, userTodoList, getUserMetadata } = useContext(MetadataContext);
+  const { useAuth0, userTodoList, getUserMetadata, setHasSaved } = useContext(MetadataContext);
   const { user, isAuthenticated } = useAuth0();
   const [userList, setUserList] = useState(userTodoList)
   const initialState = useContext(TodoContext);
@@ -75,7 +75,7 @@ export default function TodoContainer() {
                     ? false
                     : true
                 }
-                onClick={() => handleSaveList()}
+                onClick={() => { handleSaveList(); setHasSaved(true)} }
               >
                 SAVE TODOS
               </Button>

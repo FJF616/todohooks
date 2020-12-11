@@ -8,6 +8,10 @@ export const MetadataContext = createContext();
   const MetadataProvider = ({ children }) => {
     const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
     const [ userTodoList, setUserTodoList ] = useState(null);
+    const [hasSaved, setHasSaved] = useState(false)
+    const checkHasSaved = () => {
+      return hasSaved ? setHasSaved(false) : null
+    }
     // const metadataKey = "https://everybodyleave.com/claims/user_metadata";
     // const isSaved = user[metadataKey].isSaved
      const getUserMetadata = async () => {
@@ -50,7 +54,7 @@ export const MetadataContext = createContext();
     }, [user]);
    
     return ( 
-      <MetadataContext.Provider value={{ userTodoList, useAuth0, getUserMetadata }}>
+      <MetadataContext.Provider value={{ hasSaved, setHasSaved, checkHasSaved, userTodoList, useAuth0, getUserMetadata }}>
         {children}
       </MetadataContext.Provider>
     )

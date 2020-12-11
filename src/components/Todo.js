@@ -39,7 +39,7 @@ export default function Todo({ todo, index }) {
         : <>
             <div className='input'> 
               <input 
-                className="todo" 
+                className="todo edit" 
                 style={{ textDecoration: todo.completed ? "line-through" : "" }} 
                 placeholder="Click Here to Edit" 
                 onChange={(e) => onSetEditText(e.target.value)}  
