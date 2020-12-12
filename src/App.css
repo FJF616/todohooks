@@ -1,12 +1,12 @@
 .App {
   /* display: inline-flex; */
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   background: rgb(154, 189, 225);
   background: linear-gradient(0deg, rgba(241, 248, 255, 1) 0%, rgba(232, 234, 236, 1) 51%, rgba(233, 244, 252, 1) 100%);
   height: 100vh;
   min-width: 330px;
   max-width:2000px;
-  overflow: contain;
+  overflow: wrap;
   align-items: center;
   padding: 1%;
   /* text-align: center; */
@@ -20,8 +20,9 @@
   display: inline;
   align-items: center;
 }
-
+/*todos in todolist*/
 .todo {
+  
   /* align-self: stretch; */
   position: absolute;
   white-space: nowrap;
@@ -29,7 +30,7 @@
   text-overflow: ellipsis;
   height: 50px;
   width: 20vw;
-  /* min-width: 330px; */
+  min-width: 150px;
   border-radius: 2%;
   /* margin-left: 5px; */
   font-size: calc(8px + 1vmin);
@@ -45,9 +46,9 @@
   background-color: white;
   padding-left: 10px;
   height: 50px;
-  /* width: 100vw; */
-  min-width: 335px;
-  /* max-width: 400px; */
+  max-width: 350px;
+  width: 3450px;
+  min-width: 325px;
   overflow: hidden;
   /* border-radius: 1%; */
   margin-left: 1%;
@@ -58,10 +59,11 @@
 .input {
   overflow: contain;
   display: inline-flex;
+  /* flex: 2; */
   min-width: 20vw;
-  width: 330px;
+  width: 350px;
   height: 55px;
-  /* min-width: 305px; */
+  /* min-width: 20px; */
   /* min-width:335px; */
   border: 1px solid;
   background-color: lightgoldenrodyellow;

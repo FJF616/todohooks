@@ -18,7 +18,7 @@ export default function ConfirmRemove({ setCleared, cleared, input  }) {
     <>
     <Responsive
             as={Button}
-            minWidth={1024}
+            minWidth={768}
             style={{minWidth:'44px'}}
             color="google plus"
             className="clear"
