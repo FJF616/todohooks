@@ -9,7 +9,7 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
     return (
       <Responsive
         as={Button.Group}
-        style={{ minWidth: "155px", maxWidth: "290px" }}
+        style={{ minWidth: "155px", maxWidth: "330px" }}
       >
         {todo.completed ? (
           <>

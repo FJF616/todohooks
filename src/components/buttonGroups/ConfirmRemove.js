@@ -18,7 +18,7 @@ export default function ConfirmRemove({ setCleared, cleared, input  }) {
     <>
     <Responsive
             as={Button}
-            minWidth={768}
+            minWidth={805}
             style={{minWidth:'44px'}}
             color="google plus"
             className="clear"
@@ -34,11 +34,11 @@ export default function ConfirmRemove({ setCleared, cleared, input  }) {
         trigger={
       <Responsive
             as={Button}
-            maxWidth={768}
+            maxWidth={801}
             color="google plus"
             style={{width: '50px'}}
             className="clear"
-            icon="refresh"
+            icon="trash can"
             // content="Clear Todo List"
             onClick={() => open()}
             disabled={input.length || cleared || todoList.length === 0 

@@ -21,7 +21,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
       <Responsive
         as={Button}
         //for desktop resolutions
-        minWidth={768}
+        minWidth={805}
         positive
         type="submit"
         icon={!input.length ? "reply" : "save"}
@@ -40,7 +40,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
           <Responsive
             as={Button}
             //for mobile device resolutions
-            maxWidth={768}
+            maxWidth={802}
             positive
             type="submit"
             icon={!input.length ? "reply" : "save"}
@@ -55,7 +55,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
       {/* this button marks every todo as complete */}
       <Responsive
         as={Button}
-        minWidth={768}
+        minWidth={805}
         className="complete"
         icon="checkmark"
         style={{ minWidth: "135px", width: "150px", maxWidth: "160px" }}
@@ -80,7 +80,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
         trigger={
           <Responsive
             as={Button}
-            maxWidth={768}
+            maxWidth={802}
             className="complete"
             icon="checkmark"
             style={{ width: "55px" }}
@@ -103,7 +103,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
       />
       <Responsive
         as={Button}
-        minWidth={768}
+        minWidth={805}
         color="linkedin"
         className="complete"
         style={{ width: "150px" }}
@@ -123,7 +123,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
         trigger={
           <Responsive
             as={Button}
-            maxWidth={768}
+            maxWidth={802}
             color="linkedin"
             className="complete"
             icon="exchange"
