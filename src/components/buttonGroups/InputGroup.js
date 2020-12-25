@@ -15,7 +15,7 @@ const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCo
     <Responsive
       as={Button.Group}
       fluid
-      style={{ minWidth: "150px", maxWidth: "355px", margin: "2px" }}
+      style={{ minWidth: "150px", maxWidth: "350px", margin: "2px" }}
     >
       {/* this button saves each todo*/}
       <Responsive

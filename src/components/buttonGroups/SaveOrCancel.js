@@ -14,7 +14,7 @@ const SaveOrCancel = ({ id, saveEditText, onSetEdit, index, editText }) => (
           onClick={() => onSetEdit()} 
         />
     </Responsive>
-      <Responsive as={Button.Group} style={{width: '335px'}} minWidth={1024}>
+      <Responsive as={Button.Group} style={{width: '345px'}} minWidth={1024}>
         < Responsive as={Button} color='blue' icon='save' content="Save" minWidth={1024}  
           onClick={() => {saveEditText(editText, id, index); onSetEdit()}} 
         />    

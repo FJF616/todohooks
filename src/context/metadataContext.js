@@ -54,7 +54,7 @@ export const MetadataContext = createContext();
     }, [user]);
    
     return ( 
-      <MetadataContext.Provider value={{ hasSaved, setHasSaved, checkHasSaved, userTodoList, useAuth0, getUserMetadata }}>
+      <MetadataContext.Provider value={{ hasSaved, setHasSaved, checkHasSaved, userTodoList, setUserTodoList, useAuth0, getUserMetadata }}>
         {children}
       </MetadataContext.Provider>
     )

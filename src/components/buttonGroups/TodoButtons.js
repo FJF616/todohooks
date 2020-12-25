@@ -2,14 +2,17 @@ import React, { useContext }  from 'react';
 import { Button, Responsive } from 'semantic-ui-react';
 import { TodosDispatch } from '../../TodoContainer';
 import { MetadataContext } from '../../context'
-const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => { 
+import { TodoContext }  from '../../context'
+const TodoButtons = ({ displayDate, onSetEdit,  todo,  index, focus }) => { 
+    const state = useContext(TodoContext);
+    const { todoList } = state;
     const dispatch = useContext(TodosDispatch);
-    const { checkHasSaved } = useContext(MetadataContext);
+    const { checkHasSaved, setUserTodoList } = useContext(MetadataContext);
     
     return (
       <Responsive
         as={Button.Group}
-        style={{ minWidth: "155px", maxWidth: "330px" }}
+        style={{ minWidth: "150px", maxWidth: "330px" }}
       >
         {todo.completed ? (
           <>
@@ -19,7 +22,8 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
               className="toggle"
               onClick={() => {
                 dispatch({ type: "TOGGLE_COMPLETE", payload: todo.id, index });
-                checkHasSaved();
+                // checkHasSaved();
+                setUserTodoList(todoList)
               }}
               basic
               color="green"
@@ -33,7 +37,8 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
               content="Mark Incomplete"
               onClick={() => {
                 dispatch({ type: "TOGGLE_COMPLETE", payload: todo.id, index });
-                checkHasSaved();
+                // checkHasSaved();
+                setUserTodoList(todoList)
               }}
               basic
               color="green"
@@ -61,7 +66,8 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
               content="Remove Todo"
               onClick={() => {
                 dispatch({ type: "REMOVE_TODO", payload: todo.id, index });
-                checkHasSaved();
+                // checkHasSaved();
+                setUserTodoList(todoList)
               }}
               style={{ width: '160px', maxWidth: '205px' }}
               minWidth={805}
@@ -75,7 +81,8 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
               // content="Remove Todo"
               onClick={() => {
                 dispatch({ type: "REMOVE_TODO", payload: todo.id, index });
-                checkHasSaved()
+                // checkHasSaved()
+                setUserTodoList(todoList)
               }}
               style={{ minWidth: "35px", maxWidth: "205px" }}
               maxWidth={801}
@@ -91,7 +98,8 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
               content="Complete"
               onClick={() => {
                 dispatch({ type: "TOGGLE_COMPLETE", payload: todo.id, index });
-                checkHasSaved()
+                // checkHasSaved()
+                setUserTodoList(todoList)
               }}
               color="green"
               style={{ marginLeft: "10px", width: "175px" }}
@@ -104,7 +112,8 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
               // content="Mark as Complete"
               onClick={() => {
                 dispatch({ type: "TOGGLE_COMPLETE", payload: todo.id, index });
-                checkHasSaved();
+                // checkHasSaved();
+                setUserTodoList(todoList)
               }}
               color="green"
               style={{
@@ -121,7 +130,7 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
               className="edit-todo"
               content="Edit Todo"
               icon="edit"
-              onClick={() => { onSetEdit(); checkHasSaved();}}
+              onClick={() => { onSetEdit(); setUserTodoList(todoList); }}
               style={{ minWidth: "180px", maxWidth: "215px" }}
               minWidth={805}
             />
@@ -131,7 +140,7 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
               className="edit-todo"
               // content="Edit Todo"
               icon="edit"
-              onClick={() => { onSetEdit(); checkHasSaved(); }}
+              onClick={() => { onSetEdit(); setUserTodoList(todoList); }}
               style={{ minWidth: "35px", maxWidth: "270px" }}
               maxWidth={802}
             />
@@ -148,7 +157,7 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
                 content="Remove Todo"
                 onClick={() => {
                   dispatch({ type: "REMOVE_TODO", payload: todo.id, index });
-                  checkHasSaved();
+                  setUserTodoList(todoList);
                 }}
                 style={{ width: '160px', maxWidth: '205px' }}
                 minWidth={805}
@@ -161,7 +170,7 @@ const TodoButtons = ({ displayDate, onSetEdit,  todo,  index }) => {
                 // content="Remove Todo"
                 onClick={() => {
                   dispatch({ type: "REMOVE_TODO", payload: todo.id, index });
-                  checkHasSaved();
+                  setUserTodoList(todoList);
                 }}
                 style={{ minWidth: "35px", maxWidth: "195px" }}
                 maxWidth={802}

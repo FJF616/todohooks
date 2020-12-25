@@ -26,7 +26,7 @@ export default function todoReducer(state, action) {
       const todos = state.todoList.filter((todo, index) => index !== action.index)
       return {
         ...state,
-        todoList: [...todos]
+         todoList: todos
       };
     //toggle whether or not a todo is complete
     case TOGGLE_COMPLETE:

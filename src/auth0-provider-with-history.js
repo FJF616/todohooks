@@ -20,7 +20,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
       onRedirectCallback={onRedirectCallback}
       audience={audience}
       useRefreshTokens={true}
-      scope="read:current_user update:current_user_metadata"
+      scope="read:current_user read:app_metadata update:current_user_metadata update:app_metadata"
     >
       {children}
     </Auth0Provider>

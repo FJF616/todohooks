@@ -38,7 +38,7 @@ export default function ConfirmRemove({ setCleared, cleared, input  }) {
             color="google plus"
             style={{width: '50px'}}
             className="clear"
-            icon="trash can"
+            icon="trash"
             // content="Clear Todo List"
             onClick={() => open()}
             disabled={input.length || cleared || todoList.length === 0 

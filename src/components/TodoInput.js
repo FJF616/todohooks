@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useRef, useContext, useEffect, } from 'react';
 import InputGroup from '../components/buttonGroups/InputGroup'
 import { useAuth0 } from '@auth0/auth0-react';
 import useEditHooks from '../components/hooks/editHook';
 import { TodosDispatch } from '../TodoContainer';
 import TodoContext from "../context/todoContext";
 
-export default function TodoInput({ sendUserMetadata }) {
+const TodoInput = React.forwardRef(({ sendUserMetadata }, ref) => {
   const { isAuthenticated } = useAuth0();
   const { countCompletedTodos } = useEditHooks();
   const state = useContext(TodoContext);
@@ -26,12 +26,19 @@ export default function TodoInput({ sendUserMetadata }) {
       dispatch({ type: 'ADD_TODO', payload: input })
       setInput('');
       setCleared(false);
+      ref.current.focus()
     }
   
   function updateCompletedTasks() {
     const completedTodos = countCompletedTodos(todoList);
     return setCompletedTasks(completedTodos);
   }
+//  const inputRef = useRef(null);
+//   useEffect(() => {
+//     if(isAuthenticated) {
+//       inputRef.current.focus()
+//     }
+//   }, [])
   //update whenever number of completed todos changes, so clearCompleted
   //button will enable/disable at appropriate time.
   useEffect(() => {
@@ -43,6 +50,7 @@ export default function TodoInput({ sendUserMetadata }) {
       <form onSubmit={onSubmit}>
         <div className="todo-top">
           <input
+            ref={ref}
             className="todo-input"
             value={input}
             onChange={(event) => setInput(event.target.value)}
@@ -63,4 +71,5 @@ export default function TodoInput({ sendUserMetadata }) {
       </form>
     </>
   );
-};
+});
+export default TodoInput

@@ -12,11 +12,14 @@ export const  useSaveTodoList = (currentTodoList) => {
   const { user, getAccessTokenSilently } = useAuth0();
  
   const updateLocalStorage = () => {
-    // localStorage.removeItem("todoList");
+    localStorage.removeItem("todoList");
     localStorage.setItem("todoList", JSON.stringify(currentTodoList))
   }
-  const saveUserTodoList = async () => {
-    const accessToken = await getAccessTokenSilently();
+  const saveUserTodoList = async (currentTodoList) => {
+    const accessToken = await getAccessTokenSilently({
+      audience: `https://everybodyleave.auth0.com/api/v2/`,
+      scope: "read:current_user update:current_user_metadata",
+      });
     const auth0Id = await user.sub;
     const config = {
       method: 'patch',
@@ -41,7 +44,7 @@ export const  useSaveTodoList = (currentTodoList) => {
       return await response
     } catch(err) {
         console.log("error updating metadata", err)
-        throw new Error(err);
+        // throw new Error(err);
         }
       
   }
