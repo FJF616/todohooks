@@ -9,6 +9,7 @@ export const MetadataContext = createContext();
     const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
     const [ userTodoList, setUserTodoList ] = useState(null);
     const [hasSaved, setHasSaved] = useState(false)
+    const [avatar, setAvatar] = useState(null)
     const checkHasSaved = () => {
       return hasSaved ? setHasSaved(false) : null
     }
@@ -35,8 +36,12 @@ export const MetadataContext = createContext();
            };
            const response = await axios(config);
            const metadata = await response.data;
-           const { todoList } = metadata["user_metadata"];
+           const { todoList, picture } = metadata["user_metadata"];
+          //  const { picture } = metadata["user_metadata"]
            console.log("userTodoList: ", todoList);
+           if (picture.length) {
+            setAvatar(picture)
+           }
            if (!Array.isArray(todoList)) {
            localStorage.setItem("todoList", JSON.stringify(""));
            } else {
@@ -54,7 +59,7 @@ export const MetadataContext = createContext();
     }, [user]);
    
     return ( 
-      <MetadataContext.Provider value={{ hasSaved, setHasSaved, checkHasSaved, userTodoList, setUserTodoList, useAuth0, getUserMetadata }}>
+      <MetadataContext.Provider value={{ hasSaved, setHasSaved, checkHasSaved, userTodoList, setUserTodoList, avatar, setAvatar, useAuth0, getUserMetadata }}>
         {children}
       </MetadataContext.Provider>
     )

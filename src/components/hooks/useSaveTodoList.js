@@ -15,7 +15,7 @@ export const  useSaveTodoList = (currentTodoList) => {
     localStorage.removeItem("todoList");
     localStorage.setItem("todoList", JSON.stringify(currentTodoList))
   }
-  const saveUserTodoList = async (currentTodoList) => {
+  const saveUserTodoList = async () => {
     const accessToken = await getAccessTokenSilently({
       audience: `https://everybodyleave.auth0.com/api/v2/`,
       scope: "read:current_user update:current_user_metadata",
@@ -46,7 +46,7 @@ export const  useSaveTodoList = (currentTodoList) => {
         console.log("error updating metadata", err)
         // throw new Error(err);
         }
-      
+    updateLocalStorage()
   }
   // useEffect(() => {
   //   saveUserTodoList()

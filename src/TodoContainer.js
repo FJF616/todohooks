@@ -27,7 +27,7 @@ export default function TodoContainer() {
   })
   const handleSaveList = () => {
     localStorage.setItem("todoList", JSON.stringify(todoList))
-    saveUserTodoList(todoList);
+    saveUserTodoList();
   };
   
   useEffectOnce(() => {

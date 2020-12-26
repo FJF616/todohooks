@@ -18,7 +18,7 @@ const LogoutButton = () => {
   }
   const CheckforPopup = () =>{
     return (
-      hasSaved 
+      hasSaved === false
       ? (<Popup content="Don't forget to save your todos" 
         trigger={
           <Button

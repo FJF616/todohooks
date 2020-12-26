@@ -40,10 +40,12 @@ const AuthMenu = () => {
   );
 };
 
-const MenuBar = () => {
-  const { useAuth0 } = useContext(MetadataContext);
-  const { user, isAuthenticated } = useAuth0()
-  
+const MenuBar =  () => {
+  const { useAuth0, avatar } = useContext(MetadataContext);
+  const { user, isAuthenticated, getIdTokenClaims } = useAuth0()
+  const claims = getIdTokenClaims();
+  const metadataKey = "https://everybodyleave.com/claims/user_metadata"
+  // const avatar =  claims[metadataKey].picture
   return (
     <Menu bg="light" expand="md">
       <Container>
@@ -52,7 +54,7 @@ const MenuBar = () => {
         <AuthMenu />
       </Container>
       <div className="profilepic">
-        <Image size="mini" src={ isAuthenticated ? user.picture : "" } />
+        <Image size="mini" src={  avatar || user.picture } />
       </div>
     </Menu>
   );
