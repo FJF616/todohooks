@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { InputFile } from 'semantic-ui-react-input-file';
+import { Image } from 'semantic-ui-react';
 import axios from 'axios';
 import UploadWidget from './uploadWidget';
 // import { useAuth0 } from '@auth0/auth0-react';
@@ -42,7 +43,8 @@ const GetMetadataProfile = () => {
   return (
     isAuthenticated && (
       <div>
-        <img style={{width: '120px', height: '120px'}} src={avatar ? avatar: user.picture} alt={user.name} />
+      <Image size="small" src={avatar ? avatar: user.picture} alt={user.name} />
+        {/* <img style={{width: '120px', height: '120px'}} src={avatar ? avatar: user.picture} alt={user.name} /> */}
         <br/>
         <UploadWidget user={user} getAccessTokenSilently={getAccessTokenSilently} />
           {/* <InputFile input={{ id: uuid.v4(), onChange: handleSubmit }} /> */}

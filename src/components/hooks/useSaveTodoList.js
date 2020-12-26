@@ -18,7 +18,7 @@ export const  useSaveTodoList = (currentTodoList) => {
   const saveUserTodoList = async () => {
     const accessToken = await getAccessTokenSilently({
       audience: `https://everybodyleave.auth0.com/api/v2/`,
-      scope: "read:current_user update:current_user_metadata",
+      scope: "read:current_user update:current_user_metadata update:current_user",
       });
     const auth0Id = await user.sub;
     const config = {
