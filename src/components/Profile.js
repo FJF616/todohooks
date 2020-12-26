@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
-import TodoContext from '../context/todoContext';
+import { TodoStateContext } from '../TodoContainer';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Profile = () => {
-  const { sendUserMetadata } = useContext(TodoContext)
+  const { sendUserMetadata } = useContext(TodoStateContext)
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
   useEffect(() => {
