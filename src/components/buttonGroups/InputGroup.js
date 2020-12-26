@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { Button, Popup, Responsive } from 'semantic-ui-react';
-import { TodosDispatch } from '../../TodoContainer';
-import { TodoContext, MetadataContext } from '../../context';
+import { TodosDispatch, TodoStateContext } from '../../TodoContainer';
+import {MetadataContext } from '../../context';
 import ConfirmRemove from './ConfirmRemove';
 
 //This component will display the button group used when adding a todo.  
 const InputGroup = ({input, onSubmit, cleared, completedTasks, setCleared, setCompletedTasks }) => {
   const { useAuth0, setHasSaved } = useContext(MetadataContext);
   const { isAuthenticated } = useAuth0;
-  const state = useContext(TodoContext);
+  const state = useContext(TodoStateContext);
   const { todoList } = state;
   const dispatch = useContext(TodosDispatch);
   return (

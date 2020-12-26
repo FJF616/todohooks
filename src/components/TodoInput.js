@@ -2,13 +2,13 @@ import React, { useState, useRef, useContext, useEffect, } from 'react';
 import InputGroup from '../components/buttonGroups/InputGroup'
 import { useAuth0 } from '@auth0/auth0-react';
 import useEditHooks from '../components/hooks/editHook';
-import { TodosDispatch } from '../TodoContainer';
-import TodoContext from "../context/todoContext";
+import { TodosDispatch, TodoStateContext } from '../TodoContainer';
+// import TodoContext from "../context/todoContext";
 
 const TodoInput = React.forwardRef(({ sendUserMetadata }, ref) => {
   const { isAuthenticated } = useAuth0();
   const { countCompletedTodos } = useEditHooks();
-  const state = useContext(TodoContext);
+  const state = useContext(TodoStateContext);
   const { todoList } = state;
   const dispatch = useContext(TodosDispatch);
  

@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Button, Confirm, Popup, Responsive } from 'semantic-ui-react';
-import { TodoContext } from '../../context';
-import { TodosDispatch } from '../../TodoContainer';
+// import { TodoContext } from '../../context';
+import { TodosDispatch, TodoStateContext } from '../../TodoContainer';
 import { useSaveTodoList } from '../hooks';
 
 export default function ConfirmRemove({ setCleared, cleared, input  }) {
-  const state = useContext(TodoContext);
+  const state = useContext(TodoStateContext);
   const { todoList } = state;
   const { updateLocalStorage, saveUserTodoList } = useSaveTodoList(todoList);
   const dispatch = useContext(TodosDispatch);

@@ -8,14 +8,14 @@ import { useSaveTodoList, useEffectOnce } from './components/hooks';
 import  ConfirmRemove from './components/buttonGroups/ConfirmRemove';
 import VisibilitySwitch from './components/visibilitySwitch';
 export const TodosDispatch = createContext(null);
-
+export const TodoStateContext = createContext(null)
 export default function TodoContainer() {
   //set initial state to context state
   const { useAuth0, userTodoList, getUserMetadata, setHasSaved } = useContext(MetadataContext);
   const { user, isAuthenticated } = useAuth0();
   const [userList, setUserList] = useState(userTodoList)
-  const initialState = useContext(TodoContext);
-  const [state, dispatch] = useReducer(todoReducer, initialState);
+  // const initialState = useContext(TodoContext);
+  const [state, dispatch] = useReducer(todoReducer, userTodoList);
   const { todoList } = state;
   const { saveUserTodoList, updateLocalStorage } = useSaveTodoList(todoList);
   const inputRef = useRef(null);
@@ -56,7 +56,7 @@ export default function TodoContainer() {
 
     return (
       <TodosDispatch.Provider value={dispatch}>
-        <TodoContext.Provider value={state}>
+        <TodoStateContext.Provider value={state}>
           <div className="App">
             <div className="top">
               <VisibilitySwitch/>
@@ -89,7 +89,7 @@ export default function TodoContainer() {
               {/* <ConfirmRemove/> */}
             </div>
           </div>
-        </TodoContext.Provider>
+        </TodoStateContext.Provider>
       </TodosDispatch.Provider>
     );
 }
