@@ -1,9 +1,9 @@
 import { useState, useContext, useEffect } from 'react';
-import { TodoStateContext } from '../../TodoContainer';
+import { TodoContext } from '../../context';
 
 //custom hook for editing a todo
 export function useEditHooks() {
-  const state  = useContext(TodoStateContext);
+  const state  = useContext(TodoContext);
   const { todoList } = state;
   const singleTodo = todoList.filter(todo => { return { todo }})
   const [editing, setEditing] = useState(todoList.editing);

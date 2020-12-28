@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { InputFile } from 'semantic-ui-react-input-file';
-import { Image } from 'semantic-ui-react';
+import { Image, List } from 'semantic-ui-react';
 import axios from 'axios';
 import UploadWidget from './uploadWidget';
 // import { useAuth0 } from '@auth0/auth0-react';
@@ -51,11 +51,11 @@ const GetMetadataProfile = () => {
         <h2>{user.name}</h2>
         <p>{user.email}</p>
         <h3>Saved Todos</h3>
-        {userMetadata ? (
-          <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
+         {userMetadata ? (
+            <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
         ) : (
           "There are no Todos saved"
-        )}
+        )} 
       </div>
     )
   );

@@ -41,6 +41,8 @@ export const  useSaveTodoList = (currentTodoList) => {
       updateLocalStorage();
       setSavedMetadata(response);
       console.log("successfully updated metadata", response)
+      alert("Todolist saved.")
+
       return await response
     } catch(err) {
         console.log("error updating metadata", err)

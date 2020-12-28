@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 // import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Popup, Confirm } from "semantic-ui-react";
-import { MetadataContext } from "../context";
+import { TodoContext, MetadataContext } from "../context";
 import { useSaveTodoList } from "./hooks"
 const LogoutButton = () => {
   const { userTodoList, hasSaved, useAuth0 } = useContext(MetadataContext);

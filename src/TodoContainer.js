@@ -8,14 +8,14 @@ import { useSaveTodoList, useEffectOnce } from './components/hooks';
 import  ConfirmRemove from './components/buttonGroups/ConfirmRemove';
 import VisibilitySwitch from './components/visibilitySwitch';
 export const TodosDispatch = createContext(null);
-export const TodoStateContext = createContext(null)
+
 export default function TodoContainer() {
   //set initial state to context state
-  const { useAuth0, userTodoList, getUserMetadata, setHasSaved } = useContext(MetadataContext);
+  const { useAuth0, userTodoList, getUserMetadata, hasSaved, setHasSaved } = useContext(MetadataContext);
   const { user, isAuthenticated } = useAuth0();
   const [userList, setUserList] = useState(userTodoList)
-  // const initialState = useContext(TodoContext);
-  const [state, dispatch] = useReducer(todoReducer, userTodoList);
+  const initialState = useContext(TodoContext);
+  const [state, dispatch] = useReducer(todoReducer, initialState);
   const { todoList } = state;
   const { saveUserTodoList, updateLocalStorage } = useSaveTodoList(todoList);
   const inputRef = useRef(null);
@@ -27,7 +27,7 @@ export default function TodoContainer() {
   })
   const handleSaveList = () => {
     localStorage.setItem("todoList", JSON.stringify(todoList))
-    saveUserTodoList();
+    saveUserTodoList(todoList);
   };
   
   useEffectOnce(() => {
@@ -56,7 +56,7 @@ export default function TodoContainer() {
 
     return (
       <TodosDispatch.Provider value={dispatch}>
-        <TodoStateContext.Provider value={state}>
+        <TodoContext.Provider value={state}>
           <div className="App">
             <div className="top">
               <VisibilitySwitch/>
@@ -76,11 +76,7 @@ export default function TodoContainer() {
             <div className="bottom">
               <Button
                 disabled={
-                  isAuthenticated
-                    ? false
-                    : isAuthenticated && todoList.length
-                    ? false
-                    : true
+                  hasSaved ? true : false
                 }
                 onClick={() => { handleSaveList(); setHasSaved(true)} }
               >
@@ -89,7 +85,7 @@ export default function TodoContainer() {
               {/* <ConfirmRemove/> */}
             </div>
           </div>
-        </TodoStateContext.Provider>
+        </TodoContext.Provider>
       </TodosDispatch.Provider>
     );
 }

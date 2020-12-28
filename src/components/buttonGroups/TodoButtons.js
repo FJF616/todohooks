@@ -1,10 +1,10 @@
 import React, { useContext }  from 'react';
 import { Button, Responsive } from 'semantic-ui-react';
-import { TodosDispatch, TodoStateContext } from '../../TodoContainer';
+import { TodosDispatch } from '../../TodoContainer';
 import { MetadataContext } from '../../context'
-// import { TodoContext }  from '../../context'
+import { TodoContext }  from '../../context'
 const TodoButtons = ({ displayDate, onSetEdit,  todo,  index, focus }) => { 
-    const state = useContext(TodoStateContext);
+    const state = useContext(TodoContext);
     const { todoList } = state;
     const dispatch = useContext(TodosDispatch);
     const { checkHasSaved, setHasSaved, setUserTodoList } = useContext(MetadataContext);
